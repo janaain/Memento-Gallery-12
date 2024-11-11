@@ -3,36 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interface de Foto</title>
+    <title>MementoGallery</title>
     <link rel="stylesheet" href="viewphoto.css">
 </head>
 <body>
 
-<div class="container">
-    <div class="top-bar"> Memento Gallery </div>
+<a href="index.html" class="back-button">← Voltar</a>
 
-    
-    <div class="sidebar">
-        <div class="sidebar-option">Detalhes</div>
-        <div class="sidebar-option">Adicionar Tag</div>
-        <div class="sidebar-option">Compartilhar</div>
-        <div class="bottom-buttons">
-            <div class="sidebar-option">Eliminar Foto</div>
-            <div class="sidebar-option">Voltar</div>
-        </div>
+<div class="main">
+
+    <div class="top_bar">
+        <h1>MementoGallery</h1>
     </div>
 
-
-    
     <div class="content">
-        <div class="photo-placeholder">
-          
-
+        <div class="photo-container">
+            <img src="Images\Index\DrHouse.png" alt="Foto" class="photo">
         </div>
-    
         <div class="button-group">
             <div class="action-button">Editar</div>
             <div class="action-button">Compartilhar</div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Detalhes</a></li>
+            <li></li>
+            <li><a href="#">Adicionar Tag</a></li>
+            <li></li>
+            <li><a href="#">Compartilhar</a></li>
+            <li></li>
+        </ul>
+        <div class="bottom-buttons">
+            <a href="#" class="option-button">Eliminar Foto</a>
+            <a href="#" class="option-button">Voltar</a>
         </div>
     </div>
 </div>

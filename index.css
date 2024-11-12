@@ -13,7 +13,7 @@ html, body{
     grid-template-areas: 
         'top_bar top_bar'
         'menu content';
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 200px 1fr;
     grid-template-rows: 
         1fr 9fr;
     ;
@@ -37,22 +37,25 @@ html, body{
 .menu{
     grid-area: menu;
     background-color: #e6e6e6;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
     border-right: 2px solid #ccc;
 }
 
 .menu ul {
     list-style-type: none;
-    margin: 0px;
+    padding-left: 0;
+    margin: 0;
+    text-align: center;
 }
 .menu li {
-    
-    margin-bottom: 40px;
+    margin: 10px;
     padding-block: 15px;
     font-size: 20px
+}
+
+.menu li:nth-child(9) {
+    margin-bottom: 180px; /*Mudar*/
 }
 
 .content {

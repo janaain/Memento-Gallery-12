@@ -24,17 +24,16 @@ li {
 }
 
 .main a{
-    color: rgb(71, 54, 226);
     text-decoration: none;
 }
 
-.main a :hover{
-    color: rgb(96, 88, 172);
-    text-shadow: 1px 1px 4px rgb(255, 255, 255)
+.top_bar a :hover{
+    color: rgb(36, 11, 255);
+    text-shadow: 1px 1px 10px rgb(47, 47, 47)
 }
 
 .top_bar{
-    background-color: aquamarine;
+    background-color: rgb(159, 194, 255);
     grid-area: top_bar;
 }
 
@@ -47,40 +46,80 @@ li {
 }
 
 .menu ul {
-    
     padding-left: 0;
     margin: 0;
     text-align: center;
 }
 .menu li {
-    margin: 10px;
-    padding-block: 15px;
-    font-size: 20px
+    padding-block: 20px;
+    font-size: 20px;
+    color: black;
+    border-bottom:1px solid rgb(77, 77, 77);
+}
+.menu li:hover{
+    background-color: rgb(210, 210, 210);
 }
 
-.menu li:nth-child(7) {
-    margin-top: 500px; /*Mudar*/
+#chat-button {
+    font-size: 20px;
+    position: fixed;
+    padding: 20px 81px;
+    border: 1px #888;
+    left: 0px;
+    bottom: 0px;
+    border-top:1px solid rgb(77, 77, 77);
 }
 
-.menu li{
-    color: rgb(0, 0, 0);
-    background-color: rgb(0, 0, 0);
-}
-.menu ul a li:hover{
-    color: blue;
+#chat-button:hover {
+    background-color: rgb(210, 210, 210);
 }
 
 .content {
     grid-area: content;
     background-color: aliceblue;
-    display: inline-block;
+    padding-inline: 15px ;
     
 }
 
 .content img {
-    height: 150px;
+    height: 120px;
 }
 
-.content ul {
-    width: 170px;
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+}
+
+.content div {
+    height: 170px;
+    max-width: 170px;
+    text-align: center;
+    align-items: start;
+}
+
+.content label {
+    font-size: 120%;
+    
+}
+
+.popup{
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
 }

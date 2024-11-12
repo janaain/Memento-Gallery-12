@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <script src="javascript/index.js"></script>
     <title>Memento Gallery</title>
     
 </head>
@@ -16,23 +17,32 @@
         <div class="menu">
             <ul>
                 <a><li>Adicionar Fotos</li></a>
-                <hr> 
                 <a><li>Compartilhar</li></a>
-                <hr>
                 <a><li>Editar</li></a>
-                <hr>
-                <li></li>
-                <hr>
-                <a><li>Chat</li></a>
+                
+                <a href="online.html"><li id="chat-button">Chat</li></a>
             </ul>
         </div>
         <div class="content">
-            <ul>
-                <!-- <img src="Images/cogwhell.png"> -->
-                <li><img src="../Images/plus.png"></li>
-                <li><img src="../Images/folder.png"></li>
-            </ul>
+            <div class="openPopup"><img src="Images/plus.png"><br><label>Criar Albúm</label></div>
+            <div class="folder"><img src="Images/folder.png"><br><label>Viagens</label></div>
+            <div class="folder"><img src="Images/folder.png"><br><label>Viagens</label></div>
+            <div class="folder"><img src="Images/folder.png"><br><label>Viagens</label></div>
+            
+            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
+            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
+            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
         </div>
+        <!-- Starts the PopUp -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closePopup">&times;</span>
+                <h2>Enter Your Name</h2>
+                <input type="text" id="nameInput" placeholder="Your Name">
+                <button id="okButton">OK</button>
+            </div>
+        </div>
+        
     </div>
     
     <!-- <div class="content">

@@ -1,0 +1,646 @@
+/*
+ITW 2023/2024
+PL26
+Group16
+62210 - Maria Leonor Leal
+62265 - Joana Trindade
+62214 - Luís Lima
+*/
+"use strict";
+
+
+/* ------------------------------------------------------------------------- */
+/*                                                                 CONSTANTS */
+/* ------------------------------------------------------------------------- */
+
+// Identifier for the minutes input field
+const MINUTES_ID = "minDigit";
+
+// Identifier for the seconds input field
+const SECONDS_ID = "secDigit";
+
+// Object that stores the time settings for the clock and countdown
+const TIME_REVERSE = {"clock": false, "countdown":true};
+
+// Reference to the form element in the DOM
+const FORMS_CARTAS = document.forms.cartas;
+
+// Key for storing the form data in localStorage
+const SAVED_OPTIONS = "gameOptions";
+
+// Key for storing the current game data in localStorage
+const SAVED_CURRENT_GAME = "saveCurrentGame";
+
+// Key for storing the user data in localStorage
+const SAVE_USER = "userData";
+
+/* ------------------------------------------------------------------------- */
+/*                                                                  ELEMENTS */
+/* ------------------------------------------------------------------------- */
+
+// Reference to the button with the id "btnVolume"
+const BUTTON_VOLUME = document.getElementById("btnVolume");
+
+// Reference to the button with the id "btnRules"
+const BUTTON_RULE = document.getElementById("btnRules");
+
+// Reference to the button with the id "modalVisible"
+const BUTTON_CLOSE = document.getElementById("modalVisible");
+
+// Reference to the button with the id "btnPause"
+const BUTTON_PAUSE = document.getElementById("btnPause");
+
+// Reference to the button with the id "btnContinue"
+const BUTTON_CONTINUE = document.getElementById("btnContinue");
+
+// Reference to the button with the id "btnPlay"
+const BUTTON_PLAY = document.getElementById("btnPlay");
+
+// Reference to the button with the id "butRetry"
+const BUTTON_RETRY = document.getElementById("butRetry");
+
+// Reference to the button with the id "butAbort"
+const BUTTON_ABORT = document.getElementById("butAbort");
+
+// Reference to the audio element with the id "background_music"
+const BACKGROUND_MUSIC = document.getElementById("background_music");
+
+// Reference to the audio element with the id "flip_soundEff"
+const FLIP_SOUNDEFFECT = document.getElementById("flip_soundEff");
+
+/* ------------------------------------------------------------------------- */
+/*                                                OBJECTS & GLOBAL VARIABLES */
+/* ------------------------------------------------------------------------- */
+
+//Score
+let score = {
+    totalScore: 0,
+    obtainedScore: 0
+};
+
+let multiScore = [];
+
+/** CLOCK */
+let clock = {
+    current: 0,
+    span: null,
+    time: 0,
+    countdown: null,
+    countLimit:null
+};
+
+let gameSituation = {
+    name: "",
+    numPlayers: 1,
+    nCards: 20,
+    points: 0,
+    turns: 0,
+    time: 0
+};
+
+let choice1 = null;
+let choice2 = null;
+
+let options;
+
+let clickedCards = [];
+
+let result = [];
+
+let isFliping = false;
+
+let loggedPlayer;
+
+let playersList = [];
+
+let currentPlayer = 0;
+
+//Front Images of cards
+
+let imagesPhoto = [
+    {imgSrc: "./media/tiles/photo/boat_lagoon.jpg", name: "boat_lagoon"},
+    {imgSrc: "./media/tiles/photo/busto_guy.jpg", name: "busto_guy"},
+    {imgSrc: "./media/tiles/photo/funeral_vase.jpg", name: "funeral_vase"},
+    {imgSrc: "./media/tiles/photo/greece_flag.jpg", name: "greece_flag"},
+    {imgSrc: "./media/tiles/photo/greek_salad.jpg", name: "greek_salad"},
+    {imgSrc: "./media/tiles/photo/statues_landscape.jpg", name: "statues_landscape"},
+    {imgSrc: "./media/tiles/photo/vase_art.jpg", name: "vase_art"},
+    {imgSrc: "./media/tiles/photo/floral-street.jpg", name: "floral-street"},
+    {imgSrc: "./media/tiles/photo/beach.jpg", name: "beach"},
+    {imgSrc: "./media/tiles/photo/sculpture.jpg", name: "sculpture"},
+    {imgSrc: "./media/tiles/photo/ocean_view.jpg", name: "ocean_view"},
+    {imgSrc: "./media/tiles/photo/coleseum_night.jpg", name: "coleseum_night"},
+    {imgSrc: "./media/tiles/photo/aphrodite.jpg", name: "aphrodite"},
+    {imgSrc: "./media/tiles/photo/bridge.jpg", name: "bridge"},
+    {imgSrc: "./media/tiles/photo/fighter.jpg", name: "fighter"},
+    {imgSrc: "./media/tiles/photo/fish_plate.jpg", name: "fish_plate"},
+    {imgSrc: "./media/tiles/photo/florest_columns.jpg", name: "florest_columns"},
+    {imgSrc: "./media/tiles/photo/shield_warrior.jpg", name: "shield_warrior"},
+    {imgSrc: "./media/tiles/photo/under_bridge.jpg", name: "under_bridge"}
+]
+
+let imagesIllust = [
+    {imgSrc: "./media/tiles/illust/columns_leaves.jpg", name: "columns_leaves"},
+    {imgSrc: "./media/tiles/illust/desserts.jpg", name: "desserts"},
+    {imgSrc: "./media/tiles/illust/face-greek.jpg", name: "face-greekvase"},
+    {imgSrc: "./media/tiles/illust/four_women.png", name: "four_women"},
+    {imgSrc: "./media/tiles/illust/god-and-lion.jpg", name: "god-and-liond"},
+    {imgSrc: "./media/tiles/illust/golden_vase.jpg", name: "golden_vase"},
+    {imgSrc: "./media/tiles/illust/bust02.jpg", name: "bust02"},
+    {imgSrc: "./media/tiles/illust/gods.jpg", name: "gods"},
+    {imgSrc: "./media/tiles/illust/statues.jpg", name: "statues"},
+    {imgSrc: "./media/tiles/illust/monument.jpg", name: "monument"},
+    {imgSrc: "./media/tiles/illust/philosopher.jpg", name: "philosopher"},
+    {imgSrc: "./media/tiles/illust/salad.jpg", name: "salad"},
+    {imgSrc: "./media/tiles/illust/santo_buildings.jpg", name: "santo_buildings"},
+    {imgSrc: "./media/tiles/illust/sunny-god.jpg", name: "sunny-god"},
+    {imgSrc: "./media/tiles/illust/temple-greeks.jpg", name: "temple-greeks"},
+    {imgSrc: "./media/tiles/illust/vector_island.jpg", name: "vector_island"},
+    {imgSrc: "./media/tiles/illust/vitral.jpg", name: "vitral"},
+    {imgSrc: "./media/tiles/illust/warrior.jpg", name: "warrior"},
+    {imgSrc: "./media/tiles/illust/statue_dinis.jpg", name: "statue_dinis"}
+]
+
+/* ----------------------------------------------------------------------- */
+/*                                           INICIALIZAÇÃO DA APLICAÇÃO    */
+/* ----------------------------------------------------------------------- */
+window.addEventListener("load", main);
+
+
+//Main Function
+
+function main () {
+
+    getSettings();
+    
+    gameSituation.nCards = getColumns()*getRows();
+
+    score.totalScore = gameSituation.nCards/2;
+
+    if(getMode() == "multiplayer") {
+        multi();
+    }
+
+    displayScore();
+
+    displayCards(gameSituation.nCards);
+
+    startTime();
+
+    initializeEventListeners();
+}
+
+//Create eventListeners
+
+function initializeEventListeners(){
+
+    BUTTON_VOLUME.addEventListener("click", stopAudio);
+
+    BUTTON_RULE.addEventListener("click", pauseTime);
+    BUTTON_RULE.addEventListener("click", () => visibility('modalVisible'));
+    BUTTON_CLOSE.addEventListener("click", () => visibility('modalVisible'));
+
+    BUTTON_PAUSE.addEventListener("click", pauseTime);
+    BUTTON_PAUSE.addEventListener("click", () => visibility('pauseModal'));
+
+    // BUTTON_CLOSE.addEventListener("click", () => visibility('modalVisible'));
+    // BUTTON_CLOSE.addEventListener("click", resumeTime);
+
+    BUTTON_CONTINUE.addEventListener("click", resumeTime);
+    BUTTON_CONTINUE.addEventListener("click", () => visibility('pauseModal'));
+
+    BUTTON_PLAY.addEventListener("click", () => selectByForms(FORMS_CARTAS.elements.carta1.value, 
+                                                              FORMS_CARTAS.elements.carta2.value));
+
+    BUTTON_ABORT.addEventListener("click", cleanCurrentGame);
+
+    var cards = document.querySelectorAll(".card");
+    cards.forEach(div =>{
+        div.addEventListener("click", clickCards);
+    })
+}
+
+
+// Get Game Options
+
+function getSettings() {
+    options = JSON.parse(localStorage.getItem(SAVED_OPTIONS)) || [];
+}
+
+function getTimer() {
+
+    clock.countdown = TIME_REVERSE[options["time"]];
+}
+
+function getMode() {
+    return options["mode"];
+}
+
+function getCount() {
+    let min = options["min"];
+    let sec = options["sec"];
+
+    return (60 * parseInt(min) + parseInt(sec));
+}
+
+function getPlayer() {
+    return JSON.parse(localStorage.getItem("multiplayerUsers"));
+}
+
+
+function getRows() {
+    return parseInt(options["rows"]);
+}
+
+function getColumns() {
+    return parseInt(options["columns"]);
+}
+
+function getTheme() {
+    return options["theme"];
+}
+
+//Put cards on grid
+
+function makePairs(imagesArray) {
+    shuffleArray(imagesArray);
+    var selectedImages = imagesArray.slice(0,gameSituation.nCards/2);
+    var pairsArrays = [...selectedImages,...selectedImages];
+    shuffleArray(pairsArrays);
+    return pairsArrays
+}
+
+// Function to shuffle an array using the Fisher-Yates algorithm
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function displayCards (numberOfCards) {
+    var theme = getTheme()
+    if(theme==="imagesIllust"){
+        var pairs = makePairs(imagesIllust)
+    }
+    if(theme==="imagesPhoto"){
+        var pairs = makePairs(imagesPhoto)
+    }
+
+    var backImagePath = "./media/back_card";
+
+    var parentDiv = document.getElementsByClassName("grid-cards")[0];
+
+    var gridColumns = "";
+
+    for (let step = 0; step < getColumns(); step++){
+        gridColumns += "auto ";
+    }
+
+    parentDiv.style.gridTemplateColumns = gridColumns;
+
+    for(let i = 0; i < numberOfCards; i++) {
+        var frontImagePath = pairs[i].imgSrc;
+        var tempDiv = document.createElement("div");
+        tempDiv.setAttribute("id", String(i+1));
+        tempDiv.setAttribute("class", "card");
+
+        tempDiv.innerHTML = "<div class = card-back> <img src=" + backImagePath + ".png></img> \n" +
+                            "<span class = card-number>" + String(i+1) + "</span></div> \n" +
+                            "<div id=card-front class = card-front><img src=" + frontImagePath + "></img></div>"; 
+
+        parentDiv.appendChild(tempDiv);
+    }
+}
+
+function displayScore(){;
+    if (getMode() == "singleplayer"){
+        var display = "<div> Points: " + String(score.obtainedScore) + "/" + String(score.totalScore) + "</div>";
+        document.getElementById("score").innerHTML = display;
+    } else {
+    
+        let scoreDiv = document.getElementById("score");
+        let temp = "";
+
+        for(let p = 0; p < playersList.length ; p++){
+            if (p == currentPlayer) {
+                temp += "<div id='turn'><img id='imgScore' src='"+ playersList[p]["avatar"]+"'>" + playersList[p]["name"] +": " + playersList[p]["scoreObtained"] + 
+                        "/" + String(score.totalScore) + "</div>";
+            } else {
+                temp += "<div><img id='imgScore' src='"+ playersList[p]["avatar"]+"'>" + playersList[p]["name"] +": " + playersList[p]["scoreObtained"] + 
+                        "/" + String(score.totalScore) + "</div>";
+            }
+            
+        }
+
+        scoreDiv.innerHTML = temp;
+    } 
+    
+};
+
+function updateScore(){
+    if (getMode() == "singleplayer"){
+        score.obtainedScore ++;
+        gameSituation.points = score.obtainedScore;
+    } else {
+        playersList[currentPlayer]["scoreObtained"] += 1;
+        displayScore();
+    }
+
+    displayScore();
+
+}
+
+//Select cards
+
+function selectByForms(card1, card2){
+
+    var esc1 = document.getElementById(card1);
+    var esc2 = document.getElementById(card2);
+
+    flipCard(esc1);
+    flipCard(esc2);
+
+    play(esc1, esc2);
+}
+
+function clickCards(){
+    if (!(clickedCards.includes(this.id)) && !isFliping){
+        clickedCards.push(this.id);
+
+        var numberClickedCards = clickedCards.length;
+        if (numberClickedCards === 2){
+            flipCard(this)
+            choice2 = this
+            play(choice1, choice2)
+            clickedCards = []
+        }
+        else{
+            choice1 = this
+            flipCard(this)
+        }
+}}
+
+function play(esc1, esc2) {
+    choice1 = esc1;
+    choice2 = esc2;
+    if ((choice1 !== choice2)){
+        gameSituation.turns ++;
+        isFliping = true
+
+        if((choice1 !== null) && (choice2 !== null)){
+            FORMS_CARTAS.reset();
+
+            if((choice1.querySelector('#card-front img').src === choice2.querySelector('#card-front img').src) 
+            && (choice1.id !== 'outOfGame') && (choice2.id !== 'outOfGame')) {
+
+                isFliping = false
+                flyAway(choice1,choice2);
+                choice1.id = "outOfGame";
+                choice2.id = "outOfGame";
+                updateScore();
+                
+            }
+            else{
+                flipCard(choice1);
+                flipCard(choice2);
+                if (getMode() == "multiplayer"){
+                    skipTurnMulti();
+                }
+                
+            }
+            savegameSituation();
+            endGame();
+        }
+    }
+}
+
+function flyAway(div1, div2) {
+    setTimeout(() => (
+    div1.style.transform="translate(-100vw,-100vh)",
+    div2.style.transform="translate(-100vw,-100vh)"
+), 1500)
+}
+
+//Flip Cards
+function flipCard(choice) {
+    FLIP_SOUNDEFFECT.pause()
+    FLIP_SOUNDEFFECT.currentTime = 0
+    if (choice.classList.contains('flipCard')) {
+        setTimeout(() => {choice.classList.remove('flipCard');
+        }, 1500);
+        
+        FLIP_SOUNDEFFECT.play()
+        
+        setTimeout(() => {isFliping = false;
+        }, 1500);
+    }
+    else {
+    choice.classList.add("flipCard");
+    FLIP_SOUNDEFFECT.play()
+    }
+}
+
+function cleanCurrentGame() {
+    gameSituation.time = 0;
+    gameSituation.points = 0;
+    gameSituation.turns = 0;
+    localStorage.setItem(SAVED_CURRENT_GAME, JSON.stringify(gameSituation));
+}
+
+function endGame () {
+    let sum = null;
+    if (getMode() == "multiplayer"){
+        for (let p = 0; p < playersList.length; p++) {
+            sum += playersList[p]["scoreObtained"];
+        }
+        
+    }
+    
+    if ((score.obtainedScore == score.totalScore) || (timeLimit()) || sum == score.totalScore) {
+        visibility('endGameModal');
+        pauseTime();
+        let modal = document.getElementById("endGameModal");
+        if (score.obtainedScore == score.totalScore) {
+
+            gameSituation.score = parseInt(gameSituation.points * 20 + (-(gameSituation.time / 10)-(gameSituation.turns / 10)));
+            
+
+            modal.innerHTML = "<div class='winnerMenu' ><h2>Congratulations</h2>" +
+                "<p>Final Score</p><p id='finalScore'>"+ gameSituation.score+"</p>"+
+                "<p>You guessed:</p><p><span class='finalInfo'>" + gameSituation.points +
+                "</span> pairs</p><p>In <span class='finalInfo'>"+ 
+                convertTime(gameSituation.time) + "</span></p><p><span class='finalInfo'> " +
+                gameSituation.turns + "</span> turns</p>" +
+                "<a href='player-mode.html' id='butBack'>Exit</a></div>";
+            saveStats();
+            saveFinalGame();
+        } else if (timeLimit()) {
+            modal.innerHTML = "<div class='loserMenu'><h2>Game Over!</h2>" + 
+                "<p>You lost the game. Better luck next time!</p><br>" +
+                "<div><a href='memory-game.html' id='butRetry'> RETRY </button>" + 
+                "<a href='player-mode.html' id='butBack'>Exit</a></div></div>";
+        } else if (sum == score.totalScore) {
+            modal.innerHTML = "<div class='loserMenu'><h2>Congratulations</h2>" +
+                "<p>The game ended.</p><br>" +
+                "<div><a href='memory-game.html' id='butRetry'> RETRY </button>" + 
+                "<a href='player-mode.html' id='butBack'>Exit</a></div></div>";
+        }
+        cleanCurrentGame();
+    }
+}
+
+function saveStats() {
+    let usersList = JSON.parse(localStorage.getItem(SAVE_USER));
+    let userIndex = JSON.parse(localStorage.getItem("loggedUser"));
+    loggedPlayer = usersList[userIndex];
+    gameSituation.name = loggedPlayer.name;
+
+    loggedPlayer.stats.totalGames += 1;
+    loggedPlayer.stats.timePlayed += gameSituation.time;
+    loggedPlayer.stats.totalTurns += gameSituation.turns;
+    loggedPlayer.stats.totalScore += gameSituation.score;
+    loggedPlayer.stats.averageTime = loggedPlayer.stats.timePlayed / loggedPlayer.stats.totalGames;
+    loggedPlayer.stats.averageTurns = loggedPlayer.stats.totalTurns / loggedPlayer.stats.totalGames;
+    loggedPlayer.stats.averageScore = loggedPlayer.stats.totalScore / loggedPlayer.stats.totalGames;
+
+    usersList[userIndex = loggedPlayer];
+    localStorage.setItem(SAVE_USER, JSON.stringify(usersList));
+}
+
+function savegameSituation() {
+    localStorage.setItem(SAVED_CURRENT_GAME, JSON.stringify(gameSituation));
+}
+
+function getGameSituation() {
+    if (localStorage.getItem(SAVED_CURRENT_GAME)) {
+        gameSituation = JSON.parse(localStorage.getItem(SAVED_CURRENT_GAME));
+    }
+    
+}
+
+function saveFinalGame() {
+    if (localStorage.getItem(FINISHED_GAMES)) {
+        result = JSON.parse(localStorage.getItem(FINISHED_GAMES));
+         
+    }
+    result.push(gameSituation);
+    localStorage.setItem(FINISHED_GAMES, JSON.stringify(result));
+}
+
+
+//Clock - ---------------------------------------------------------------
+
+
+// Depois meter opçao reverse se countdown selected
+function startTime() {
+
+    clock.span = setInterval(displayTime, "1000");
+    getGameSituation();
+    
+}
+
+function displayTime() {
+    clock.current += 1;
+
+    if (countdown() == true) {
+        clock.time = getCount() - (clock.current);
+        gameSituation.time = clock.current
+    } else {
+        clock.time = clock.current;
+        gameSituation.time = clock.time;
+    }
+
+    savegameSituation()
+    let time = clock.time;
+    
+    if (time > 59 ) {
+        // Seconds to Minutes and corresponding calculations
+        document.getElementById(MINUTES_ID).textContent = addZeroDigit((time - (time % 60)) / 60);
+        document.getElementById(SECONDS_ID).textContent = addZeroDigit(time % 60);   
+    } else {
+        document.getElementById(SECONDS_ID).textContent = addZeroDigit(time % 60);
+    }
+    
+    timeLimit()
+    endGame()
+}
+
+function countdown() {
+    getTimer()
+
+    return clock.countdown;
+}
+
+function pauseTime() {
+
+    clearInterval(clock.span); 
+
+    let minutes = parseInt(document.getElementById(MINUTES_ID).textContent);
+    let second = parseInt(document.getElementById(SECONDS_ID).textContent);
+
+    clock.previous = clock.previous + minutes * 60 + second;
+}
+
+
+function resumeTime() {
+    startTime();
+}
+
+function timeLimit() {
+    if (countdown()) {
+        if (clock.time <= 0){ 
+            return true; }
+    } else {
+        if (clock.time >= 3600) { 
+            return true; }
+    }
+}
+
+// -----------------------------------------------------------------------------
+
+
+// Mute button
+
+function changeImage() {
+    if (BUTTON_VOLUME.src.endsWith("sound_icon.png")){
+        BUTTON_VOLUME.src = "media/mute_icon.png";
+    } else {
+        BUTTON_VOLUME.src = "media/sound_icon.png";
+    }
+}
+
+
+function stopAudio() {
+    if(BACKGROUND_MUSIC.muted == false){
+        BACKGROUND_MUSIC.muted = true
+    }
+    else{
+        BACKGROUND_MUSIC.muted = false
+    }
+    
+    changeImage()
+}
+
+function multi() {
+    if(getMode() == "multiplayer") {
+        let usersList = JSON.parse(localStorage.getItem(SAVE_USER));
+        let userIndex = JSON.parse(localStorage.getItem("loggedUser"));
+        loggedPlayer = usersList[userIndex];
+
+        playersList.push({"name": loggedPlayer["name"], "avatar":loggedPlayer["avatar"], "scoreObtained": 0})
+
+        for(let p = 0; p < getPlayer().length ; p++) {
+            playersList.push({"name": getPlayer()[p]["name"], "avatar": getPlayer()[p]["avatar"], "scoreObtained": 0})
+        }
+    }
+}
+
+function skipTurnMulti() {
+    if (playersList[currentPlayer] != playersList[getPlayer().length]) {
+        currentPlayer += 1;
+    } else {
+        currentPlayer = 0;
+    }
+    displayScore();
+}

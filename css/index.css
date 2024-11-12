@@ -65,9 +65,6 @@ li {
 .menu ul a li{
     color: rgb(0, 0, 0);
 }
-.menu ul a li:hover{
-    color: blue;
-}
 
 .content {
     grid-area: content;

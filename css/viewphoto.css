@@ -1,33 +1,7 @@
-/* Estilos Globais */
-html, body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    background-color: rgb(156, 139, 187);
-}
-
-/* Barra Superior */
-.top_bar {
-    width: 100%;
-    height: 70px;
-    background-color: #e0e0e0;
+.photoMainDiv {
     display: flex;
-    align-items: center;
-    padding: 0 20px;
-    border-bottom: 2px solid #ccc;
-    position: fixed; /* Fixa a barra no topo */
-    top: 0;
-    left: 0;
-    z-index: 100;
-}
-
-.top_bar h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #0033cc;
-    flex-grow: 1;
-    padding-left: 10px;
+    height: calc(100vh - 80px); /* Ajuste para ocupar o espaço abaixo da top_bar */
+    background-color: aliceblue;
 }
 
 .back-button {
@@ -45,15 +19,7 @@ html, body {
     background-color: #ddd;
 }
 
-/* Conteúdo Principal do Álbum */
-.main {
-    display: flex;
-    padding-top: 70px; /* Espaço abaixo da barra superior */
-    height: calc(100vh - 70px); /* Ajuste para ocupar o espaço abaixo da top_bar */
-    background-color: aliceblue;
-}
-
-.content {
+.photoView {
     flex: 2;
     display: flex;
     flex-direction: column;

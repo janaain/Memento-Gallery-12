@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="javascript/index.js"></script>
     <title>Memento Gallery</title>
+    
 </head>
 <body>
     <div class="main">
@@ -19,35 +20,48 @@
                 <a><li>Adicionar Fotos</li></a>
                 <a><li>Compartilhar</li></a>
                 <a><li>Editar</li></a>
-                <a href="online.html"><li>Chat</li></a>
+                
+                <a href="online.html"><li id="chat-button">Chat</li></a>
             </ul>
         </div>
-
         <div class="content">
-            <div><img src="Images/plus.png"><br><label>Criar Álbum</label></div>
-            <div><img src="Images/folder.png"><br><label>Viagens</label></div>
-            <div><img src="Images/folder.png"><br><label>Viagens</label></div>
-            <div><img src="Images/folder.png"><br><label>Viagens</label></div>
-            
-            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
-            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
-            <div><img src="Images/croissant.jpg"><br><label>foto-teste</label></div>
         </div>
-    </div>
-
-    <div class="slide-up-menu" id="slideUpMenu">
-        <div class="sidebar">
-            <ul>
-                <li><a href="#">Detalhes</a></li>
-                <li><a href="#">Adicionar Tag</a></li>
-                <li><a href="#">Compartilhar</a></li>
-            </ul>
-            <div class="bottom-buttons">
-                <a href="#" class="option-button">Eliminar Foto</a>
+        <!-- Starts the PopUp -->
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <button class="close" id="closePopup">X</button>
+                <h2>Enter Your Name</h2>
+                <input type="text" id="nameInput" placeholder="Your Name">
+                <button id="okButton">OK</button>
             </div>
-            <a href="#" class="option-button">Sair</a>
+        </div>
+
+        <div id="photoView" class="invisible">
+            <div class="photoMainDiv">
+                <div class="photoView">                
+                    <div class="photo-container">
+                        <img src="Images/croissant.jpg" alt="Foto" class="photo">
+                    </div>
+                    
+                    <div class="button-group">
+                        <div class="action-button">Tag1</div>
+                        <li></li>
+                        <div class="action-button">Tag2</div>
+                    </div> 
+                </div>
+                <div class="sidebar">
+                    <ul>
+                        <li><a href="#">Detalhes</a></li>
+                        <li><a href="#">Adicionar Tag</a></li>
+                        <li><a href="#">Compartilhar</a></li>
+                    </ul>
+                    <div class="bottom-buttons">
+                        <div class="option-button">Eliminar Foto</div>
+                    </div>
+                    <div id="sair" class="option-button">Sair</div>
+                </div>
+            </div>
         </div>
     </div>
-    
 </body>
 </html>

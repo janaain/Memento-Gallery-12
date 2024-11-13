@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/online.css">
-    <script src="javascript/index.js"></script>
+    <script src="javascript/online.js"></script>
     <title>Memento Gallery</title>
     
 </head>
@@ -21,13 +21,37 @@
                 <a><li><img src="Images/group.png"><label>Família</label></li></a>
             </ul>
             <div class="add-buttons">
-                <button>Adicionar<br>Amigo</button>
+                <button id="add-friend">Adicionar<br>Amigo</button>
                 <button>Adicionar<br>Grupo</button>
             </div>
         </div>
         <div class="content">
+            <div class="in-chat">
+                <div class="chat-info">
+                    <img src="Images/user-icon.png">
+                    <span>Rafa</span>
+                    <button>Ver Album</button>
+                </div>
+                <div class="chat-insert">
+                    <button>Ficheiro</button>
+                    <input type="text" placeholder="Escreva a sua mensagem" >
+                    <img src="Images/send.png">
+                </div>
+            </div>
         </div>
         
     </div>
+    <div id="add-friend-popup"></div>
+    <div class="add-friend">
+        <div class="popup-info">
+            <button class="close" id="close-popup">X</button>
+        </div>
+        <div class="popup-content">
+            <p>Introduz o username do teu amigo</p>
+            <input type="text" id="nameInput" placeholder="Username">
+            <button id="okButton">OK</button>
+        </div>
+    </div>
+    
 </body>
 </html>

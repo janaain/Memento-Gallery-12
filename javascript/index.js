@@ -20,6 +20,9 @@ function renderCurrentFolder(folderPath) {
         currentFolder = currentFolder.find(f => f.name === folderName).folders;
     });
 
+    // Update folder path on top bar
+    updateTopBar(folderPath)
+
     // Clear the content area for new rendering
     const contentDiv = document.querySelector('.content');
     contentDiv.innerHTML = '';
@@ -40,7 +43,6 @@ function renderCurrentFolder(folderPath) {
         // Add click event to open the folder
         folderElement.addEventListener('click', () => {
             folderPath.push(folder.name);
-            update_topbar(folder.name); // Update the top bar with the current folder name
             renderCurrentFolder(folderPath); // Render the contents of the new folder
         });
     
@@ -107,12 +109,6 @@ function addPhoto(photoSrc, folderPath) {
     renderCurrentFolder(folderPath);
 }
 
-// Function to update the top bar with the current folder name
-function update_topbar(label) {
-    const titulo = document.querySelector('.top_bar h1');
-    titulo.textContent = label; // Update the displayed title
-}
-
 
 
 // Function to create a popup for adding a new album (folder)
@@ -133,6 +129,65 @@ function createAlbumPopUp(folderPath) {
         document.getElementById("nameInput").value = ''; // Clear the input field
         createFolder(NameAlbum, folderPath); // Create the new folder
     };
+    document.getElementById("closePopup").onclick = function(){
+        document.getElementById("popup").style.display = "none";   
+    }
+}
+
+// Function to update the top bar with the clickable folder path, with "Memento Gallery" as the root
+function updateTopBar(folderPath) {
+    const topBar = document.querySelector('.top_bar span');
+    topBar.innerHTML = ''; // Clear existing top bar contents
+
+    // Add "Memento Gallery" as the root link
+    const rootLink = document.createElement('span');
+    rootLink.textContent = 'Memento Gallery';
+    rootLink.style.cursor = 'pointer';
+    rootLink.style.marginRight = '5px';
+
+    // Handle click event for "Memento Gallery" to reset to the root folder
+    rootLink.addEventListener('click', () => {
+        navigateToFolder(['root']); // When "Memento Gallery" is clicked, go back to root
+    });
+
+    topBar.appendChild(rootLink);
+
+    // Add "/" separator after "Memento Gallery" if there are subfolders
+    if (folderPath.length > 0) {
+        const separator = document.createElement('span');
+        separator.textContent = '/ ';
+        topBar.appendChild(separator);
+    }
+
+    // Iterate over the folder path and add the rest of the folder names
+    folderPath.forEach((folder, index) => {
+        const folderLink = document.createElement('span');
+        folderLink.textContent = folder;
+        folderLink.style.cursor = 'pointer';
+        folderLink.style.marginRight = '5px';
+
+        // Add click event to navigate back to this folder
+        folderLink.addEventListener('click', () => {
+            const newPath = folderPath.slice(0, index + 1); // Get the path up to this folder
+            navigateToFolder(['root', ...newPath]); // Navigate back to this folder
+        });
+
+        topBar.appendChild(folderLink);
+
+        // Add "/" separator after each folder, except the last one
+        if (index < folderPath.length - 1) {
+            const separator = document.createElement('span');
+            separator.textContent = '/ ';
+            topBar.appendChild(separator);
+        }
+    });
+}
+
+// Function to simulate navigating to a folder
+function navigateToFolder(newPath) {
+    folderPath = newPath.slice(1); // Exclude 'root' when updating folderPath
+    renderCurrentFolder(folderPath); // Render folder contents for the new path
+    updateTopBar(folderPath); // Update the top bar, excluding the 'root'
 }
 
 
@@ -153,13 +208,25 @@ window.addEventListener("load", main);
 function main() {
     const currentPath = []; // Start with an empty path (root level)
     renderCurrentFolder(currentPath); // Render the initial folder structure
+    updateTopBar()
     initializeEventListeners()
+    compartilhar()
 }
 
 //EventListeners
 function initializeEventListeners(){
-document.getElementById("sair").addEventListener("click", function () {
+    document.getElementById("sair").addEventListener("click", function () {
     document.getElementById("photoView").style.display = "none";
     document.getElementById("chat-button").style.display = "block";
 })
+}
+
+//
+function compartilhar(){
+    document.getElementById("share").onclick = function(){
+        document.getElementById("sharePopup").style.display = "block";
+    }
+    document.getElementById("closePopup").onclick = function(){
+        document.getElementById("sharePopup").style.display = "none";
+    }
 }

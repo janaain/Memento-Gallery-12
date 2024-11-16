@@ -5,6 +5,9 @@
 // const GET_FRIEND_BUTTON = document.getElementById("add-friend");
 const FRIEND_POPUP = "add-friend-popup";
 
+const SAVEDCHAT = "savedchat";
+
+let chat = [];
 
 function main() {
     setEventListeners();
@@ -26,5 +29,11 @@ function visibility_off(id) {
     document.getElementById(id).classList.remove("on");
 }
 
-1
-0
+function getNewMessage() {
+    return document.getElementById("new-message").value;
+}
+
+function saveMessage() {
+    message = getNewMessage();
+
+}

@@ -6,19 +6,21 @@
     <link rel="stylesheet" href="css/viewphoto.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="javascript/index.js"></script>
+    <script src="javascript/viewphoto.js"></script>
     <title>Memento Gallery</title>
     
 </head>
 <body>
     <div class="main">
         <div class="top_bar">
-            <a href="index.html"><h1>Memento Gallery</h1></a>
+            <a href="index.html"><img src="Images/homepage.png" class="homepage"></a>
+            <span>Memento Gallery</span>
         </div>
 
         <div class="menu">
             <ul>
                 <a><li>Adicionar Fotos</li></a>
-                <a><li>Compartilhar</li></a>
+                <a><li id="share">Compartilhar</li></a>
                 <a><li>Editar</li></a>
                 
                 <a href="online.html"><li id="chat-button">Chat</li></a>
@@ -35,12 +37,50 @@
                 <button id="okButton">OK</button>
             </div>
         </div>
-
+        <div id="sharePopup" class="sharepopup">
+            <div class="sharepopup-content">
+                <button id="closePopup" class="close">X</button>
+                <h2>Share this Photo</h2>
+                <div class="share-options">
+                    <button class="share-btn">Share on Facebook</button>
+                    <button class="share-btn">Share on Twitter</button>
+                    <button class="share-btn">Share on Instagram</button>
+                    <button class="share-btn">Share via Email</button>
+                </div>
+            </div>
+        </div>
         <div id="photoView" class="invisible">
             <div class="photoMainDiv">
                 <div class="photoView">                
                     <div class="photo-container">
-                        <img src="Images/croissant.jpg" alt="Foto" class="photo">
+                        <div class="photo-container-animation" id="photo-container-animation">
+                            <!-- Frente da foto -->
+                            <div class="photo-front">
+                                <img src="Images/croissant.jpg" alt="Foto" class="photo">
+                            </div>
+                            <!-- Parte de trás com a tabela -->
+                            <div class="photo-back">
+                                <table class="details-table" id="photo-details">
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td>Croissant</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Descrição</th>
+                                        <td>Delicioso croissant com manteiga.</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Data</th>
+                                        <td>15 de Novembro de 2024</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Local</th>
+                                        <td>Paris</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        
                     </div>
                     
                     <div class="button-group">

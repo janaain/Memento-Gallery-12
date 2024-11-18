@@ -1,17 +1,17 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", function () {
-    
-    const detalhesButton = document.querySelector(".sidebar ul li a[href='#']");
-    const photoContainer = document.getElementById("photo-container-animation");
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleDetailsButton = document.getElementById("toggleDetails");
+    const photoContainerAnimation = document.querySelector(".photo-container-animation");
 
-    if (detalhesButton) {
-        detalhesButton.addEventListener("click", function (event) {
-            event.preventDefault(); 
-            photoContainer.classList.toggle("rotated");
+    if (toggleDetailsButton && photoContainerAnimation) {
+        toggleDetailsButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            photoContainerAnimation.classList.toggle("rotated");
         });
     }
 });
+
 
 
 

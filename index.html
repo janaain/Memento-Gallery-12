@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/viewphoto.css">
+    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="javascript/index.js"></script>
     <script src="javascript/viewphoto.js"></script>
@@ -49,6 +50,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Detalhes e foto -->
+
         <div id="photoView" class="invisible">
             <div class="photoMainDiv">
                 <div class="photoView">                
@@ -100,8 +104,8 @@
                         
                     </div>
                     
-                    <div class="button-group">
-                        <div class="action-button">Tag1</div>
+                    <div  class="button-group" id="tagContainer">
+                        <div class="action-button">Paris</div>
                         <li></li>
                         <div class="action-button">Tag2</div>
                     </div> 
@@ -109,7 +113,7 @@
                 <div class="sidebar">
                     <ul>
                         <li><a href="#" id="toggleDetails">Detalhes</a></li>
-                        <li><a href="#">Adicionar Tag</a></li>
+                        <li><a href="#" id="addTagOption">Adicionar Tag</a></li>
                         <li><a href="#">Compartilhar</a></li>
                     </ul>
                     <div class="bottom-buttons">

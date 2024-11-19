@@ -10,7 +10,12 @@ const SAVEDCHAT = "savedchat";
 let chat = [];
 
 function main() {
+    startChat();
     setEventListeners();
+
+    document.querySelectorAll('.content').forEach(element => {
+        element.classList.remove('content div');
+    });
 }
 
 function setEventListeners(){
@@ -29,11 +34,29 @@ function visibility_off(id) {
     document.getElementById(id).classList.remove("on");
 }
 
+function startChat() {
+    localStorage.setItem(SAVEDCHAT, JSON.stringify(chat))
+}
+
 function getNewMessage() {
-    return document.getElementById("new-message").value;
+    let msg = document.getElementById("new-message").value;
+    return msg;
 }
 
 function saveMessage() {
-    message = getNewMessage();
-
+    let message = getNewMessage();
+    let all_chat = JSON.parse(localStorage.getItem(SAVEDCHAT));
+    all_chat.push(message);
+    addChatTxt(message)
+    localStorage.setItem(SAVEDCHAT, JSON.stringify(all_chat));
 }
+
+function addChatTxt (message) {
+    document.getElementById("chat-text").innerHTML += 
+                "<p class='self'>" + message + "</p>";
+}
+
+// function chatScroll() {
+//     const chatText = document.querySelector('.chat-text');
+//     chatText.scrollTop = chatText.scrollHeight; // Coloca o scroll no final
+// }

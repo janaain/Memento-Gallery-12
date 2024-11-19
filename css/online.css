@@ -1,9 +1,6 @@
-html, body{
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-    /* overflow: hidden; */
+.content{
+    display:block;
+    background-color: white;
 }
 
 li {
@@ -18,23 +15,6 @@ li {
     display: none;
 }
 
-.main{
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-areas: 
-        'top_bar top_bar'
-        'menu content';
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 
-        1fr 9fr;
-    ;
-}
-
-.main a{
-    text-decoration: none;
-}
-
 .top_bar a :hover{
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px 10px rgb(47, 47, 47)
@@ -45,17 +25,13 @@ li {
 }
 
 .top_bar{
+    
     background-color: #b186da;
     grid-area: top_bar;
-    
-    z-index: 1;
 }
 
-.menu{
-    grid-area: menu;
-    background-color: #e6e6e6;
-    border-right: 2px solid #ccc;
-    z-index: 1;
+.top_bar img {
+    width: 40px;
 }
 
 .chat {
@@ -63,6 +39,7 @@ li {
     margin: 0;
     text-align: left;
 }
+
 .chat li {
     background-color: #cecece;
     padding-left: 10px;
@@ -87,7 +64,7 @@ li {
 
 .add-buttons {
     position: fixed;
-    bottom: 10px;
+    bottom: 5px;
     left:2px;
     padding: 1px;
     display: inline-flex;
@@ -110,6 +87,7 @@ li {
 #add-friend-popup {
     display: none;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index:2;
     position: fixed;
     left: 0px;
     bottom: 0px;
@@ -154,6 +132,7 @@ li {
 /* --- Dentro do chat ----------------------------- */
 
 .chat-info {
+    height: 39px;
     background-color: #e9d3fd;
     padding: 5px 10px;
     box-shadow: 0px 2px 10px rgb(126, 126, 126);
@@ -186,13 +165,15 @@ li {
 }
 
 .chat-insert {
-    position: absolute;
-    bottom: 0px;
+    position: fixed;
+    bottom: 6px;
     right: 0px;
-    margin: 15px 10px 12px 10px;
+    margin: 15px 10px 5px 10px;
     background-color: #e9d3fd;
     border-radius: 40px;
+    height: 37px;
     width: calc(100% - 215px);
+    box-shadow: 1px 2px #cccccc;
 }
 
 .chat-insert img {
@@ -225,19 +206,19 @@ li {
     background-color: #d8d8d8;
 }
 
-.in-chat {
-    height: 100%;
-}
-
 .chat-div {
-    max-height: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .chat-text {
+    height: 100%;
+    width: 100%;
     display: flex;
-    max-height: 80%;
     flex-direction: column;
-    overflow-y: auto;
+    flex-grow: 1;
+    padding-bottom: 45px;
 }
 
 .chat-text p {

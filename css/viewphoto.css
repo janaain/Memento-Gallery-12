@@ -31,14 +31,16 @@
 }
 
 .photo-container {
-    width: 500px;
-    height: 500px;
+    width: 450px;
+    height: 450px;
     background-color: #e0e0e0;
     border: 1px solid #ccc;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .photo {
@@ -48,8 +50,10 @@
 
 .button-group {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 20px;
+    justify-content: flex-start;
 }
 
 .action-button {
@@ -87,23 +91,14 @@
 }
 
 .photo-back {
-    transform: rotateY(180deg);
-    background-color: #f9f9f9;
+    position: relative;
     padding: 20px;
-}
-
-.details-table {
-    width: 90%;
-    border-collapse: collapse;
-    font-size: 16px;
     background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1; 
 }
 
-.details-table th, .details-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
 
 
 /* Barra Lateral */
@@ -155,11 +150,6 @@
     color: black;
 }
 
-.photo-wrapper {
-    width: 100%;
-    perspective: 1000px;
-}
-
 .photo-front, .photo-back {
     position: absolute;
     width: 100%;
@@ -200,17 +190,19 @@
 
 .button-group {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 20px;
+    justify-content: flex-start;
 }
 
-.action-button {
-    padding: 10px;
-    background-color: #e0e0e0;
+.action-input {
+    padding: 8px;
     border: 1px solid #ccc;
-    text-align: center;
-    cursor: pointer;
-    flex: 1;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 150px;
+    box-sizing: border-box;
 }
 
 /* Barra superior */
@@ -220,3 +212,47 @@
     padding: 15px;
     text-align: center;
 }
+
+.user-tag .delete-tag {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user-tag .delete-tag:hover {
+    background-color: darkred;
+}
+
+.button-group, .tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.action-button, .user-tag {
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative; /* Necessário para o botão de apagar */
+}
+
+.action-button:hover, .user-tag:hover {
+    background-color: #e0e0e0;
+}
+

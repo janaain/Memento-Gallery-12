@@ -3,7 +3,7 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: rgb(255, 255, 255);
-    
+    /* overflow: hidden; */
 }
 
 li {
@@ -47,12 +47,15 @@ li {
 .top_bar{
     background-color: #b186da;
     grid-area: top_bar;
+    
+    z-index: 1;
 }
 
 .menu{
     grid-area: menu;
     background-color: #e6e6e6;
     border-right: 2px solid #ccc;
+    z-index: 1;
 }
 
 .chat {
@@ -152,7 +155,8 @@ li {
 
 .chat-info {
     background-color: #e9d3fd;
-    padding: 5px 10px
+    padding: 5px 10px;
+    box-shadow: 0px 2px 10px rgb(126, 126, 126);
 }
 
 .chat-info img {
@@ -221,8 +225,17 @@ li {
     background-color: #d8d8d8;
 }
 
+.in-chat {
+    height: 100%;
+}
+
+.chat-div {
+    max-height: 70%;
+}
+
 .chat-text {
     display: flex;
+    max-height: 80%;
     flex-direction: column;
     overflow-y: auto;
 }

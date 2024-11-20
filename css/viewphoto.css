@@ -1,6 +1,6 @@
 .photoMainDiv {
     display: flex;
-    height: calc(100vh - 80px); /* Ajuste para ocupar o espaço abaixo da top_bar */
+    height: calc(100vh - 80px); 
     background-color: aliceblue;
 }
 
@@ -27,12 +27,11 @@
     justify-content: center;
     padding: 20px;
     border-right: 2px solid #ccc;
-    overflow-y: auto; /* Permite rolagem se o conteúdo for muito alto */
 }
 
 .photo-container {
-    width: 450px;
-    height: 450px;
+    width: 500px;
+    height: 500px;
     background-color: #e0e0e0;
     border: 1px solid #ccc;
     display: flex;
@@ -41,6 +40,7 @@
     margin-top: 40px;
     flex-direction: column;
     align-items: center;
+    perspective: 1000px;
 }
 
 .photo {
@@ -66,6 +66,7 @@
 }
 
 
+
 /* Animação detalhes */
 
 .photo-container-animation {
@@ -80,10 +81,10 @@
     transform: rotateY(180deg);
 }
 
-.photo-front, .photo-back {
+.photo-front{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 90%;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
@@ -91,15 +92,13 @@
 }
 
 .photo-back {
-    position: relative;
+    transform: rotateY(-180deg); 
+    background-color: #f9f9f9;
     padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1; 
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%; 
 }
-
-
 
 /* Barra Lateral */
 .sidebar {
@@ -185,7 +184,7 @@
 }
 
 .photo-container.rotated {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
 }
 
 .button-group {
@@ -256,3 +255,35 @@
     background-color: #e0e0e0;
 }
 
+/* Pop-up de confirmação */
+#confirmationPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#confirmationPopup .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#confirmationPopup button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#confirmationPopup button:hover {
+    background-color: #ddd;
+}

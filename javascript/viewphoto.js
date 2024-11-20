@@ -13,36 +13,49 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const addTagOption = document.getElementById("addTagOption"); // Botão para adicionar tags
-    const tagContainer = document.getElementById("tagContainer"); // Contêiner de tags
+    const addTagOption = document.getElementById("addTagOption");
+    const tagContainer = document.getElementById("tagContainer");
+    const confirmationPopup = document.getElementById("confirmationPopup");
+    const confirmButton = document.getElementById("confirmButton");
+    const cancelButton = document.getElementById("cancelButton");
+    const closeConfirmationPopup = document.getElementById("closeConfirmationPopup");
 
     addTagOption.addEventListener("click", function (event) {
         event.preventDefault();
 
-        // Criar nova tag editável
         const newTag = document.createElement("div");
-        newTag.className = "action-button user-tag"; // Adiciona classe para estilização
-        newTag.contentEditable = "true"; // Torna a tag editável
-        newTag.textContent = "Nova Tag"; // Texto inicial da tag
+        newTag.className = "action-button user-tag";
+        newTag.contentEditable = "true";
+        newTag.textContent = "Nova Tag";
 
-        // Adiciona evento para perder foco
-        newTag.addEventListener("blur", () => {
-            if (newTag.textContent.trim() === "") {
-                newTag.textContent = "Nova Tag"; // Reseta texto se ficar vazio
+        tagContainer.appendChild(newTag);
+
+        newTag.focus();
+
+        newTag.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                confirmationPopup.style.display = 'flex';
+
+                confirmButton.addEventListener("click", function () {
+                    confirmationPopup.style.display = 'none';
+                });
+
+                cancelButton.addEventListener("click", function () {
+                    tagContainer.removeChild(newTag);
+                    confirmationPopup.style.display = 'none';
+                });
+
+                closeConfirmationPopup.addEventListener("click", function () {
+                    confirmationPopup.style.display = 'none';
+                });
             }
         });
-
-        // Criar botão de remover
-        const deleteButton = document.createElement("span");
-        deleteButton.className = "delete-tag";
-        deleteButton.textContent = "×"; // Ícone de apagar
-        deleteButton.addEventListener("click", () => tagContainer.removeChild(newTag));
-        newTag.appendChild(deleteButton);
-
-        // Adiciona a tag ao contêiner
-        tagContainer.appendChild(newTag);
     });
 });
+
+
+
 
 
 

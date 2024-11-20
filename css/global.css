@@ -3,6 +3,7 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: rgb(156, 139, 187);
+    font-family: sans-serif;
     
 };
 
@@ -23,16 +24,17 @@ li {
     ;
 }
 
+.content{
+    grid-area: content;
+}
+
 .main a{
     text-decoration: none;
 }
 
 .top_bar span {
     color: black;
-
-}
-
-.top_bar span:hover {
+    font-size: 25px;
 }
 
 .top_bar{
@@ -40,6 +42,7 @@ li {
     align-items: center;
     background-color: rgb(159, 194, 255);
     grid-area: top_bar;
+    padding: 15px;
 }
 
 .menu{

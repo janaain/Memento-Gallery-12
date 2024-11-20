@@ -144,6 +144,7 @@ function updateTopBar(folderPath) {
     rootLink.textContent = 'Memento Gallery';
     rootLink.style.cursor = 'pointer';
     rootLink.style.marginRight = '5px';
+    rootLink.style.textDecoration = 'underline';
 
     // Handle click event for "Memento Gallery" to reset to the root folder
     rootLink.addEventListener('click', () => {
@@ -163,6 +164,7 @@ function updateTopBar(folderPath) {
     folderPath.forEach((folder, index) => {
         const folderLink = document.createElement('span');
         folderLink.textContent = folder;
+        folderLink.style.textDecoration = 'underline';
         folderLink.style.cursor = 'pointer';
         folderLink.style.marginRight = '5px';
 

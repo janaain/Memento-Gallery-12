@@ -220,3 +220,21 @@
     padding: 15px;
     text-align: center;
 }
+/* Tags */
+
+.button-group {
+    display: flex;
+    gap: 10px; 
+    margin-top: 20px;
+    justify-content: flex-start; 
+}
+
+.action-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 0 1 150px; /* Largura fixa de 150px para cada input */
+    box-sizing: border-box;
+}
+
+

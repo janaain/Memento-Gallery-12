@@ -1,6 +1,6 @@
 .photoMainDiv {
     display: flex;
-    height: calc(100vh - 80px); /* Ajuste para ocupar o espaço abaixo da top_bar */
+    height: calc(100vh - 80px); 
     background-color: aliceblue;
 }
 
@@ -27,7 +27,6 @@
     justify-content: center;
     padding: 20px;
     border-right: 2px solid #ccc;
-    overflow-y: auto; /* Permite rolagem se o conteúdo for muito alto */
 }
 
 .photo-container {
@@ -39,6 +38,9 @@
     align-items: center;
     justify-content: center;
     margin-top: 40px;
+    flex-direction: column;
+    align-items: center;
+    perspective: 1000px;
 }
 
 .photo {
@@ -48,8 +50,10 @@
 
 .button-group {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 20px;
+    justify-content: flex-start;
 }
 
 .action-button {
@@ -60,6 +64,7 @@
     cursor: pointer;
     flex: 1;
 }
+
 
 
 /* Animação detalhes */
@@ -76,10 +81,10 @@
     transform: rotateY(180deg);
 }
 
-.photo-front, .photo-back {
+.photo-front{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 90%;
     backface-visibility: hidden;
     display: flex;
     align-items: center;
@@ -87,24 +92,13 @@
 }
 
 .photo-back {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg); 
     background-color: #f9f9f9;
     padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    max-height: 100%; 
 }
-
-.details-table {
-    width: 90%;
-    border-collapse: collapse;
-    font-size: 16px;
-    background-color: white;
-}
-
-.details-table th, .details-table td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
-
 
 /* Barra Lateral */
 .sidebar {
@@ -155,11 +149,6 @@
     color: black;
 }
 
-.photo-wrapper {
-    width: 100%;
-    perspective: 1000px;
-}
-
 .photo-front, .photo-back {
     position: absolute;
     width: 100%;
@@ -195,22 +184,24 @@
 }
 
 .photo-container.rotated {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
 }
 
 .button-group {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 20px;
+    justify-content: flex-start;
 }
 
-.action-button {
-    padding: 10px;
-    background-color: #e0e0e0;
+.action-input {
+    padding: 8px;
     border: 1px solid #ccc;
-    text-align: center;
-    cursor: pointer;
-    flex: 1;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 150px;
+    box-sizing: border-box;
 }
 
 /* Barra superior */
@@ -222,19 +213,78 @@
 }
 /* Tags */
 
-.button-group {
+.user-tag .delete-tag {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 12px;
     display: flex;
-    gap: 10px; 
-    margin-top: 20px;
-    justify-content: flex-start; 
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
-.action-input {
-    padding: 10px;
+.user-tag .delete-tag:hover {
+    background-color: darkred;
+}
+
+.button-group, .tagContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: flex-start;
+}
+
+.action-button, .user-tag {
+    background-color: #f3f3f3;
     border: 1px solid #ccc;
     border-radius: 4px;
-    flex: 0 1 150px; /* Largura fixa de 150px para cada input */
-    box-sizing: border-box;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative; /* Necessário para o botão de apagar */
 }
 
+.action-button:hover, .user-tag:hover {
+    background-color: #e0e0e0;
+}
 
+/* Pop-up de confirmação */
+#confirmationPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#confirmationPopup .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#confirmationPopup button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#confirmationPopup button:hover {
+    background-color: #ddd;
+}

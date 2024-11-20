@@ -15,23 +15,46 @@ document.addEventListener("DOMContentLoaded", () => {
 /* Tags */
 
 document.addEventListener("DOMContentLoaded", function () {
-    const addTagOption = document.getElementById("addTagOption"); // Opção na sidebar
-    const tagContainer = document.getElementById("tagContainer"); // Container das tags
+    const addTagOption = document.getElementById("addTagOption");
+    const tagContainer = document.getElementById("tagContainer");
+    const confirmationPopup = document.getElementById("confirmationPopup");
+    const confirmButton = document.getElementById("confirmButton");
+    const cancelButton = document.getElementById("cancelButton");
+    const closeConfirmationPopup = document.getElementById("closeConfirmationPopup");
 
     addTagOption.addEventListener("click", function (event) {
-        event.preventDefault(); // Previne o comportamento padrão do link
+        event.preventDefault();
 
-        // Cria um novo input para a tag
-        const newTagInput = document.createElement("input");
-        newTagInput.type = "text";
-        newTagInput.className = "action-input";
-        newTagInput.placeholder = `Tag ${tagContainer.childElementCount + 1}`;
+        const newTag = document.createElement("div");
+        newTag.className = "action-button user-tag";
+        newTag.contentEditable = "true";
+        newTag.textContent = "Nova Tag";
 
-        // Adiciona o novo input ao container
-        tagContainer.appendChild(newTagInput);
+        tagContainer.appendChild(newTag);
+
+        newTag.focus();
+
+        newTag.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                confirmationPopup.style.display = 'flex';
+
+                confirmButton.addEventListener("click", function () {
+                    confirmationPopup.style.display = 'none';
+                });
+
+                cancelButton.addEventListener("click", function () {
+                    tagContainer.removeChild(newTag);
+                    confirmationPopup.style.display = 'none';
+                });
+
+                closeConfirmationPopup.addEventListener("click", function () {
+                    confirmationPopup.style.display = 'none';
+                });
+            }
+        });
     });
 });
-
 
 
 

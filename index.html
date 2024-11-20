@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/viewphoto.css">
+    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
     <script src="javascript/index.js"></script>
     <script src="javascript/viewphoto.js"></script>
@@ -49,6 +50,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Detalhes e foto -->
+
         <div id="photoView" class="invisible">
             <div class="photoMainDiv">
                 <div class="photoView">                
@@ -93,18 +97,49 @@
                                         <td>Resolução</td>
                                         <td>1920x1080</td>
                                     </tr>
+                                    <tr>
+                                        <td>Data e Hora</td>
+                                        <td>2024-11-19 14:30</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Geolocalização</td>
+                                        <td>Latitude: 38.7168, Longitude: -9.1395</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Câmera</td>
+                                        <td>iPhone 14, Abertura f/1.8, ISO 50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Edição</td>
+                                        <td>Filtro: Aumentada, Ajuste de brilho</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Copyright</td>
+                                        <td>© 2024 Rafa & Lucia</td>
+                                    </tr>
                                 </table>
+                                
                                 
                             </div>
                         </div>
                         
                     </div>
                     
-                    <div class="button-group">
-                        <div class="action-button">Tag1</div>
+                    <div  class="button-group" id="tagContainer">
+                        <div class="action-button">Paris</div>
                         <li></li>
                         <div class="action-button">Tag2</div>
                     </div> 
+
+                    <div id="confirmationPopup" class="popup">
+                        <div class="popup-content">
+                            <button class="close" id="closeConfirmationPopup">X</button>
+                            <h2>Deseja confirmar a nova tag?</h2>
+                            <button id="confirmButton">OK</button>
+                            <button id="cancelButton">Cancelar</button>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="sidebar">
                     <ul>

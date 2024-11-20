@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const newTag = document.createElement("div");
         newTag.className = "action-button user-tag";
         newTag.contentEditable = "true";
-        newTag.textContent = "Nova Tag";
+        newTag.textContent = "";
 
         tagContainer.appendChild(newTag);
 

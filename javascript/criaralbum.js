@@ -1,22 +1,34 @@
-// Function to create a popup for adding a new album (folder)
-function addPhotosPopUp(folderPath) {
-    // Display the popup and initialize button state
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("okButton").disabled = true;
+function setEventListeners(){
+    // Seleciona a div que vai agir como botão e o input de ficheiros
+    const addPhotoButton = document.getElementById('addPhotos');
+    const fileInput = document.getElementById('fileInput');
 
-    // Enable the OK button only when there’s input
-    document.getElementById("nameInput").addEventListener("input", function () {
-        document.getElementById("okButton").disabled = !this.value; // Enable or disable the OK button based on input
+    // Adiciona um evento de clique à div
+    addPhotoButton.addEventListener('click', () => {
+        fileInput.click(); // Dispara o clique no input escondido
     });
+    
+    // Mostra as imagens selecionadas
+    fileInput.addEventListener('change', (event) => {
+        const imagePreview = document.getElementById('photos');
+        const button = document.getElementById("next");
+        button.disabled = false    
+        const files = event.target.files;
+        
+        // Itera pelos ficheiros selecionados
+        for (const file of files) {
+            if (file.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(file);
+                img.onload = () => URL.revokeObjectURL(img.src); // Liberta memória
+                imagePreview.appendChild(img);
+            }
+        }
+    });
+}
 
-    // OK button click event to create a new folder
-    document.getElementById("okButton").onclick = function() {
-        const NameAlbum = document.getElementById("nameInput").value; // Get the folder name from input
-        document.getElementById("popup").style.display = "none"; // Hide the popup
-        document.getElementById("nameInput").value = ''; // Clear the input field
-        createFolder(NameAlbum, folderPath); // Create the new folder
-    };
-    document.getElementById("closePopup").onclick = function(){
-        document.getElementById("popup").style.display = "none";   
-    }
+window.addEventListener("load", main);
+
+function main() {
+    setEventListeners();
 }

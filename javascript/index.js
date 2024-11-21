@@ -4,7 +4,7 @@ if (!localStorage.getItem('fileSystem')) {
         {
             "name": "Londres",
             "folders": [],
-            "photos": ["Images/croissant.jpg"]
+            "photos": ["fotos-de-paris/croissant.jpg"]
         }
     ];
     localStorage.setItem('fileSystem', JSON.stringify(initialStructure));
@@ -152,7 +152,9 @@ function updateTopBar(folderPath) {
     });
 
     topBar.appendChild(rootLink);
-
+    if(folderPath == null){
+        folderPath = []
+    }
     // Add "/" separator after "Memento Gallery" if there are subfolders
     if (folderPath.length > 0) {
         const separator = document.createElement('span');
@@ -228,7 +230,7 @@ function compartilhar(){
     document.getElementById("share").onclick = function(){
         document.getElementById("sharePopup").style.display = "block";
     }
-    document.getElementById("closePopup").onclick = function(){
+    document.getElementById("closePopupshare").onclick = function(){
         document.getElementById("sharePopup").style.display = "none";
     }
 }

@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/criaralbum.css">
+    <script src="javascript/criaralbum.js"></script>
     <title>Memento Gallery</title>
     
 </head>
 <body>
     <div class="main">
         <div class="top_bar">
-            <a href="index.html"><img src="Images/homepage.png" class="homepage"></a>
+            <a href="index.html" ><img src="Images/homepage.png" class="homepage"></a>
             <span>Criação de Albuns</span>
             
         </div>
@@ -37,17 +38,46 @@
                 <div class="dropdown-content">
                   <a href="#option1">A-Z</a>
                   <a href="#option2">Z-A</a>
-                  <a href="#option3">Data de Criação</a>
+                  <a href="#option3">Data</a>
                 </div>
             </div>
             </div>
         <div class="content">
-            <div class="photos">
-                <div class="openPopup"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
+            <div class="photos" id="photos">
+                <input type="file" id="fileInput" style="display: none;" multiple accept="image/*">
+                <div class="openPopup" id="addPhotos"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
+            </div>
+
+            <div class="criterios">
+                <!-- Coluna da Esquerda - Organizar Por -->
+                <div class="column">
+                    <h3>ORGANIZAR POR:</h3>
+                    <ul>
+                        <li><input type="radio" name="organizar" id="data"> <label for="data">Data</label></li>
+                        <li><input type="radio" name="organizar" id="localizacao"> <label for="localizacao">Localização</label></li>
+                        <li><input type="radio" name="organizar" id="qualidade"> <label for="qualidade">Qualidade</label></li>
+                        <li><input type="radio" name="organizar" id="pessoa"> <label for="pessoa">Pessoa</label></li>
+                        <li><input type="radio" name="organizar" id="tipo"> <label for="tipo">Tipo (Macro, Paisagem, etc.)</label></li>
+                        <li><input type="radio" name="organizar" id="conteudo"> <label for="conteudo">Conteúdo</label></li>
+                        <li><input type="radio" name="organizar" id="resolucao"> <label for="resolucao">Resolução</label></li>
+                        <li><input type="radio" name="organizar" id="nao_dividir"> <label for="nao_dividir">Não dividir por álbuns</label></li>
+                    </ul>
+                </div>
+        
+                <!-- Coluna da Direita - Manter de Fora -->
+                <div class="column">
+                    <h3>MANTER DE FORA:</h3>
+                    <ul>
+                        <li><input type="checkbox" id="desfocada"> <label for="desfocada">Desfocadas</label></li>
+                        <li><input type="checkbox" id="duplicada"> <label for="duplicada">Duplicadas</label></li>
+                        <li><input type="checkbox" id="ma_iluminacao"> <label for="ma_iluminacao">Má Iluminação</label></li>
+                        <li><input type="checkbox" id="baixa_resolucao"> <label for="baixa_resolucao">Baixa Resolução</label></li>
+                    </ul>
+                </div>
             </div>
             
             <div>
-                <button class="next">Próximo</button>               
+                <button disabled class="next" id="next">Próximo</button>               
             </div>
         </div>
         <div id="popup" class="popup">

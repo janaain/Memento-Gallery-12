@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/criaralbum.css">
     <title>Memento Gallery</title>
     
@@ -12,27 +13,6 @@
         <div class="top_bar">
             <a href="index.html"><img src="Images/homepage.png" class="homepage"></a>
             <span>Criação de Albuns</span>
-        </div>
-
-        <div class="menu">
-            <ul>
-                <li><h2>1. Adicionar Fotos</h2>
-                    Adicione Fotos ao seu album.
-                </li>
-                <li><h2>2. Seleção de Critérios</h2>
-                    Aqui tem de selecionar os critérios das
-                    fotos que quer no seu album.  
-                </li>
-                <li><h2>3. Revisão e Conclusão</h2>
-                    Reveja as fotos que vai adicionar ao album, tendo a 
-                    certeza que são estas mesmas, dê um nome ao album.   
-                </li>
-            </ul>
-        </div>
-        <div class="content">
-            <div class="photos">
-                <a href="index.html"><img src="Images/plus.png" class="homepage"><br><label>Adicione Fotos</label></a>
-            </div>
             <div class="dropdown">
                 <button class="dropbtn">Organizar por:</button>
                 <div class="dropdown-content">
@@ -41,8 +21,37 @@
                   <a href="#option3">Option 3</a>
                 </div>
             </div>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><h2>1. Adicionar Fotos</h2>
+                    <h5>Importe as fotos que deseja adicionar ao seu álbum, da forma preferida. Pode adicionar através do seu dispositivo ou pelas redes sociais. 
+                        Clique em "Adicionar Fotos" para começar.</h5>
+                </li>
+                <li><h2>2. Seleção de Critérios</h2>
+                    <h5>Selecione os critérios para a divisão das fotos em subconjuntos. As fotos com o mesmo critério serão adicionadas ao mesmo subconjunto</h5> 
+                </li>
+                <li><h2>3. Revisão e Conclusão</h2>
+                    <h5>Reveja as fotos e os subconjuntos criados. Se forem do seu agrado, pode adicionar ao álbum. Dê também um nome ao álbum.</h5>  
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="photos">
+                <div class="openPopup"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
+            </div>
+            
             <div>
                 <button class="next">Próximo</button>               
+            </div>
+        </div>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <button class="close" id="closePopup">X</button>
+                <h2>Enter Album Name</h2>
+                <input type="text" id="nameInput" placeholder="Your Name">
+                <button id="okButton">OK</button>
             </div>
         </div>
     </div>

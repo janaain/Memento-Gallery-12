@@ -78,7 +78,11 @@
 }
 
 .photo-container-animation.rotated {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
+}
+
+.photo-container-animation.rotated-back {
+    transform: rotateY(0deg); 
 }
 
 .photo-front{
@@ -92,7 +96,6 @@
 }
 
 .photo-back {
-    transform: rotateY(-180deg); 
     background-color: #f9f9f9;
     padding: 20px;
     box-sizing: border-box;
@@ -249,7 +252,7 @@
     padding: 8px 12px;
     font-size: 14px;
     cursor: pointer;
-    position: relative; /* Necessário para o botão de apagar */
+    position: relative;
 }
 
 .action-button:hover, .user-tag:hover {

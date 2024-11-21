@@ -1,16 +1,25 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
     const toggleDetailsButton = document.getElementById("toggleDetails");
     const photoContainerAnimation = document.querySelector(".photo-container-animation");
+
+    let rotationAngle = 0; 
 
     if (toggleDetailsButton && photoContainerAnimation) {
         toggleDetailsButton.addEventListener("click", (event) => {
             event.preventDefault();
-            photoContainerAnimation.classList.toggle("rotated");
+
+           
+            rotationAngle += 180;
+
+        
+            photoContainerAnimation.style.transform = `rotateY(${rotationAngle}deg)`;
         });
     }
 });
+
+
 
 /* Tags */
 

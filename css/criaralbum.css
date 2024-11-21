@@ -70,6 +70,7 @@ li {
 }
 
 .content {
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -102,6 +103,7 @@ li {
 
 h2 {
     margin-bottom: 0px;
+    font-size: largerw  ;
 }
 
 h5 {
@@ -117,12 +119,15 @@ h5 {
 }
 
 .dropbtn {
-    background-color: rgba(0, 0, 0, 0.655); 
+    background-color: rgba(0, 0, 0, 0.655);
     color: white;
-    padding: 10px 20px;
+    padding: 0px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    height: 100%;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .dropdown-content {
@@ -183,4 +188,22 @@ h5 {
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
+}
+
+.header {
+    display: flex;
+    grid-area: content;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    z-index: 1;
+    font-size: x-large;
+    font-weight: bold;
+    background-color: aliceblue;
+    justify-content: space-between;
+}
+
+.header p{
+    margin: 0px;
+    margin-left: 10px;
 }

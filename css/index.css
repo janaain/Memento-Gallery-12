@@ -111,39 +111,21 @@ li {
     background-color: rgb(210, 210, 210);
 }
 
-.popup-content{
+/* .popup-content{
     background-color: #fefefe;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
-}
+} */
  
 .homepage{
     width: 60px;
     padding: 10px;
 }
 
-.sharepopup{
-    display: none;
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid #000000;
-    text-align: center;
-  
-}
 
-.sharepopup-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    text-align: center;
-    border-radius: 8px;
-}
-
-.share-btn {
+/* .share-btn {
     background-color: #4CAF50;
     color: white;
     padding: 10px;
@@ -153,11 +135,11 @@ li {
     width: 50%;
     font-size: 16px;
     border-radius: 4px;
-}
+} */
 
-.share-btn:hover {
+/* .share-btn:hover {
     background-color: #45a049;
-}
+} */
 
 
 
@@ -186,8 +168,7 @@ li {
 
 .header {
     padding: 10px;
-    background-color: #007bff;
-    color: #fff;
+    background-color: #e9d3fd;
     text-align: center;
     border-radius: 10px;
 }
@@ -241,7 +222,8 @@ li {
 
 
 .footer .btn-send {
-    background-color: #1db61d;
+    color: white;
+    background-color: #9966c9;
     animation: infinite;
 }
 .footer .btn-send:hover {
@@ -252,4 +234,14 @@ li {
 /* Show Popup When Active */
 .popup-container.active {
     display: flex;
+}
+
+#backButton{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    color: #000000;
+    cursor: pointer;
+    border:1px solid black;
+    background-color: #e6e6e6;
 }

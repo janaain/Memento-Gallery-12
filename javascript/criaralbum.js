@@ -1,4 +1,4 @@
-let current_step = 2
+let current_step = 0
 let havePhotos = 0
 
 function next_step(){
@@ -32,6 +32,30 @@ function next_step(){
         document.getElementById("next").disabled = true
         fiches()
     }
+    if(current_step >= 4){
+
+        let fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
+        let folderPath = JSON.parse(localStorage.getItem('folderPath'));
+        let currentFolder = fileSystem
+
+        // Traverse to the target folder
+        folderPath.forEach(folder => {
+            currentFolder = currentFolder.find(f => f.name === folder).folders;
+        });
+
+        // Add the new folder to the current folder
+        currentFolder.push({
+            name: document.getElementById("album-name").value,
+            folders: paris,
+            photos: []
+        });
+
+        // Save the updated file system back to localStorage
+        // Salve a estrutura atualizada
+        localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
+
+        window.location.href = "index.html"
+        }
 }
 
 function previous_step(){
@@ -42,8 +66,11 @@ function previous_step(){
 
 function setEventListeners(){
     // Seleciona a div que vai agir como botão e o input de ficheiros
+
     const addPhotoButton = document.getElementById('addPhotos');
     const fileInput = document.getElementById('fileInput');
+
+    document.getElementById("backButton").addEventListener('click', goBack);
 
     // Adiciona um evento de clique à div
     addPhotoButton.addEventListener('click', () => {
@@ -59,6 +86,10 @@ function setEventListeners(){
         // Enable the button if the input has text, disable it otherwise
         if (document.getElementById("album-name").value.trim() !== "") {
             document.getElementById("next").disabled = false;
+            
+            document.getElementById("next").addEventListener('click', () => {
+                next_step(current_step)
+            });
         } else {
             document.getElementById("next").disabled = true;
         }
@@ -197,8 +228,6 @@ return(headerDiv)
 
 
 
-
-
 const root = []; // Start with an empty path (root level)
 
 const paris = [
@@ -239,49 +268,70 @@ const paris = [
     }
 ];
 
+let lastFolder = paris
+let folderPath = []
 // Function to render the current folder based on the folder path
-function renderCurrentFolder(folderPath) {
-    let currentFolder = paris;
-    let currentPhotos = []
+function renderCurrentFolder() {
+    console.log('Rendering folder for path:', folderPath);
+    let currentPhotos = lastFolder.photos;
+    const fileSystem = paris;
+    let currentFolder = fileSystem;
+    
+    // Update back button visibility
+    updateBackButtonVisibility();
 
     // Traverse the file path to the target folder
     folderPath.forEach(folderName => {
-        currentPhotos = currentFolder.find(f => f.name === folderName).photos;
+        const folder = currentFolder.find(f => f.name === folderName);
+        if (folder) {
+            currentPhotos = folder.photos; // Update photos
+            currentFolder = folder.folders; // Update currentFolder to the next level
+        } else {
+            console.error(`Folder ${folderName} not found at this level.`);
+        }
     });
 
-    folderPath.forEach(folderName => {
-        currentFolder = currentFolder.find(f => f.name === folderName).folders;
-    });
+    // Continue with rendering logic
+    updateTopBar(folderPath);
 
-    // Update folder path on top bar
-    updateTopBar(folderPath)
-
-    // Clear the content area for new rendering
     const contentDiv = document.querySelector('#fiches');
-    contentDiv.innerHTML = '';
+    contentDiv.innerHTML = ''; // Clear previous content
 
-    // Display folders in the current directory
+    // Render folders and photos
     currentFolder.forEach(folder => {
         const folderElement = document.createElement('div');
         folderElement.innerHTML = `<img src="Images/folder.png"><br><label>${folder.name}</label>`;
-        
-        // Add click event to open the folder
         folderElement.addEventListener('click', () => {
             folderPath.push(folder.name);
-            renderCurrentFolder(folderPath); // Render the contents of the new folder
+            renderCurrentFolder(folderPath);
         });
-    
         contentDiv.appendChild(folderElement);
     });
+    if(currentPhotos     !== undefined){
+    currentPhotos.forEach(photo => {
+        const photoName = photo.split('/').pop();
+        const photoElement = document.createElement('div');
+        photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
+        contentDiv.appendChild(photoElement);
+    })};
+}
 
-    // Display photos in the current folder
-        currentPhotos.forEach(photo => {
-            const photoName = photo.split('/').pop();
-            const photoElement = document.createElement('div');
-            photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
-            photoElement.addEventListener('click', openPhoto)
-            contentDiv.appendChild(photoElement);
-        })};
+// Function to update the visibility of the back button
+function updateBackButtonVisibility() {
+    if (folderPath.length === 0) {
+        backButton.style.display = "none"; // Hide the back button at root level
+    } else {
+        backButton.style.display = "block"; // Show the back button if not at root
+    }
+}
+
+// Function to go back in the folder path
+function goBack() {
+    if (folderPath.length > 0) {
+        folderPath.pop(); // Remove the last folder from the path
+        renderCurrentFolder(folderPath); // Re-render the current folder
+    }
+}
 
 // Function to update the top bar with the clickable folder path, with "Memento Gallery" as the root
 function updateTopBar(folderPath) {
@@ -344,6 +394,34 @@ function navigateToFolder(newPath) {
 
 }
 
+// Function to create a new folder in the current directory
+function createFolder(folderName, photosList, folderPath) {
+    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
+    let currentFolder = fileSystem;
+
+    // Traverse to the target folder
+    folderPath.forEach(folder => {
+        currentFolder = currentFolder.find(f => f.name === folder).folders;
+    });
+
+    // Add the new folder to the current folder
+    currentFolder.push({
+        name: folderName,
+        folders: [],
+        photos: photosList
+    });
+
+    // Save the updated file system back to localStorage
+    // Salve a estrutura atualizada
+    localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
+
+    // Re-render the folder contents to reflect the new folder
+    // Adicione o log para depuração
+    console.log('Folder created:', folderName);
+    console.log('Updated file system:', JSON.stringify(fileSystem));
+    // Re-renderize a estrutura
+    renderCurrentFolder(folderPath);
+}
 
 //Make photo details appear
 function openPhoto(){

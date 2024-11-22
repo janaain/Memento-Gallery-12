@@ -15,7 +15,7 @@
     <div class="main">
         <div class="top_bar">
             <a href="index.html"><img src="Images/homepage.png" class="homepage"></a>
-            <button id="backButton" style="display:none;">Voltar</button>
+            <div id="backButton" style="display:none;">&lt;= Voltar</div>
             <span>Memento Gallery</span>
         </div>
 
@@ -28,12 +28,15 @@
                 <a href="online.html"><li id="chat-button">Chat</li></a>
             </ul>
         </div>
-        <div class="content">
-        </div>
+        <div class="content"></div>
+        
         <!-- Starts the PopUp -->
         <div id="popup" class="popup">
             <div class="popup-content">
-                <button class="close" id="closePopup">X</button>
+                <div class="closeShare">
+                    
+                    <button class="close" id="closePopup">X</button>
+                </div>
                 <h2>Enter Album Name</h2>
                 <input type="text" id="nameInput" placeholder="Name">
                 <button id="okButton">OK</button>
@@ -41,10 +44,10 @@
         </div>
         <div id="sharePopup" class="sharepopup">
             <div class="sharepopup-content">
-                <button id="closePopupshare" class="close">X</button>
+                <div class="closeShare"><button id="closePopupshare" class="close">X</button></div>
                 <h2>Share this Photo</h2>
                 <div class="share-options">
-                    <button class="share-btn" id="MemmentoChats">Mememento Chats</button>
+                    <button class="share-btn" id="MementoChats">Mememento Chats</button>
                     <button class="share-btn">Share on Facebook</button>
                     <button class="share-btn">Share on Twitter</button>
                     <button class="share-btn">Share on Instagram</button>
@@ -55,7 +58,7 @@
         <div class="popup-container" id="MChats">
             <div class="chat-popup">
                 <div class="header">
-                    <button id="closePopupMChats" class="close">X</button>
+                    <div class="closeShare"><button id="closePopupMChats" class="close">X</button></div>
                     <h1>Memento Chats</h1>
                     <input type="text" placeholder="Pesquisar" class="search-bar">
                 </div>

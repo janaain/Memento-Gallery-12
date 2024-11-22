@@ -215,7 +215,7 @@ button:disabled {
     z-index: 1;
     font-size: x-large;
     font-weight: bold;
-    background-color: aliceblue;
+    background-color: rgb(174, 196, 214);
     justify-content: space-between;
 }
 
@@ -284,4 +284,15 @@ input[type="checkbox"] {
 
 .images{
     text-align: center;
+}
+
+
+#backButton{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    color: #000000;
+    cursor: pointer;
+    border:1px solid black;
+    background-color: #e6e6e6;
 }

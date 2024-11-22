@@ -3,38 +3,47 @@
 // CONSTANTS ----------------------------------------------------------
 
 // const GET_FRIEND_BUTTON = document.getElementById("add-friend");
-const FRIEND_POPUP = "add-friend-popup";
 
 const SAVEDCHAT = "savedchat";
 
 let chat = {
-   "Rafa": [["Olá amor, como correu a reunião? Ouvi dizer que foste promovido", "self"], 
+   "Rafa": [[0,0],["Olá amor, como correu a reunião? Ouvi dizer que foste promovido", "self"], 
         ["Sim, foi fantastico", "other"],
         ["Parabens <3", "self"]
    ],
-   "Lúcia": [["Boas pessoal","other"],["Olá mãe", "self"]],
-   "Família": [["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
+   "Lúcia": [[0,0],["Boas pessoal","other"],["Olá mãe", "self"]],
+   "Família": [[0,0,0],["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
         ["Receberam esta msg?","other", "Lúcia"], ["Sim","other", "Salomé"], ["Same", "self", "Eu"]]
 }
 
+let shared = {"Jardim":["subconjuntos/Jardim"], "Igreja":["subconjuntos/Igreja"]}
+
 function main() {
-    localStorage.setItem(SAVEDCHAT, JSON.stringify(chat));
-    localStorage.setItem("test", JSON.stringify(chat))
+    let temp = JSON.parse(localStorage.getItem(SAVEDCHAT)) || "";
+    if (temp == "") {
+       localStorage.setItem(SAVEDCHAT, JSON.stringify(chat));
+    }
+
     startOnline();
     startChat("Rafa");
     setEventListeners();
     removeUser();
-    // OHCHAT();
+    sharedAlbuns();
 }
 
 function setEventListeners(){
     document.getElementById("concluido").disabled = true;
 
     document.getElementById("send-message").addEventListener("click", () => saveMessage());
-    document.getElementById("add-friend").addEventListener("click", () => visibility_on(FRIEND_POPUP));
-    document.getElementById("close-popup").addEventListener("click", () => visibility_off(FRIEND_POPUP));
+    document.getElementById("add-friend").addEventListener("click", () => visibility_on("add-friend-popup"));
+    document.getElementById("closePopup").addEventListener("click", () => visibility_off("add-friend-popup"));
     document.getElementById("add-group").addEventListener("click", () => visibility_on("addGroup-div"));
+    document.getElementById("concluido").addEventListener("click", () => createGroup());
     document.getElementById("voltar").addEventListener("click", () => visibility_off("addGroup-div"));
+    document.getElementById("verAlbum").addEventListener("click", () =>visibility_on("sharedAlbum-div"));
+    document.getElementById("verChat").addEventListener("click", () =>visibility_off("sharedAlbum-div"));
+    document.getElementById("okButton").addEventListener("click", () => addFriend());
+
 
     document.getElementById("albmName").addEventListener("input", () => checkInput());
     document.getElementById("okUser").addEventListener("click", function () {
@@ -71,9 +80,12 @@ function visibility_off(id) {
     document.getElementById(id).classList.remove("on");
 }
 
+// Adds the current friends to the dropdown on "Criar Grupo"
 function startOnline() {
-    for (let key in chat) {
-        if (chat[key][0].length == 2) {
+    let all_chat = getChat()
+    document.getElementById("recentChat").innerHTML = "";
+    for (let key in all_chat) {
+        if (all_chat[key][0].length == 2) {
            addRecents(key, "single");
            document.getElementById("amigos").innerHTML += "<option>" + key + "</option>";
         } else {
@@ -82,21 +94,23 @@ function startOnline() {
     }
 }
 
-
+// Displays the chat with a given person (wich is a key of the array chat)
 function startChat(person) {
-    localStorage.setItem(SAVEDCHAT, JSON.stringify(chat))
+    let all_chat = JSON.parse(localStorage.getItem(SAVEDCHAT));
     document.getElementById("chat-text").innerHTML = "<br>";
     document.getElementById("chatName").innerHTML = person;
-    for (let i = 0; i < chat[person].length; i++) {
-        addChatTxt(chat[person][i]);
+    for (let i = 1; i < all_chat[person].length; i++) {
+        addChatTxt(all_chat[person][i]);
     }
     chatScroll("auto");
 }
+
 
 function getChat() {
     return JSON.parse(localStorage.getItem(SAVEDCHAT)) || [];
 }
 
+// Clears the text of the input where the new message is inserted
 function clearText() {
     document.getElementById("new-message").value = "";
 }
@@ -110,27 +124,32 @@ function getPerson() {
     return document.getElementById("chatName").innerHTML;
 }
 
-
+// Saves new message and prints it in the chat
 function saveMessage() {
     let message = getNewMessage();
     if (message != "") {
         let all_chat = getChat();
         let person = getPerson();
-        console.log(person);
+
         all_chat[person].push([message, "self"]);
+
         addChatTxt([message, "self"]);
         chatScroll("smooth");
         clearText();
+
         document.getElementById('new-message').focus();
         localStorage.setItem(SAVEDCHAT, JSON.stringify(all_chat));
     }
 }
 
+// Code HTML that prints a message
+// message has the following format [message, class, 'sender']
 function addChatTxt (message) {
     document.getElementById("chat-text").innerHTML += 
                 "<p class='" + message[1] + "'>" + message[0] + "</p>";
 }
 
+// Appends the existing chats in the side bar
 function addRecents(key, type) {
     if (type == "single") {
         document.getElementById("recentChat").innerHTML +=
@@ -139,8 +158,9 @@ function addRecents(key, type) {
         document.getElementById("recentChat").innerHTML +=
             "<li><img src='Images/group.png'><label >" + key + "</label></li>";
     }
-    }
+}
 
+// Configs of scroll
 function chatScroll(mode) {
     let container = document.getElementById("chat-div");
     if (mode == "auto"){
@@ -156,6 +176,7 @@ function chatScroll(mode) {
     }
 }
 
+// Ativates/Deativates the "criar (album)" button
 function checkInput() {
     let nome = document.getElementById("albmName").value;
     let users = document.getElementById("usersAdded").rows.length;
@@ -169,6 +190,7 @@ function checkInput() {
     }
 }
 
+// Adds a user to the list of the "users para adicionar" to the new group chat
 function addUserGroup(userID) {
     let username = document.getElementById(userID).value;
     document.getElementById("usersAdded").innerHTML +=
@@ -176,6 +198,7 @@ function addUserGroup(userID) {
         removeUser();
 }
 
+//Removes a user of the list of the "users para adicionar" to the new group chat
 function removeUser () {
     document.querySelectorAll('.remove').forEach(function (cell) {
         cell.addEventListener('click', function () {
@@ -183,4 +206,39 @@ function removeUser () {
             row.remove(); 
         });
     });
+}
+
+function createGroup() {
+    let name = document.getElementById("albmName").value;
+    let users = document.getElementById("usersAdded").rows.length;
+
+    let all_chat = getChat();
+    all_chat[name] = [[0, 0, 0]];
+    localStorage.setItem(SAVEDCHAT, JSON.stringify(all_chat));
+
+    startOnline();
+    visibility_off("addGroup-div");
+
+}
+
+function addFriend() {
+    let friend = document.getElementById("nameInput").value;
+
+    let all_chat = getChat();
+    all_chat[friend] = [[0, 0,]];
+    localStorage.setItem(SAVEDCHAT, JSON.stringify(all_chat));
+
+    document.getElementById("nameInput").value = "";
+
+    startOnline();
+    visibility_off("add-friend-popup");
+}
+
+
+function sharedAlbuns() {
+    for (let key in shared) {
+        document.getElementById("sharedZone").innerHTML += 
+        `<div><img src='Images/folder.png'><br><label>${key}</label></div>`;
+    }
+
 }

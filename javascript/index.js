@@ -13,13 +13,17 @@ if (!localStorage.getItem('fileSystem')) {
     ];
     localStorage.setItem('fileSystem', JSON.stringify(initialStructure));
 }
+let folderPath = []
 let lastFolder = JSON.parse(localStorage.getItem('fileSystem'))
 // Function to render the current folder based on the folder path
-function renderCurrentFolder(folderPath) {
+function renderCurrentFolder() {
     console.log('Rendering folder for path:', folderPath);
     let currentPhotos = lastFolder.photos;
-    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
+    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'))
     let currentFolder = fileSystem;
+    
+    // Update back button visibility
+    updateBackButtonVisibility();
 
     // Traverse the file path to the target folder
     folderPath.forEach(folderName => {
@@ -56,43 +60,34 @@ function renderCurrentFolder(folderPath) {
         });
         contentDiv.appendChild(folderElement);
     });
-
+    if(currentPhotos     !== undefined){
     currentPhotos.forEach(photo => {
         const photoName = photo.split('/').pop();
         const photoElement = document.createElement('div');
         photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
         contentDiv.appendChild(photoElement);
-    });
-
-    lastFolder = currentFolder; // Update lastFolder to the current level
+    })};
+    localStorage.setItem("folderPath",JSON.stringify(folderPath))
 }
-;
 
-// Function to create a new folder in the current directory
-function createFolder(folderName, folderPath) {
-    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
-    let currentFolder = fileSystem;
-
-    folderPath.forEach(folder => {
-        currentFolder = currentFolder.find(f => f.name === folder).folders;
-    });
-
-    currentFolder.push({
-        name: folderName,
-        folders: [],
-        photos: []
-    });
-
-    // Salve a estrutura atualizada
-    localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
-
-    // Adicione o log para depuração
-    console.log('Folder created:', folderName);
-    console.log('Updated file system:', JSON.stringify(fileSystem));
-
-    // Re-renderize a estrutura
-    renderCurrentFolder(folderPath);
+// Function to update the visibility of the back button
+function updateBackButtonVisibility() {
+    if (folderPath.length === 0) {
+        backButton.style.display = "none"; // Hide the back button at root level
+    } else {
+        backButton.style.display = "block"; // Show the back button if not at root
+    }
 }
+
+// Function to go back in the folder path
+function goBack() {
+    if (folderPath.length > 0) {
+        folderPath.pop(); // Remove the last folder from the path
+        renderCurrentFolder(folderPath); // Re-render the current folder
+    }
+}
+
+
 
 
 // Function to add a photo to the current folder
@@ -119,7 +114,34 @@ function addPhoto(photoSrc, folderPath) {
     renderCurrentFolder(folderPath);
 }
 
+// Function to create a new folder in the current directory
+function createFolder(folderName, folderPath) {
+    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
+    let currentFolder = fileSystem;
 
+    // Traverse to the target folder
+    folderPath.forEach(folder => {
+        currentFolder = currentFolder.find(f => f.name === folder).folders;
+    });
+
+    // Add the new folder to the current folder
+    currentFolder.push({
+        name: folderName,
+        folders: [],
+        photos: []
+    });
+
+    // Save the updated file system back to localStorage
+    // Salve a estrutura atualizada
+    localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
+
+    // Re-render the folder contents to reflect the new folder
+    // Adicione o log para depuração
+    console.log('Folder created:', folderName);
+    console.log('Updated file system:', JSON.stringify(fileSystem));
+    // Re-renderize a estrutura
+    renderCurrentFolder(folderPath);
+}
 
 // Function to create a popup for adding a new album (folder)
 function createAlbumPopUp(folderPath) {
@@ -229,12 +251,12 @@ function main() {
 
 //EventListeners
 function initializeEventListeners(){
+    backButton.addEventListener('click', goBack);
     document.getElementById("sair").addEventListener("click", function () {
     document.getElementById("photoView").style.display = "none";
     document.getElementById("chat-button").style.display = "block";
 })
 }
-
 //
 function compartilhar(){
     document.getElementById("share").onclick = function(){

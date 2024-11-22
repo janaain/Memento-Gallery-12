@@ -18,6 +18,7 @@ function renderCurrentFolder(folderPath) {
     let currentFolder = fileSystem;
 
     // // Traverse the file path to the target folder
+    console.log(folderPath)
     folderPath.forEach(folderName => { 
         currentPhotos = lastFolder.find(f => f.name === folderName).photos
     });
@@ -78,6 +79,7 @@ function renderCurrentFolder(folderPath) {
         photoElement.addEventListener('click', openPhoto)
         contentDiv.appendChild(photoElement);
     })
+
     lastFolder = currentFolder
 };
 

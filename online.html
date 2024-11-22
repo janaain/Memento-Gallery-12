@@ -16,28 +16,22 @@
         </div>
 
         <div class="menu">
-            <ul class="chat">
-                <li><img src="Images/user-icon.png"><label>Rafa</label></li>
-                <li><img src="Images/user-icon.png"><label>Lúcia</label></li>
-                <li><img src="Images/group.png"><label>Família</label></li>
-            </ul>
+            <ul id="recentChat" class="chat"></ul>
             <div class="add-buttons">
                 <button id="add-friend">Adicionar<br>Amigo</button>
-                <button>Adicionar<br>Grupo</button>
+                <button id="add-group">Adicionar<br>Grupo</button>
             </div>
         </div>
-        <div class="content">
+        <div class="content" id="chatcontent">
             <div class="in-chat">
                 <div class="chat-info">
                     <img src="Images/user-icon.png">
-                    <span>Rafa</span>
+                    <span id="chatName"></span>
                     <button>Ver Album</button>
                 </div>
                 <div id="chat-div" class="chat-div">
                     <div id="chat-text" class="chat-text">
-                        <br>
-                        <p class="self">Olá Rafa, já testaste esta nova funcionalidade da Memento Gallery?</p>  
-                        <p class="other">No</p>                        
+                        <br>                    
                     </div>
                 </div>
             </div>
@@ -47,11 +41,11 @@
                 <img  id="send-message" src="Images/send.png">
             </div>
         </div>
-        <div class="addGroup-div">
+        <div id="addGroup-div" class="addGroup-div">
             <div class="chat-info">
                 <img src="Images/plus.png">
                 <span>Novo Grupo</span>
-                <button>Ver Chat</button>
+                <!-- <button>Ver Chat</button> -->
             </div>
             <div class="addGroup">
                 
@@ -67,39 +61,53 @@
                 
                 <div id="details">
                     <span>Descrição</span><br>
-                    <input type="text">
+                    <textarea></textarea>
                 </div>
                 <div id="add">
                     <div id="users">
                         <label>Adicionar por username</label><br>
                         <input id="username" type="text">
-                        <button>Ok</button>
+                        <button id="okUser">Ok</button>
                     </div>
                     <div id="friends">
-                        <label>Adicionar dos amigos</label><br>
-                        <select name="amigos">
-                            <option>Rafa</option>
-                            <option>Lúcia</option>
-                        </select>
-                        <button>Ok</button>
+                        <label>Adicionar dos amigos</label>
+                        <div>
+                            <select id="amigos"></select>
+                            <button id="okFriend">Ok</button>
+                        </div>
                     </div>
                 </div>
                 <div id="added">
                     <span>Utilizadores Adicionados</span>
-                    <table>
-                        <tr>
-                            <td> Rafa </td>
-                            <td> X </td>
-                        </tr>
-                        <tr>
-                            <td> Lúcia </td>
-                            <td> X </td>
-                        </tr>
-                    </table>
+                    <table id="usersAdded"></table>
+                </div>
+                <div>
+                    <button id="concluido">Criar</button>
+                    <button id="voltar" >Voltar</button>
                 </div>
             </div>
+        </div>
+        
+        
+
+
+        <div id="sharedAlbum-div" class="sharedAlbum-div">
+            <div class="chat-info">
+                <img src="Images/plus.png">
+                <span>Album Partilhado</span>
+                <button>Ver Chat</button>
+            </div>
+            <div class="sharedAlbum">
+            
+                
+            </div>
            
-        </div>        
+        </div>  
+
+
+
+
+
         
     </div>
     <div id="add-friend-popup">

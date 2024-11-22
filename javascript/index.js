@@ -9,12 +9,18 @@ if (!localStorage.getItem('fileSystem')) {
     ];
     localStorage.setItem('fileSystem', JSON.stringify(initialStructure));
 }
-
+let lastFolder = JSON.parse(localStorage.getItem('fileSystem'))
 // Function to render the current folder based on the folder path
 function renderCurrentFolder(folderPath) {
+    console.log(lastFolder)
+    let currentPhotos = lastFolder.photos
     const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
     let currentFolder = fileSystem;
 
+    // // Traverse the file path to the target folder
+    folderPath.forEach(folderName => { 
+        currentPhotos = lastFolder.find(f => f.name === folderName).photos
+    });
     // Traverse the file path to the target folder
     folderPath.forEach(folderName => {
         currentFolder = currentFolder.find(f => f.name === folderName).folders;
@@ -22,6 +28,20 @@ function renderCurrentFolder(folderPath) {
 
     // Update folder path on top bar
     updateTopBar(folderPath)
+
+    // Show/hide the back button based on the folder depth
+    const backButton = document.getElementById("backButton");
+    if (folderPath.length === 0) {
+        backButton.style.display = "none"; // Hide the back button at root level
+    } else {
+        backButton.style.display = "block"; // Show the back button if not at root
+        backButton.addEventListener("click", function () {
+            if (folderPath.length > 0) {
+                folderPath.pop(); // Remove the last folder in the path
+                renderCurrentFolder(folderPath); // Re-render the folder contents
+            }
+        });
+    }
 
     // Clear the content area for new rendering
     const contentDiv = document.querySelector('.content');
@@ -50,16 +70,16 @@ function renderCurrentFolder(folderPath) {
     });
 
     // Display photos in the current folder
-    currentFolder.forEach(folder => {
-        folder.photos.forEach(photo => {
-            const photoName = photo.split('/').pop();
-            const photoElement = document.createElement('div');
-            photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
-            photoElement.addEventListener('click', openPhoto)
-            contentDiv.appendChild(photoElement);
-        });
-    });
-}
+    console.log(currentPhotos)
+    currentPhotos.forEach(photo => {
+        const photoName = photo.split('/').pop();
+        const photoElement = document.createElement('div');
+        photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
+        photoElement.addEventListener('click', openPhoto)
+        contentDiv.appendChild(photoElement);
+    })
+    lastFolder = currentFolder
+};
 
 // Function to create a new folder in the current directory
 function createFolder(folderName, folderPath) {
@@ -233,4 +253,57 @@ function compartilhar(){
     document.getElementById("closePopupshare").onclick = function(){
         document.getElementById("sharePopup").style.display = "none";
     }
+    document.getElementById("MemmentoChats").onclick = function(){
+        document.getElementById("MChats").style.display = "block";
+        document.getElementById("sharePopup").style.display = "none";
+    }
+    document.getElementById("closePopupMChats").onclick = function(){
+        document.getElementById("MChats").style.display = "none";
+    }
+    document.getElementById("btn-back-mc").onclick = function(){
+        document.getElementById("MChats").style.display = "none";
+        document.getElementById("sharePopup").style.display = "block";
+    }
 }
+
+//Delete Photo
+
+document.addEventListener("DOMContentLoaded", function () {
+    const deletePhotoButton = document.getElementById("deletePhotoButton");
+    const confirmationPopup = document.getElementById("confirmationPopup");
+    const confirmDelete = document.getElementById("confirmDeleteButton");
+    const cancelDelete = document.getElementById("cancelDeleteButton");
+
+    // Evento para abrir o pop-up
+    deletePhotoButton.addEventListener("click", function () {
+        confirmationPopup.style.display = "flex";
+    });
+
+    // Evento para confirmar a exclusão
+    confirmDelete.addEventListener("click", function () {
+        const selectedPhoto = document.querySelector(".photo-container img");
+        if (!selectedPhoto) {
+            alert("Nenhuma foto selecionada.");
+            confirmationPopup.style.display = "none";
+            return;
+        }
+
+        const fileName = selectedPhoto.getAttribute("data-filename");
+        const folderPath = JSON.parse(selectedPhoto.getAttribute("data-folderpath"));
+
+        // Eliminar a foto usando a função deletePhoto
+        deletePhoto(folderPath, fileName);
+
+        // Remover foto da interface
+        selectedPhoto.remove();
+
+        // Fechar o pop-up
+        confirmationPopup.style.display = "none";
+        alert("Foto eliminada com sucesso.");
+    });
+
+    // Evento para cancelar a exclusão
+    cancelDelete.addEventListener("click", function () {
+        confirmationPopup.style.display = "none";
+    });
+});

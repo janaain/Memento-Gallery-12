@@ -15,6 +15,7 @@
     <div class="main">
         <div class="top_bar">
             <a href="index.html"><img src="Images/homepage.png" class="homepage"></a>
+            <button id="backButton" style="display:none;">Voltar</button>
             <span>Memento Gallery</span>
         </div>
 
@@ -34,7 +35,7 @@
             <div class="popup-content">
                 <button class="close" id="closePopup">X</button>
                 <h2>Enter Album Name</h2>
-                <input type="text" id="nameInput" placeholder="Your Name">
+                <input type="text" id="nameInput" placeholder="Name">
                 <button id="okButton">OK</button>
             </div>
         </div>
@@ -43,7 +44,7 @@
                 <button id="closePopupshare" class="close">X</button>
                 <h2>Share this Photo</h2>
                 <div class="share-options">
-                    <button class="share-btn">Mememento Chats</button>
+                    <button class="share-btn" id="MemmentoChats">Mememento Chats</button>
                     <button class="share-btn">Share on Facebook</button>
                     <button class="share-btn">Share on Twitter</button>
                     <button class="share-btn">Share on Instagram</button>
@@ -51,16 +52,30 @@
                 </div>
             </div>
         </div>
-        <div id="mementoChats" class="sharepopup">
-            <div class="sharepopup-content">
-                <button id="closePopupmementoChats" class="close">X</button>
-                <h2>Share this Photo</h2>
-                <div class="share-options">
-                    <button class="share-btn">Mememento Chats</button>
-                    <button class="share-btn">Share on Facebook</button>
-                    <button class="share-btn">Share on Twitter</button>
-                    <button class="share-btn">Share on Instagram</button>
-                    <button class="share-btn">Share via Email</button>
+        <div class="popup-container" id="MChats">
+            <div class="chat-popup">
+                <div class="header">
+                    <button id="closePopupMChats" class="close">X</button>
+                    <h1>Memento Chats</h1>
+                    <input type="text" placeholder="Pesquisar" class="search-bar">
+                </div>
+                <div class="chat-list">
+                    <div class="chat-item">
+                        <label><input type="checkbox"> Casamento</label>
+                    </div>
+                    <div class="chat-item">
+                        <label><input type="checkbox"> Lúcia</label>
+                    </div>
+                    <div class="chat-item">
+                        <label><input type="checkbox"> Rafa</label>
+                    </div>
+                    <div class="chat-item">
+                        <label><input type="checkbox"> Família</label>
+                    </div>
+                </div>
+                <div class="footer">
+                    <button class="btn-back" id="btn-back-mc">Voltar</button>
+                    <a  href="online.html#"><button class="btn-send">Enviar</button></a>
                 </div>
             </div>
         </div>
@@ -74,7 +89,7 @@
                         <div class="photo-container-animation" id="photo-container-animation">
                             <!-- Frente da foto -->
                             <div class="photo-front">
-                                <img src="Images/croissant.jpg" alt="Foto" class="photo">
+                                <img src="Images/croissant.jpg" alt="Foto" id="photoToDelete" class="photo">
                             </div>
                             <!-- Parte de trás com a tabela -->
                             <div class="photo-back">
@@ -140,16 +155,15 @@
                         <li></li>
                         <div class="action-button">Romance</div>
                     </div> 
-
+                    
                     <div id="confirmationPopup" class="popup">
                         <div class="popup-content">
                             <button class="close" id="closeConfirmationPopup">X</button>
-                            <h2>Deseja confirmar a nova tag?</h2>
+                            <h2>Tem certeza que deseja remover a tag?</h2>
                             <button id="confirmButton">OK</button>
                             <button id="cancelButton">Cancelar</button>
                         </div>
                     </div>
-                    
                 </div>
                 <div class="sidebar">
                     <ul>
@@ -158,10 +172,20 @@
                         <li><a href="#">Compartilhar</a></li>
                     </ul>
                     <div class="bottom-buttons">
-                        <div class="option-button">Eliminar Foto</div>
+                        <div class="option-button" id="deletePhotoButton">Eliminar Foto</div>
                     </div>
                     <div id="sair" class="option-button">Sair</div>
                 </div>
+
+                <div id="photoDeleteConfirmationPopup" class="photo-delete-popup">
+                    <div class="photo-delete-popup-content">
+                        <button class="close" id="closePhotoDeletePopup">X</button>
+                        <h2>Tem certeza que deseja remover esta foto?</h2>
+                        <button id="confirmDeleteButton">Sim</button>
+                        <button id="cancelDeleteButton">Não</button>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </div>

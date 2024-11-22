@@ -31,39 +31,105 @@ document.addEventListener("DOMContentLoaded", function () {
     const cancelButton = document.getElementById("cancelButton");
     const closeConfirmationPopup = document.getElementById("closeConfirmationPopup");
 
-    addTagOption.addEventListener("click", function (event) {
-        event.preventDefault();
+    let tagToRemove = null; // Variável para armazenar a tag que será removida
 
+    // Função para adicionar uma nova tag
+    addTagOption.addEventListener("click", function () {
         const newTag = document.createElement("div");
-        newTag.className = "action-button user-tag";
-        newTag.contentEditable = "true";
-        newTag.textContent = "";
+        newTag.className = "tag"; // Adiciona a classe 'tag'
+        
+        // Conteúdo da tag (editável)
+        const tagContent = document.createElement("span");
+        tagContent.className = "tag-content";
+        tagContent.contentEditable = true;
+        tagContent.textContent = ""; 
+        
+        // Botão de remoção "X"
+        const removeButton = document.createElement("button");
+        removeButton.className = "remove-tag-button"; 
+        removeButton.textContent = "×"; 
+        
+        newTag.appendChild(tagContent);
+        newTag.appendChild(removeButton);
+        tagContainer.appendChild(newTag); 
 
-        tagContainer.appendChild(newTag);
+      
+        tagContent.focus();
 
-        newTag.focus();
-
-        newTag.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                confirmationPopup.style.display = 'flex';
-
-                confirmButton.addEventListener("click", function () {
-                    confirmationPopup.style.display = 'none';
-                });
-
-                cancelButton.addEventListener("click", function () {
-                    tagContainer.removeChild(newTag);
-                    confirmationPopup.style.display = 'none';
-                });
-
-                closeConfirmationPopup.addEventListener("click", function () {
-                    confirmationPopup.style.display = 'none';
-                });
-            }
+        
+        removeButton.addEventListener("click", function () {
+            tagToRemove = newTag; 
+            confirmationPopup.style.display = 'flex'; 
         });
     });
+
+    
+    confirmButton.addEventListener("click", function () {
+        if (tagToRemove) {
+            tagContainer.removeChild(tagToRemove); 
+        }
+        confirmationPopup.style.display = 'none'; 
+        tagToRemove = null; 
+    });
+
+    
+    cancelButton.addEventListener("click", function () {
+        confirmationPopup.style.display = 'none'; 
+        tagToRemove = null; 
+    });
+
+    closeConfirmationPopup.addEventListener("click", function () {
+        confirmationPopup.style.display = 'none'; 
+        tagToRemove = null; 
+    });
 });
+
+
+/*Eliminar fotos */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const deletePhotoButton = document.getElementById("deletePhotoButton");
+    const photoDeleteConfirmationPopup = document.getElementById("photoDeleteConfirmationPopup");
+    const confirmDeleteButton = document.getElementById("confirmDeleteButton");
+    const cancelDeleteButton = document.getElementById("cancelDeleteButton");
+    const closePhotoDeletePopup = document.getElementById("closePhotoDeletePopup");
+    const photoToDelete = document.getElementById("photoToDelete");
+
+    // Exibe o pop-up de confirmação quando o botão de eliminar foto for pressionado
+    deletePhotoButton.addEventListener("click", function (event) {
+        // Impede a ativação de outro pop-up, caso o usuário esteja no meio de uma ação de adicionar tags
+        event.stopPropagation();
+        photoDeleteConfirmationPopup.style.display = 'flex'; // Exibe o pop-up de remoção de foto
+    });
+
+    // Confirma a remoção da foto
+    confirmDeleteButton.addEventListener("click", function () {
+        // Remove a foto da área principal
+        photoToDelete.remove();
+
+        // Fecha o pop-up de confirmação
+        photoDeleteConfirmationPopup.style.display = 'none'; 
+
+        // Redireciona o usuário para o início da página (topo)
+        window.scrollTo(0, 0);
+    });
+
+    // Cancela a remoção da foto
+    cancelDeleteButton.addEventListener("click", function () {
+        photoDeleteConfirmationPopup.style.display = 'none'; // Fecha o pop-up sem remover a foto
+    });
+
+    // Fechar o pop-up ao clicar no 'X'
+    closePhotoDeletePopup.addEventListener("click", function () {
+        photoDeleteConfirmationPopup.style.display = 'none'; // Fecha o pop-up
+    });
+});
+
+
+
+
+
+
 
 
 

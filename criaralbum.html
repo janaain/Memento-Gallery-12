@@ -10,7 +10,8 @@
     
 </head>
 <body>
-    <div class="main">
+    <div class="main" id="main">
+        <div id="header"></div>
         <div class="top_bar">
             <a href="index.html" ><img src="Images/homepage.png" class="homepage"></a>
             <span>Criação de Albuns</span>
@@ -31,24 +32,14 @@
                 </li>
             </ul>
         </div>
-        <div class="header">
-            <p>1. Importe as Fotos</p>
-            <div class="dropdown">
-                <div class="dropbtn">Organizar por:</div>
-                <div class="dropdown-content">
-                  <a href="#option1">A-Z</a>
-                  <a href="#option2">Z-A</a>
-                  <a href="#option3">Data</a>
-                </div>
-            </div>
-            </div>
-        <div class="content">
+        <div class="content" id="Cphotos">
             <div class="photos" id="photos">
                 <input type="file" id="fileInput" style="display: none;" multiple accept="image/*">
-                <div class="openPopup" id="addPhotos"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
+                <div class="images" id="addPhotos"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
             </div>
-
-            <div class="criterios">
+        </div>
+        <div class="content" id="Ccriterios">
+            <div class="criterios" id="criterios">
                 <!-- Coluna da Esquerda - Organizar Por -->
                 <div class="column">
                     <h3>ORGANIZAR POR:</h3>
@@ -56,11 +47,11 @@
                         <li><input type="radio" name="organizar" id="data"> <label for="data">Data</label></li>
                         <li><input type="radio" name="organizar" id="localizacao"> <label for="localizacao">Localização</label></li>
                         <li><input type="radio" name="organizar" id="qualidade"> <label for="qualidade">Qualidade</label></li>
+                        <li><input type="radio" name="organizar" id="resolucao"> <label for="resolucao">Proporção</label></li>
                         <li><input type="radio" name="organizar" id="pessoa"> <label for="pessoa">Pessoa</label></li>
                         <li><input type="radio" name="organizar" id="tipo"> <label for="tipo">Tipo (Macro, Paisagem, etc.)</label></li>
                         <li><input type="radio" name="organizar" id="conteudo"> <label for="conteudo">Conteúdo</label></li>
-                        <li><input type="radio" name="organizar" id="resolucao"> <label for="resolucao">Resolução</label></li>
-                        <li><input type="radio" name="organizar" id="nao_dividir"> <label for="nao_dividir">Não dividir por álbuns</label></li>
+                        <li><input type="radio" name="organizar" checked id="nao_dividir"> <label for="nao_dividir">Não dividir por álbuns</label></li>
                     </ul>
                 </div>
         
@@ -75,17 +66,20 @@
                     </ul>
                 </div>
             </div>
+        </div>
+        <div class="content" id="Crever">
+            <div class="nomeAlbum">
+                <label for="album-name">Nome do Álbum:</label>
+                <input type="text" id="album-name" placeholder="Nome">
+            </div>
+            <div class="content" id="fiches"></div>
+        </div>
             
             <div>
-                <button disabled class="next" id="next">Próximo</button>               
+                <button class="next" id="next">Próximo Passo</button>               
             </div>
-        </div>
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <button class="close" id="closePopup">X</button>
-                <h2>Enter Album Name</h2>
-                <input type="text" id="nameInput" placeholder="Your Name">
-                <button id="okButton">OK</button>
+            <div>
+                <button class="prev" id="prev">Passo Anterior</button>               
             </div>
         </div>
     </div>

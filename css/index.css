@@ -111,28 +111,12 @@ li {
     background-color: rgb(210, 210, 210);
 }
 
-.popup{
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%; 
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.popup-content {
+.popup-content{
     background-color: #fefefe;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 20%;
-}
-.invisible{
-    display: none;
-    grid-area: 2 / 1 / 3 / 3; /* From row 2, column 1 to row 3, column 2 */
-    z-index: 10;
 }
  
 .homepage{
@@ -146,8 +130,7 @@ li {
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid #000000;
     text-align: center;
-    height: 100%;
-    width: 100%;    
+  
 }
 
 .sharepopup-content {
@@ -174,4 +157,99 @@ li {
 
 .share-btn:hover {
     background-color: #45a049;
+}
+
+
+
+/* UWU MCHATS */
+.popup-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    text-align: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Box */
+.chat-popup {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15% auto;
+}
+
+.header {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.search-bar {
+    width: 90%;
+    padding: 5px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+}
+
+.chat-list {
+    padding: 10px;
+}
+
+.chat-item {
+    margin: 10px 0;
+}
+
+.chat-item label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    align-items: right;
+}
+
+.footer .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.footer .btn-send {
+    background-color: #1db61d;
+    animation: infinite;
+}
+.footer .btn-send:hover {
+    background-color: rgb(224, 20, 54);
+    
+}
+
+/* Show Popup When Active */
+.popup-container.active {
+    display: flex;
 }

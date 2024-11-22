@@ -47,7 +47,7 @@
                 <div class="closeShare"><button id="closePopupshare" class="close">X</button></div>
                 <h2>Share this Photo</h2>
                 <div class="share-options">
-                    <button class="share-btn" id="MementoChats">Mememento Chats</button>
+                    <button class="share-btn" id="MemmentoChats">Memento Chats</button>
                     <button class="share-btn">Share on Facebook</button>
                     <button class="share-btn">Share on Twitter</button>
                     <button class="share-btn">Share on Instagram</button>
@@ -103,7 +103,7 @@
                                     </tr>
                                     <tr>
                                         <td>Localização</td>
-                                        <td>Paris</td>
+                                        <td>Restaurante Pain-au-chocolat, Paris, França</td>
                                     </tr>
                                     <tr>
                                         <td>Estado Emocional</td>
@@ -159,20 +159,21 @@
                         <div class="action-button">Romance</div>
                     </div> 
                     
-                    <div id="confirmationPopup" class="popup">
+                    <div id="TagPopup" style="display: none;">
                         <div class="popup-content">
-                            <button class="close" id="closeConfirmationPopup">X</button>
-                            <h2>Tem certeza que deseja remover a tag?</h2>
-                            <button id="confirmButton">OK</button>
-                            <button id="cancelButton">Cancelar</button>
+                            <p>Tem certeza que deseja remover esta tag?</p>
+                            <button class="confirm">Sim</button>
+                            <button class="cancel">Não</button>
                         </div>
                     </div>
+                    
+                    
                 </div>
                 <div class="sidebar">
                     <ul>
-                        <li><a href="#" id="toggleDetails">Detalhes</a></li>
-                        <li><a href="#" id="addTagOption">Adicionar Tag</a></li>
-                        <li><a href="#">Compartilhar</a></li>
+                        <li id="toggleDetails"><a href >Detalhes</a></li>
+                        <li id="addTagOption"><a href="#" >Adicionar Tag</a></li>
+                        <li id="sharePhotoBut"><a>Compartilhar</a></li>
                     </ul>
                     <div class="bottom-buttons">
                         <div class="option-button" id="deletePhotoButton">Eliminar Foto</div>
@@ -180,14 +181,14 @@
                     <div id="sair" class="option-button">Sair</div>
                 </div>
 
-                <div id="photoDeleteConfirmationPopup" class="photo-delete-popup">
+                <div id="photoDeleteConfirmationPopup" class="photo-delete-popup" style="display: none;">
                     <div class="photo-delete-popup-content">
-                        <button class="close" id="closePhotoDeletePopup">X</button>
                         <h2>Tem certeza que deseja remover esta foto?</h2>
-                        <button id="confirmDeleteButton">Sim</button>
-                        <button id="cancelDeleteButton">Não</button>
+                        <button class="confirm">Sim</button>
+                        <button class="cancel">Não</button>
                     </div>
                 </div>
+                
             </div>
             </div>
         </div>

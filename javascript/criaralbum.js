@@ -29,8 +29,11 @@ function next_step(){
         document.getElementById("header").replaceWith(header3());
         document.getElementById("prev").style.display = "block"
         document.getElementById("next").textContent = "Concluir";
-        document.getElementById("next").disabled = true
+        document.getElementById("next").disabled = true;
         fiches()
+        if(document.getElementById("album-name").value !== ""){
+            document.getElementById("next").disabled = false;
+        }
     }
     if(current_step >= 4){
 
@@ -59,9 +62,9 @@ function next_step(){
 }
 
 function previous_step(){
-    console.log("prev:" + current_step)
     current_step = current_step - 2
     next_step(current_step)
+    document.getElementById("next").disabled = false;
 }
 
 function setEventListeners(){
@@ -87,9 +90,6 @@ function setEventListeners(){
         if (document.getElementById("album-name").value.trim() !== "") {
             document.getElementById("next").disabled = false;
             
-            document.getElementById("next").addEventListener('click', () => {
-                next_step(current_step)
-            });
         } else {
             document.getElementById("next").disabled = true;
         }
@@ -260,8 +260,8 @@ const paris = [
         "folders": [],
         "photos": [
             "subconjuntos/15-04-2004/crepe.jpeg",
-            "subconjuntos/15-04-2004/croissant.jpg",
             "subconjuntos/15-04-2004/mime.jpg",
+            "subconjuntos/15-04-2004/croissant.jpg",
             "subconjuntos/15-04-2004/Psg.jpeg",
             "subconjuntos/15-04-2004/streetArt.jpeg"
         ]

@@ -2,13 +2,71 @@
 if (!localStorage.getItem('fileSystem')) {
     const initialStructure = [
         {
-            "name": "Londres",
+        "name": "Viagens",
             "folders": [{
-                "name": "as",
+                "name": "Londres",
+                "folders": [],
+                "photos": []
+            },
+            {
+                "name": "Madrid",
+                "folders": [],
+                "photos": []
+            }],
+            "photos": []
+        },
+        {
+            "name": "Comida",
                 "folders": [],
                 "photos": ["fotos-de-paris/croissant.jpg"]
+        },
+        {
+            "name": "Familia",
+                "folders": [],
+                "photos": []
+        },
+        {
+            "name":"Casamento",
+            "folders": [{
+                "name": "Igreja",
+                "folders": [],
+                "photos": [
+                    "subconjuntos/Igreja/2.jpg",
+                    "subconjuntos/Igreja/4.jpg",
+                    "subconjuntos/Igreja/6.jpg",
+                    "subconjuntos/Igreja/7.jpg",
+                    "subconjuntos/Igreja/12.jpg",
+                    "subconjuntos/Igreja/14.jpg",
+                    "subconjuntos/Igreja/17.jpg",
+                    "subconjuntos/Igreja/18.jpg",
+                    "subconjuntos/Igreja/22.jpg",
+                    "subconjuntos/Igreja/23.jpg",
+                    "subconjuntos/Igreja/24.jpg",
+                    "subconjuntos/Igreja/25.jpg"
+                ]
+            },
+            {
+                "name": "Jardim",
+                "folders": [],
+                "photos": [
+                    "subconjuntos/Jardim/1.jpg",
+                    "subconjuntos/Jardim/3.jpg",
+                    "subconjuntos/Jardim/5.jpg",
+                    "subconjuntos/Jardim/10.jpg",
+                    "subconjuntos/Jardim/13.jpg",
+                    "subconjuntos/Jardim/15.jpg",
+                    "subconjuntos/Jardim/16.jpg",
+                    "subconjuntos/Jardim/19.jpg",
+                    "subconjuntos/Jardim/26.jpg",
+                    "subconjuntos/Jardim/27.jpg",
+                    "subconjuntos/Jardim/28.jpg",
+                    "subconjuntos/Jardim/29.jpg",
+                    "subconjuntos/Jardim/30.jpg",
+                    "subconjuntos/Jardim/31.jpg",
+                    "subconjuntos/Jardim/32.jpg"
+                ]
             }],
-            "photos": ["fotos-de-paris/croissant.jpg"]
+            "photos": []
         }
     ];
     localStorage.setItem('fileSystem', JSON.stringify(initialStructure));
@@ -65,6 +123,7 @@ function renderCurrentFolder() {
         const photoName = photo.split('/').pop();
         const photoElement = document.createElement('div');
         photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
+        photoElement.addEventListener("click", openPhoto)
         contentDiv.appendChild(photoElement);
     })};
     localStorage.setItem("folderPath",JSON.stringify(folderPath))
@@ -81,13 +140,19 @@ function updateBackButtonVisibility() {
 
 // Function to go back in the folder path
 function goBack() {
+
     if (folderPath.length > 0) {
-        folderPath.pop(); // Remove the last folder from the path
-        renderCurrentFolder(folderPath); // Re-render the current folder
-    }
+            folderPath.pop(); // Remove the last folder from the path
+            renderCurrentFolder(folderPath); // Re-render the current folder
+            if (document.getElementById("photoView").style.display == "block") {
+                    document.getElementById("photoView").style.display = "none";
+            }
+        }
 }
 
-
+function leavePhoto() {
+    
+}
 
 
 // Function to add a photo to the current folder
@@ -252,13 +317,21 @@ function main() {
 //EventListeners
 function initializeEventListeners(){
     backButton.addEventListener('click', goBack);
-    document.getElementById("sair").addEventListener("click", function () {
-    document.getElementById("photoView").style.display = "none";
-    document.getElementById("chat-button").style.display = "block";
-})
+        document.getElementById("sair").addEventListener("click", function () {
+        document.getElementById("photoView").style.display = "none";
+        document.getElementById("chat-button").style.display = "block";
+    })
+    document.getElementById("sharePhotoBut").addEventListener("click",function () {
+        document.getElementById("sharePopup").style.display = "block";
+    } )
+        
 }
+    
+
+
 //
 function compartilhar(){
+
     document.getElementById("share").onclick = function(){
         document.getElementById("sharePopup").style.display = "block";
     }

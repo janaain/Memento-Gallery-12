@@ -109,10 +109,11 @@ h5 {
     margin-top: 5px;
 }
 
-.dropdown {
-    position: sticky;
+.dropdown {    
+    position: fixed;
+    top: 5px;
+    right: 5px;
     display: inline-block;
-    grid-area: dropdown;
 }
 
 .dropbtn {

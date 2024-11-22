@@ -106,10 +106,10 @@
 /* Barra Lateral */
 .sidebar {
     width: 250px;
-    background-color: skyblue;
+    border-right: 2px solid #ccc;
+    background-color: #e6e6e6;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     gap: 25px;
 }
 
@@ -117,6 +117,8 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    padding-left: 0;
+    text-align: center;
 }
 
 .sidebar li {
@@ -125,14 +127,13 @@
 }
 
 .sidebar a {
-    color: rgb(71, 54, 226);
+    color: black;
     text-decoration: none;
     font-size: 18px;
 }
 
-.sidebar a:hover {
-    color: rgb(96, 88, 172);
-    text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.7);
+.sidebar li:hover {
+    background-color: rgb(210, 210, 210);
 }
 
 .bottom-buttons {
@@ -214,30 +215,9 @@
     padding: 15px;
     text-align: center;
 }
-/* Tags */
 
-.user-tag .delete-tag {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.user-tag .delete-tag:hover {
-    background-color: darkred;
-}
-
-.button-group, .tagContainer {
+/* Botões de ação e tags */
+.button-group, #tagContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -253,84 +233,89 @@
     font-size: 14px;
     cursor: pointer;
     position: relative;
+    
 }
 
 .action-button:hover, .user-tag:hover {
     background-color: #e0e0e0;
 }
 
-/* Pop-up de confirmação */
-#TagPopup {
-    display: none;
+/* Botão de remoção em cada tag */
+
+.user-tag .delete-tag {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.user-tag .delete-tag:hover {
+    background-color: darkred;
+}
+
+/* Estilo do pop-up de confirmação */
+/* Estilo do pop-up de confirmação */
+.popup {
+    display: none; /* Inicialmente escondido */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
 }
 
-#TagPopup .popup-content {
+/* Conteúdo do pop-up */
+.popup-content {
     background-color: white;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 5px;
     text-align: center;
     width: 300px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#TagPopup button {
-    padding: 10px 20px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-#TagPopup button:hover {
-    background-color: #ddd;
-}
-
-
-/* Estilo para a tag com o botão de remoção */
-.tag {
-    display: inline-flex;
-    align-items: center;
-    background-color: #f0f0f0;
+/* Estilo para os botões de confirmação e cancelamento */
+.popup-content button {
+    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
     border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px;
-}
-
-.tag .tag-content {
-    margin-right: 10px;
+    cursor: pointer;
     font-size: 14px;
 }
 
-.remove-tag-button {
-    width: 20px;
-    height: 20px;
+.popup-content .confirm {
     background-color: red;
     color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
 }
 
-.remove-tag-button:hover {
+.popup-content .confirm:hover {
     background-color: darkred;
 }
 
-.remove-tag-button:focus {
-    outline: none;
+.popup-content .cancel {
+    background-color: #ccc;
+    color: black;
 }
 
-/* Pop-up de confirmação para remoção de foto */
+.popup-content .cancel:hover {
+    background-color: #bbb;
+}
+
+
+/* Remoção de foto */
 .photo-delete-popup {
     display: none;
     position: fixed;

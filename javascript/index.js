@@ -3,7 +3,11 @@ if (!localStorage.getItem('fileSystem')) {
     const initialStructure = [
         {
             "name": "Londres",
-            "folders": [],
+            "folders": [{
+                "name": "as",
+                "folders": [],
+                "photos": ["fotos-de-paris/croissant.jpg"]
+            }],
             "photos": ["fotos-de-paris/croissant.jpg"]
         }
     ];
@@ -12,100 +16,84 @@ if (!localStorage.getItem('fileSystem')) {
 let lastFolder = JSON.parse(localStorage.getItem('fileSystem'))
 // Function to render the current folder based on the folder path
 function renderCurrentFolder(folderPath) {
-    console.log(lastFolder)
-    let currentPhotos = lastFolder.photos
+    console.log('Rendering folder for path:', folderPath);
+    let currentPhotos = lastFolder.photos;
     const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
     let currentFolder = fileSystem;
 
-    // // Traverse the file path to the target folder
-    console.log(folderPath)
-    folderPath.forEach(folderName => { 
-        currentPhotos = lastFolder.find(f => f.name === folderName).photos
-    });
     // Traverse the file path to the target folder
     folderPath.forEach(folderName => {
-        currentFolder = currentFolder.find(f => f.name === folderName).folders;
+        const folder = currentFolder.find(f => f.name === folderName);
+        if (folder) {
+            currentPhotos = folder.photos; // Update photos
+            currentFolder = folder.folders; // Update currentFolder to the next level
+        } else {
+            console.error(`Folder ${folderName} not found at this level.`);
+        }
     });
 
-    // Update folder path on top bar
-    updateTopBar(folderPath)
+    // Continue with rendering logic
+    updateTopBar(folderPath);
 
-    // Show/hide the back button based on the folder depth
-    const backButton = document.getElementById("backButton");
-    if (folderPath.length === 0) {
-        backButton.style.display = "none"; // Hide the back button at root level
-    } else {
-        backButton.style.display = "block"; // Show the back button if not at root
-        backButton.addEventListener("click", function () {
-            if (folderPath.length > 0) {
-                folderPath.pop(); // Remove the last folder in the path
-                renderCurrentFolder(folderPath); // Re-render the folder contents
-            }
-        });
-    }
-
-    // Clear the content area for new rendering
     const contentDiv = document.querySelector('.content');
-    contentDiv.innerHTML = '';
+    contentDiv.innerHTML = ''; // Clear previous content
 
     // Create and append "Add Folder" button
     const createAlbumDiv = document.createElement('div');
     createAlbumDiv.innerHTML = `<div class="openPopup"><img src="Images/plus.png"><br><label>Criar Albúm</label></div>`;
     createAlbumDiv.addEventListener('click', () => {
-        createAlbumPopUp(folderPath); // Open the popup to create a new folder
+        createAlbumPopUp(folderPath);
     });
     contentDiv.appendChild(createAlbumDiv);
 
-    // Display folders in the current directory
+    // Render folders and photos
     currentFolder.forEach(folder => {
         const folderElement = document.createElement('div');
         folderElement.innerHTML = `<img src="Images/folder.png"><br><label>${folder.name}</label>`;
-        
-        // Add click event to open the folder
         folderElement.addEventListener('click', () => {
             folderPath.push(folder.name);
-            renderCurrentFolder(folderPath); // Render the contents of the new folder
+            renderCurrentFolder(folderPath);
         });
-    
         contentDiv.appendChild(folderElement);
     });
 
-    // Display photos in the current folder
-    console.log(currentPhotos)
     currentPhotos.forEach(photo => {
         const photoName = photo.split('/').pop();
         const photoElement = document.createElement('div');
         photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
-        photoElement.addEventListener('click', openPhoto)
         contentDiv.appendChild(photoElement);
-    })
+    });
 
-    lastFolder = currentFolder
-};
+    lastFolder = currentFolder; // Update lastFolder to the current level
+}
+;
 
 // Function to create a new folder in the current directory
 function createFolder(folderName, folderPath) {
     const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
     let currentFolder = fileSystem;
 
-    // Traverse to the target folder
     folderPath.forEach(folder => {
         currentFolder = currentFolder.find(f => f.name === folder).folders;
     });
 
-    // Add the new folder to the current folder
     currentFolder.push({
         name: folderName,
         folders: [],
         photos: []
     });
 
-    // Save the updated file system back to localStorage
+    // Salve a estrutura atualizada
     localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
 
-    // Re-render the folder contents to reflect the new folder
+    // Adicione o log para depuração
+    console.log('Folder created:', folderName);
+    console.log('Updated file system:', JSON.stringify(fileSystem));
+
+    // Re-renderize a estrutura
     renderCurrentFolder(folderPath);
 }
+
 
 // Function to add a photo to the current folder
 function addPhoto(photoSrc, folderPath) {

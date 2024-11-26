@@ -15,22 +15,20 @@
 
         <div class="top_bar">
             <a href="index.html" ><img src="Images/homepage.png" class="homepage"></a>
-            <div id="backButton" style="display:none;">&lt;= Voltar</div>
             <span>Criação de Albuns</span>
         </div>
 
         <div class="menu">
             <ul>
-                <li><h2>1. Adicionar Fotos</h2>
-                    <h5>Importe as fotos que deseja adicionar ao seu álbum, da forma preferida. Pode adicionar através do seu dispositivo ou pelas redes sociais. 
-                        Clique em "Adicionar Fotos" para começar.</h5>
+                <li id="step"><h2>1. Adicionar Fotos</h2>
+                    <h5>Importe fotos para o seu álbum do dispositivo ou redes sociais. Clique em 'Adicionar Fotos' para começar.</h5>
                 </li>
-                <li><h2>2. Seleção de Critérios</h2>
+                <li id="step"><h2>2. Seleção de Critérios</h2>
                     <h5>Selecione os critérios para a divisão das fotos em subconjuntos. As fotos com o mesmo critério serão adicionadas ao mesmo subconjunto</h5> 
                 </li>
-                <li><h2>3. Revisão e Conclusão</h2>
+                <li id="step"><h2>3. Revisão e Conclusão</h2>
                     <h5>Reveja as fotos e os subconjuntos criados. Se forem do seu agrado, pode adicionar ao álbum. Dê também um nome ao álbum.</h5>  
-                </li>
+                </li">
             </ul>
         </div>
         <div class="content" id="Cphotos">
@@ -73,7 +71,9 @@
                 <label for="album-name">Nome do Álbum:</label>
                 <input type="text" id="album-name" placeholder="Nome">
             </div>
-            <div class="content" id="fiches"></div>
+            <div class="content" id="fiches">
+                <div id="backButton">&lt;= Voltar</div>
+            </div>
         </div>
             
             <div>

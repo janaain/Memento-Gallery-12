@@ -11,7 +11,8 @@ let chat = {
         ["Sim, foi fantastico", "other"],
         ["Parabens <3", "self"]
    ],
-   "Lúcia": [[0,0],["Boas pessoal","other"],["Olá mãe", "self"]],
+   "Lúcia": [[0,0],["Boas filho","other"],["Olá mãe", "self"]],
+
    "Família": [[0,0,0],["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
         ["Receberam esta msg?","other", "Lúcia"], ["Sim","other", "Salomé"], ["Same", "self", "Eu"]]
 }
@@ -68,6 +69,10 @@ function setEventListeners(){
         document.getElementById("send-message").click(); // Simula o clique no botão
     }
     });
+    
+    document.querySelectorAll("sharedAlbumPhoto").addEventListener("click", visibility_on("photoView"));
+    
+    
 }
 
 window.addEventListener("load", main);
@@ -327,7 +332,7 @@ function renderCurrentFolder() {
     // Render folders and photos
     currentFolder.forEach(folder => {
         const folderElement = document.createElement('div');
-        folderElement.innerHTML = `<img src="Images/folder.png"><br><label>${folder.name}</label>`;
+        folderElement.innerHTML = `<img src="Images/folder.png" class="sharedAlbumPhoto"><br><label>${folder.name}</label>`;
         folderElement.addEventListener('click', () => {
             folderPath.push(folder.name);
             renderCurrentFolder(folderPath);
@@ -465,3 +470,6 @@ function fiches() {
     renderCurrentFolder(root); // Render the initial folder structure
     updateTopBar()
 }
+
+// -----------------------------------------------------------------------
+

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/online.css">
     <script src="javascript/online.js"></script>
+    <script src="javascript/viewphoto.js"></script>
     <title>Memento Gallery</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                 <div class="chat-info">
                     <img src="Images/user-icon.png">
                     <span id="chatName"></span>
-                    <button id="verAlbum">Ver Album</button>
+                    <button id="verAlbum">Ver Album Partilhado</button>
                 </div>
                 <div id="chat-div" class="chat-div">
                     <div id="chat-text" class="chat-text">
@@ -45,7 +46,6 @@
             <div class="chat-info">
                 <img src="Images/plus.png">
                 <span>Novo Grupo</span>
-                <!-- <button>Ver Chat</button> -->
             </div>
             <div class="addGroup">
                 
@@ -99,27 +99,146 @@
             </div>
             <div id="sharedZone" class="sharedAlbum">
             
-                
+            </div>
+            
+            <div id="photoView"  class="sharedAlbum invisible">
+                <div class="photoMainDiv">
+                    <div class="photoView">                
+                        <div class="photo-container">
+                            <div class="photo-container-animation" id="photo-container-animation">
+                                <!-- Frente da foto -->
+                                <div class="photo-front">
+                                    <img src="subconjuntos/Igreja/2.jpg" alt="Foto" id="photoToDelete" class="photo">
+                                </div>
+                                <!-- Parte de trás com a tabela -->
+                                <div class="photo-back">
+                                    <table class="details-table">
+                                        <tr>
+                                            <th>Detalhe</th>
+                                            <th>Descrição</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Localização</td>
+                                            <td>Restaurante Pain-au-chocolat, Paris, França</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Estado Emocional</td>
+                                            <td>Felicidade, Tranquilidade</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Dispositivo</td>
+                                            <td>iPhone 14</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Pessoas</td>
+                                            <td>Rafa, Lucia</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Formato</td>
+                                            <td>PNG</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tamanho</td>
+                                            <td>3.2 MB</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Resolução</td>
+                                            <td>1920x1080</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Data e Hora</td>
+                                            <td>2024-11-19 14:30</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Geolocalização</td>
+                                            <td>Latitude: 38.7168, Longitude: -9.1395</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nome</td>
+                                            <td>Paris Holliday day 1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Edição</td>
+                                            <td>Filtro: Aumentada, Ajuste de brilho</td>
+                                        </tr>
+                                    </table>
+                                    
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div  class="button-group" id="tagContainer">
+                            <div class="action-button">Paris</div>
+                            <li></li>
+                            <div class="action-button">Romance</div>
+                        </div> 
+                        
+                        <div id="TagPopup" style="display: none;">
+                            <div class="popup-content">
+                                <p>Tem certeza que deseja remover esta tag?</p>
+                                <button class="confirm">Sim</button>
+                                <button class="cancel">Não</button>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="sidebar">
+                        <ul>
+                            <li id="toggleDetails"><a href >Detalhes</a></li>
+                            <li id="addTagOption"><a href="#" >Adicionar Tag</a></li>
+                            <li id="sharePhotoBut"><a>Compartilhar</a></li>
+                        </ul>
+                        <div class="bottom-buttons">
+                            <div class="option-button" id="deletePhotoButton">Eliminar Foto</div>
+                        </div>
+                        <div id="sair" class="option-button">Sair</div>
+                    </div>
+    
+                    <div id="photoDeleteConfirmationPopup" class="photo-delete-popup" style="display: none;">
+                        <div class="photo-delete-popup-content">
+                            <h2>Tem certeza que deseja remover esta foto?</h2>
+                            <button class="confirm">Sim</button>
+                            <button class="cancel">Não</button>
+                        </div>
+                    </div>
+                    
+                </div>
+        
             </div>
            
+
+
+
+
+
+
+
+
+
+
+
+
         </div>  
-
-
-
 
 
         
     </div>
     <div id="add-friend-popup">
         <div class="add-friend">
-            <div class="popup-info">
                 <button class="close" id="closePopup">X</button>
-            </div>
-            <div class="popup-content">
+                <p>Introduz o username do teu amigo</p>
+                <div class="ole">
+                    <input type="text" id="nameInput" placeholder="Username">
+                    <button id="okButton">OK</button>
+                </div>
+            <!-- <div class="popup-content">
                 <p>Introduz o username do teu amigo</p>
                 <input type="text" id="nameInput" placeholder="Username">
                 <button id="okButton">OK</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- <div id="popup" class="popup">

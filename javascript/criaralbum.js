@@ -1,5 +1,6 @@
-let current_step = 0
+let current_step = 2
 let havePhotos = 0
+
 
 function next_step(){
     const next = document.getElementById("next");
@@ -13,6 +14,7 @@ function next_step(){
         if(havePhotos == 0){next.disabled = true}  
         document.getElementById("prev").style.display = "none"
         document.getElementById("next").textContent = "Próximo Passo";
+
     }
     if(current_step == 2){
         document.getElementById("Cphotos").style.display = "none"
@@ -58,13 +60,40 @@ function next_step(){
         localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
 
         window.location.href = "index.html"
-        }
+    }
+    
+    makeStepDarker(current_step)
 }
 
 function previous_step(){
     current_step = current_step - 2
     next_step(current_step)
     document.getElementById("next").disabled = false;
+}
+
+function makeStepDarker(step_number){
+    console.log("A tua mae")
+    const steps = document.querySelectorAll("#step")
+
+    steps.forEach(step => {
+        step.classList.remove('selected');
+    });
+
+    if(step_number == 1){
+        steps[0].classList.add("selected")
+    };
+
+    if(step_number == 2){
+        steps[1].classList.add("selected")
+    }
+
+    if(step_number == 3){
+        steps[2].classList.add("selected")
+    }
+
+    if(step_number >= 4){
+        return
+    }
 }
 
 function setEventListeners(){
@@ -145,7 +174,7 @@ function header1(){
 
     // Cria o parágrafo <p>
     const paragraph = document.createElement('p');
-    paragraph.textContent = '1. Importe as Fotos';
+    paragraph.textContent = '1. Adicione as Fotos';
 
     // Adiciona o <p> ao contêiner principal
     headerDiv.appendChild(paragraph);
@@ -276,9 +305,6 @@ function renderCurrentFolder() {
     let currentPhotos = lastFolder.photos;
     const fileSystem = paris;
     let currentFolder = fileSystem;
-    
-    // Update back button visibility
-    updateBackButtonVisibility();
 
     // Traverse the file path to the target folder
     folderPath.forEach(folderName => {
@@ -296,6 +322,15 @@ function renderCurrentFolder() {
 
     const contentDiv = document.querySelector('#fiches');
     contentDiv.innerHTML = ''; // Clear previous content
+
+    const backBut = document.createElement('div');
+    backBut.innerHTML = "&lt;= Voltar";
+    backBut.addEventListener("click",goBack);
+    contentDiv.appendChild(backBut);
+    
+
+    // Update back button visibility
+    updateBackButtonVisibility();
 
     // Render folders and photos
     currentFolder.forEach(folder => {
@@ -319,9 +354,9 @@ function renderCurrentFolder() {
 // Function to update the visibility of the back button
 function updateBackButtonVisibility() {
     if (folderPath.length === 0) {
-        backButton.style.display = "none"; // Hide the back button at root level
+        document.getElementById("backButton").style.display = "none"; // Hide the back button at root level
     } else {
-        backButton.style.display = "block"; // Show the back button if not at root
+        document.getElementById("backButton").style.display = "block"; // Show the back button if not at root
     }
 }
 

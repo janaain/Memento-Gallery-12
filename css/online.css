@@ -2,6 +2,15 @@ li {
     list-style-type: none;
 }
 
+/* button {
+    background-color: #ffffff;
+    padding: 5px 15px;
+    margin: 4px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px #797979;
+} */
+
 .on {
     display: block !important;
 }
@@ -156,7 +165,7 @@ li {
     background-color: #e9d3fd;
     padding: 5px 10px;
     box-shadow: 0px 2px 10px rgb(126, 126, 126);
-    z-index: 1;
+    z-index: 3;
 }
 
 .chat-info img {
@@ -211,7 +220,7 @@ li {
     border: none;
     padding: 6px;
     border-radius: 30px;
-    width: calc(95% - 130px);
+    width: calc(95% - 125px);
 }
 
 .chat-insert button {
@@ -251,6 +260,11 @@ li {
     margin:2px 8px;
     border-radius: 40px;
     max-width: 70%;
+}
+
+.chat-text img {
+    width: 300px;
+    border-radius: 30px;
 }
 
 .self {
@@ -407,32 +421,51 @@ li {
     grid-area: content;
     background-color: white;
     z-index: 2;
-
     flex-direction: column;
     overflow-y: auto; 
     height: 100%;
     box-sizing: border-box;
 }
 
-.sharedAlbum {
-    /* height: 80%;
-    width: 90%;
-    flex-grow: 1;
-    padding: 20px 15px;
-    margin:auto; */
-
+/* .sharedAlbumZone {
     display: flex;
+    grid-area: content;
     flex-wrap: wrap;
     align-content: flex-start;
     padding: 10px;
     gap: 10px;
-    grid-area: content;
     background-color: aliceblue;
     padding-inline: 15px ;
     justify-content: flex-start;    
     overflow-y: auto; 
     height: 100%;
-    box-sizing: border-box;
+} */
+
+.sharedAlbum {
+    display: flex;
+    grid-area: content;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 10px;
+    gap: 10px;
+    background-color: white;
+    padding-inline: 15px ;
+    justify-content: flex-start;    
+    overflow-y: auto;
+    z-index: 3;
+    text-align: center;
+}
+
+#photoView {
+    display: flex;
+    grid-area: content;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+    background-color: white;
+    justify-content: flex-start;    
+    overflow-y: auto;
+    z-index: 3;
 }
 
 .shared div {
@@ -440,6 +473,7 @@ li {
     max-width: 170px;
     text-align: center;
     align-items: start;
+    z-index: 3;
 }
 
 .sharedAlbum img {
@@ -450,6 +484,14 @@ li {
     font-size: 120%;
 }
 
+.photo-container img {
+    height: fit-content;
+}
+
+.photoMainDiv {
+    width: 100%;
+}
+
 #backButton{
     padding: 10px;
     margin: 10px;
@@ -458,4 +500,97 @@ li {
     cursor: pointer;
     border:1px solid black;
     background-color: #e6e6e6;
+}
+
+
+.popup-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    text-align: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Box */
+.chat-popup {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15% auto;
+}
+
+.header {
+    padding: 10px;
+    background-color: #e9d3fd;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.search-bar {
+    width: 90%;
+    padding: 5px;
+    margin: 10px auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+}
+
+.chat-list {
+    padding: 10px;
+}
+
+.chat-item {
+    margin: 10px 0;
+}
+
+.chat-item label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.chat-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    border-radius: 10px;
+    align-items: right;
+}
+
+.footer .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.footer .btn-send {
+    color: white;
+    background-color: #9966c9;
+    animation: infinite;
+}
+.footer .btn-send:hover {
+    background-color: rgb(224, 20, 54);
+    
+}
+
+/* Show Popup When Active */
+.popup-container.active {
+    display: flex;
 }

@@ -11,7 +11,7 @@ let chat = {
         ["Sim, foi fantastico", "other"],
         ["Parabens <3", "self"]
    ],
-   "Lúcia": [[0,0],["Boas filho","other"],["Olá mãe", "self"]],
+   "Lúcia": [[0,0],["Boas filho","other"],["Olá mãe", "self"], ["<img src='subconjuntos/Igreja/2.jpg'>", "self"]],
 
    "Família": [[0,0,0],["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
         ["Receberam esta msg?","other", "Lúcia"], ["Sim","other", "Salomé"], ["Same", "self", "Eu"]]
@@ -29,10 +29,12 @@ function main() {
     startChat("Rafa");
     setEventListeners();
     removeUser();
+    compartilhar();
 }
 
 function setEventListeners(){
     document.getElementById("concluido").disabled = true;
+    document.getElementById("photoView").style.display = "none"
 
     document.getElementById("send-message").addEventListener("click", () => saveMessage());
     document.getElementById("add-friend").addEventListener("click", () => visibility_on("add-friend-popup"));
@@ -43,9 +45,10 @@ function setEventListeners(){
     document.getElementById("verAlbum").addEventListener("click", () =>visibility_on("sharedAlbum-div"));
     document.getElementById("verAlbum").addEventListener("click", () =>fiches());
     document.getElementById("verChat").addEventListener("click", () =>visibility_off("sharedAlbum-div"));
+    
+
     document.getElementById("okButton").addEventListener("click", () => addFriend());
     document.getElementById("backButton").addEventListener('click', goBack);
-
 
     document.getElementById("albmName").addEventListener("input", () => checkInput());
     document.getElementById("okUser").addEventListener("click", function () {
@@ -61,18 +64,30 @@ function setEventListeners(){
             if (event.target.tagName === 'LI') {
                 startChat(event.target.textContent);
             }
-        });
+        })
     
     document.addEventListener('keydown', function(event) {
     if (event.key === "Enter") {
         event.preventDefault(); // Evita comportamento padrão (ex: enviar formulário)
-        document.getElementById("send-message").click(); // Simula o clique no botão
+        // Simula o clique nos botões:
+        document.getElementById("send-message").click(); 
+        document.getElementById("okUser").click();
     }
-    });
-    
-    document.querySelectorAll("sharedAlbumPhoto").addEventListener("click", visibility_on("photoView"));
-    
-    
+    })
+
+    document.getElementById("sharePhotoBut").addEventListener("click",function () {
+        document.getElementById("sharePopup").style.display = "block";
+    } )
+
+    document.getElementById("closePopup").onclick = function(){
+        document.getElementById("popup").style.display = "none";   
+    }
+
+    document.getElementById("sair").addEventListener("click", function () {
+        document.getElementById("photoView").style.display = "none";
+        document.getElementById("chat-button").style.display = "block";
+    })
+        
 }
 
 window.addEventListener("load", main);
@@ -241,16 +256,6 @@ function addFriend() {
 }
 
 
-// function sharedAlbuns() {
-//     for (let key in shared) {
-//         document.getElementById("sharedZone").innerHTML += 
-//         `<div><img src='Images/folder.png'><br><label>${key}</label></div>`;
-//     }
-
-// }
-
-
-
 // Albuns bem feitos
 const root = []; // Start with an empty path (root level)
 
@@ -332,7 +337,7 @@ function renderCurrentFolder() {
     // Render folders and photos
     currentFolder.forEach(folder => {
         const folderElement = document.createElement('div');
-        folderElement.innerHTML = `<img src="Images/folder.png" class="sharedAlbumPhoto"><br><label>${folder.name}</label>`;
+        folderElement.innerHTML = `<img src="Images/folder.png"><br><label>${folder.name}</label>`;
         folderElement.addEventListener('click', () => {
             folderPath.push(folder.name);
             renderCurrentFolder(folderPath);
@@ -343,9 +348,17 @@ function renderCurrentFolder() {
     currentPhotos.forEach(photo => {
         const photoName = photo.split('/').pop();
         const photoElement = document.createElement('div');
-        photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
+        photoElement.innerHTML = `<img src="${photo}" class="sharedAlbumPhoto"><br><label>${photoName}</label>`;
         contentDiv.appendChild(photoElement);
     })};
+
+    document.querySelectorAll(".sharedAlbumPhoto").forEach(element => {
+        element.addEventListener("click", () => {
+            openPhoto();
+        });
+    })
+
+    
 }
 
 // Function to update the visibility of the back button
@@ -457,13 +470,15 @@ function createFolder(folderName, photosList, folderPath) {
 
 //Make photo details appear
 function openPhoto(){
-    document.getElementById("photoView").style.display = "block";
-    document.getElementById("chat-button").style.display = "none";
+    // document.getElementById("photoView").classList.remove("invisible");
+    document.getElementById("photoView").style.display ="flex";
+    visibility_off("sharedZone");
 }
 
 function closePhoto(){
-    document.getElementById("photoView").style.display = "none";
-    document.getElementById("chat-button").style.display = "block";
+    // document.getElementById("photoView").classList.add("invisible");
+    document.getElementById("photoView").style.display ="none";
+    visibility_on("sharedZone");
 }
 
 function fiches() {
@@ -473,3 +488,23 @@ function fiches() {
 
 // -----------------------------------------------------------------------
 
+function compartilhar(){
+
+    document.getElementById("sharePhotoBut").onclick = function(){
+        document.getElementById("sharePopup").style.display = "block";
+    }
+    document.getElementById("closePopupshare").onclick = function(){
+        document.getElementById("sharePopup").style.display = "none";
+    }
+    document.getElementById("MemmentoChats").onclick = function(){
+        document.getElementById("MChats").style.display = "block";
+        document.getElementById("sharePopup").style.display = "none";
+    }
+    document.getElementById("closePopupMChats").onclick = function(){
+        document.getElementById("MChats").style.display = "none";
+    }
+    document.getElementById("btn-back-mc").onclick = function(){
+        document.getElementById("MChats").style.display = "none";
+        document.getElementById("sharePopup").style.display = "block";
+    }
+}

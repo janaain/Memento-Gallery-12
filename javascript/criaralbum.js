@@ -1,4 +1,4 @@
-let current_step = 2
+let current_step = 0
 let havePhotos = 0
 
 
@@ -101,8 +101,6 @@ function setEventListeners(){
 
     const addPhotoButton = document.getElementById('addPhotos');
     const fileInput = document.getElementById('fileInput');
-
-    document.getElementById("backButton").addEventListener('click', goBack);
 
     // Adiciona um evento de clique à div
     addPhotoButton.addEventListener('click', () => {
@@ -324,11 +322,11 @@ function renderCurrentFolder() {
     contentDiv.innerHTML = ''; // Clear previous content
 
     const backBut = document.createElement('div');
+    backBut.id = "backButton"
     backBut.innerHTML = "&lt;= Voltar";
     backBut.addEventListener("click",goBack);
     contentDiv.appendChild(backBut);
     
-
     // Update back button visibility
     updateBackButtonVisibility();
 

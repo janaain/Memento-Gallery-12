@@ -294,6 +294,9 @@ input[type="checkbox"] {
 
 
 #backButton{
+    position: absolute;
+    bottom: 705px;
+    left: 405px;
     padding: 10px;
     margin: 10px;
     border-radius: 5px;

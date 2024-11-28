@@ -81,35 +81,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-    // Remove fotos
-    const deletePhotoButton = document.getElementById("deletePhotoButton");
+// // Remove fotos
+// const deletePhotoButton = document.getElementById("deletePhotoButton");
 
-    deletePhotoButton.addEventListener("click", function () {
-        photoPopup.style.display = "flex";
+// deletePhotoButton.addEventListener("click", function () {
+//     photoPopup.style.display = "flex";
 
-        const confirmRemovePhoto = photoPopup.querySelector("button.confirm");
-        const cancelRemovePhoto = photoPopup.querySelector("button.cancel");
-        const closePhotoPopup = photoPopup.querySelector(".close-popup");
+//     const confirmRemovePhoto = photoPopup.querySelector("button.confirm");
+//     const cancelRemovePhoto = photoPopup.querySelector("button.cancel");
+//     const closePhotoPopup = photoPopup.querySelector(".close-popup");
 
-        // Confirma a remoção da foto
-        confirmRemovePhoto.onclick = function () {
-            const photoToDelete = document.getElementById("photoToDelete");
-            if (photoToDelete) {
-                photoToDelete.remove();
-            }
-            photoPopup.style.display = "none";
-        };
+//     // Confirma a remoção da foto
+//     confirmRemovePhoto.onclick = function () {
+//         const photoToDelete = document.getElementById("photoToDelete");
+//         if (photoToDelete) {
+//             photoToDelete.remove();
+//         }
+//         photoPopup.style.display = "none";
+//     };
 
-        // Cancela a remoção da foto
-        cancelRemovePhoto.onclick = function () {
-            photoPopup.style.display = "none";
-        };
+//     // Cancela a remoção da foto
+//     cancelRemovePhoto.onclick = function () {
+//         photoPopup.style.display = "none";
+//     };
 
-        // Fecha o pop-up sem ação
-        closePhotoPopup.onclick = function () {
-            photoPopup.style.display = "none";
-        };
-    });
+//     // Fecha o pop-up sem ação
+//     closePhotoPopup.onclick = function () {
+//         photoPopup.style.display = "none";
+//     };
+// });
 
 
 

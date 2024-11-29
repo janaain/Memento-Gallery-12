@@ -146,6 +146,7 @@ function goBack() {
             renderCurrentFolder(folderPath); // Re-render the current folder
             if (document.getElementById("photoView").style.display == "block") {
                     document.getElementById("photoView").style.display = "none";
+                    document.getElementById("chat-button").style.display = "block";
             }
         }
 }
@@ -353,42 +354,42 @@ function compartilhar(){
 
 //Delete Photo
 
-document.addEventListener("DOMContentLoaded", function () {
-    const deletePhotoButton = document.getElementById("deletePhotoButton");
-    const confirmationPopup = document.getElementById("confirmationPopup");
-    const confirmDelete = document.getElementById("confirmDeleteButton");
-    const cancelDelete = document.getElementById("cancelDeleteButton");
+// document.addEventListener("DOMContentLoaded", function () {
+//     const deletePhotoButton = document.getElementById("deletePhotoButton");
+//     const confirmationPopup = document.getElementById("confirmationPopup");
+//     const confirmDelete = document.getElementById("confirmDeleteButton");
+//     const cancelDelete = document.getElementById("cancelDeleteButton");
 
-    // Evento para abrir o pop-up
-    deletePhotoButton.addEventListener("click", function () {
-        confirmationPopup.style.display = "flex";
-    });
+//     // Evento para abrir o pop-up
+//     deletePhotoButton.addEventListener("click", function () {
+//         confirmationPopup.style.display = "flex";
+//     });
 
-    // Evento para confirmar a exclusão
-    confirmDelete.addEventListener("click", function () {
-        const selectedPhoto = document.querySelector(".photo-container img");
-        if (!selectedPhoto) {
-            alert("Nenhuma foto selecionada.");
-            confirmationPopup.style.display = "none";
-            return;
-        }
+//     // Evento para confirmar a exclusão
+//     confirmDelete.addEventListener("click", function () {
+//         const selectedPhoto = document.querySelector(".photo-container img");
+//         if (!selectedPhoto) {
+//             alert("Nenhuma foto selecionada.");
+//             confirmationPopup.style.display = "none";
+//             return;
+//         }
 
-        const fileName = selectedPhoto.getAttribute("data-filename");
-        const folderPath = JSON.parse(selectedPhoto.getAttribute("data-folderpath"));
+//         const fileName = selectedPhoto.getAttribute("data-filename");
+//         const folderPath = JSON.parse(selectedPhoto.getAttribute("data-folderpath"));
 
-        // Eliminar a foto usando a função deletePhoto
-        deletePhoto(folderPath, fileName);
+//         // Eliminar a foto usando a função deletePhoto
+//         deletePhoto(folderPath, fileName);
 
-        // Remover foto da interface
-        selectedPhoto.remove();
+//         // Remover foto da interface
+//         selectedPhoto.remove();
 
-        // Fechar o pop-up
-        confirmationPopup.style.display = "none";
-        alert("Foto eliminada com sucesso.");
-    });
+//         // Fechar o pop-up
+//         confirmationPopup.style.display = "none";
+//         alert("Foto eliminada com sucesso.");
+//     });
 
-    // Evento para cancelar a exclusão
-    cancelDelete.addEventListener("click", function () {
-        confirmationPopup.style.display = "none";
-    });
-});
+//     // Evento para cancelar a exclusão
+//     cancelDelete.addEventListener("click", function () {
+//         confirmationPopup.style.display = "none";
+//     });
+// });

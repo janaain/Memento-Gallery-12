@@ -1,4 +1,4 @@
-let current_step = 0
+let current_step = 2
 let havePhotos = 0
 
 
@@ -84,16 +84,24 @@ function makeStepDarker(step_number){
     };
 
     if(step_number == 2){
+        steps[1].classList.remove("disabled")
         steps[1].classList.add("selected")
     }
 
     if(step_number == 3){
+        steps[2].classList.remove("disabled")
         steps[2].classList.add("selected")
     }
 
     if(step_number >= 4){
         return
     }
+}
+
+function setCurrentStep(value){
+    current_step = value - 1;
+    document.getElementById("next").disabled = false;   
+    next_step(current_step);
 }
 
 function setEventListeners(){

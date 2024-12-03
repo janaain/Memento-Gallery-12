@@ -107,7 +107,7 @@
 .sidebar {
     width: 270px;
     border-right: 2px solid #ccc;
-    background-color: lightblue;
+    background-color: #eee7c8;
     display: flex;
     flex-direction: column;
     gap: 25px;
@@ -118,7 +118,7 @@
     padding: 0;
     margin: 0;
     padding-left: 0;
-    text-align: center;
+    text-align: center; 
 }
 
 .sidebar li {
@@ -133,24 +133,28 @@
 }
 
 .sidebar li:hover {
-    background-color: rgb(210, 210, 210);
+    background-color: #F0E197;
 }
 
 .bottom-buttons {
     margin-top: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 
 .option-button {
-    background-color: #e0e0e0;
-    padding: 10px;
-    border: 1px solid #ccc;
+    background-color: #eee7c8;
+    padding: 15px;
+    font-size: 18px;
+    border-top: 1px solid #000000;
     text-align: center;
     cursor: pointer;
     text-decoration: none;
     color: black;
+}
+
+.option-button:hover {
+    background-color: #F0E197;
 }
 
 .photo-front, .photo-back {
@@ -210,7 +214,6 @@
 
 /* Barra superior */
 .top_bar {
-    background-color: #0033cc;
     color: white;
     padding: 15px;
     text-align: center;
@@ -286,7 +289,7 @@
 }
 
 .remove-tag-button:hover {
-    background-color: #cc0000; /
+    background-color: #cc0000; 
 }
 
 /* Estilo do pop-up de confirmação */
@@ -321,23 +324,6 @@
     font-size: 14px;
 }
 
-.popup-content .confirm {
-    background-color: red;
-    color: white;
-}
-
-.popup-content .confirm:hover {
-    background-color: darkred;
-}
-
-.popup-content .cancel {
-    background-color: #ccc;
-    color: black;
-}
-
-.popup-content .cancel:hover {
-    background-color: #bbb;
-}
 
 /* Remove Tag */
 
@@ -380,34 +366,35 @@
 }
 
 .popup-content .confirm {
-    background-color: #28a745; 
-    color: white;
+    background-color: lightgrey; 
+    color: black;
 }
 
 .popup-content .confirm:hover {
-    background-color: #218838; /
+    background-color: grey; 
 }
 
 .popup-content .cancel {
-    background-color: red; 
+    background-color: lightgreen; 
     color: black;
 }
 
 .popup-content .cancel:hover {
-    background-color: #e02500; 
+    background-color: green; 
 }
+
 
 /* Remove photo */
 
 .photo-delete-popup {
-    display: none; /* Oculto por padrão */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    z-index: 1000; /* Garantir que fique sobre outros elementos */
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -438,21 +425,21 @@
 }
 
 .photo-delete-popup-content .confirm {
-    background-color: #dc3545; 
-    color: white;
+    background-color: lightgray; 
+    color: black;
 }
 
 .photo-delete-popup-content .confirm:hover {
-    background-color: #b02a37;
+    background-color: grey;
 }
 
 .photo-delete-popup-content .cancel {
-    background-color: #6c757d; 
-    color: white;
+    background-color: lightgreen; 
+    color: black;
 }
 
 .photo-delete-popup-content .cancel:hover {
-    background-color: #5a6268;
+    background-color: green;
 }
 
 

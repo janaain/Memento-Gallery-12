@@ -40,12 +40,11 @@ li {
 .top_bar{
     display: flex;
     align-items: center;
-    background-color: rgb(159, 194, 255);
     grid-area: top_bar;
 }
 .menu{
     grid-area: menu;
-    background-color: #e6e6e6;
+    background-color: #eee7c8;
     display: flex;
     flex-direction: column;
     border-right: 2px solid #ccc;
@@ -69,7 +68,7 @@ li {
 }
 
 .selected {
-    background-color: #c7c6c6;
+    background-color: #F0E197;
 }
 
 .content {
@@ -221,7 +220,7 @@ button:disabled {
     z-index: 1;
     font-size: x-large;
     font-weight: bold;
-    background-color: rgb(174, 196, 214);
+    background-color: #F0A8DF;
     justify-content: space-between;
 }
 
@@ -284,6 +283,10 @@ li {
     margin-bottom: 10px;
 }
 
+li h2 {
+    cursor: pointer;
+}
+
 input[type="checkbox"] {
     margin-right: 10px;
 }
@@ -304,4 +307,10 @@ input[type="checkbox"] {
     cursor: pointer;
     border:1px solid black;
     background-color: #e6e6e6;
+}
+
+.disabled {
+    opacity: 0.5;        
+    pointer-events: none;        
+    cursor: not-allowed;     
 }

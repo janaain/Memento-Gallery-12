@@ -6,3 +6,4 @@ Confirmação para acoes destrutivas tipo:
 Refazer butão voltar
 
 ordenar detalhes das fotos
+refazer as cores

@@ -117,6 +117,7 @@ function startOnline() {
 
 // Displays the chat with a given person (wich is a key of the array chat)
 function startChat(person) {
+    // visibility_off("sharedAlbum-div");
     let all_chat = JSON.parse(localStorage.getItem(SAVEDCHAT));
     document.getElementById("chat-text").innerHTML = "<br>";
     document.getElementById("chatName").innerHTML = person;
@@ -210,6 +211,15 @@ function checkInput() {
         document.getElementById("concluido").disabled = true;
     }
 }
+
+// function createAlbumPopUp() {
+//     // Display the popup and initialize button state
+//     document.getElementById("btn-snd").disabled = true;
+
+//     // Enable the OK button only when there’s input
+//     document.getElementById("nameInput").addEventListener("input", function () {
+//         document.getElementById("okButton").disabled = !this.value; // Enable or disable the OK button based on input
+//     });
 
 // Adds a user to the list of the "users para adicionar" to the new group chat
 function addUserGroup(userID) {

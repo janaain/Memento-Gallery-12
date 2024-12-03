@@ -97,6 +97,8 @@ function renderCurrentFolder() {
     // Continue with rendering logic
     updateTopBar(folderPath);
 
+    updateSideBAr(folderPath);
+
     const contentDiv = document.querySelector('.content');
     contentDiv.innerHTML = ''; // Clear previous content
 
@@ -135,6 +137,13 @@ function updateBackButtonVisibility() {
         backButton.style.display = "none"; // Hide the back button at root level
     } else {
         backButton.style.display = "block"; // Show the back button if not at root
+    }
+}
+
+function updateSideBAr(folderpath){
+    if(folderpath.length == 0){
+        document.getElementById("share").disabled = true
+        document.getElementById("share").disabled = true
     }
 }
 

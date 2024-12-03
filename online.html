@@ -95,7 +95,7 @@
         <div id="sharedAlbum-div" class="sharedAlbum-div">
             
             <div class="chat-info">
-                <div id="backButton" style="display:none;">&lt;= Voltar</div>
+                <img id="backButton" style="display:none;" src="Images/back-arrow.png">
                 <span>Album Partilhado</span>
                 <button id="verChat">Ver Chat</button>
             </div>
@@ -120,24 +120,25 @@
                                         <th>Descrição</th>
                                     </tr>
                                     <tr>
+                                        <td>Nome</td>
+                                        <td>Paris Holliday day 1</td>
+                                    </tr>
+                                    <tr>
                                         <td>Localização</td>
                                         <td>Restaurante Pain-au-chocolat, Paris, França</td>
+
                                     </tr>
                                     <tr>
-                                        <td>Estado Emocional</td>
-                                        <td>Felicidade, Tranquilidade</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dispositivo</td>
-                                        <td>iPhone 14</td>
+                                        <td>Geolocalização</td>
+                                        <td>Latitude: 38.7168, Longitude: -9.1395</td>
                                     </tr>
                                     <tr>
                                         <td>Pessoas</td>
                                         <td>Rafa, Lucia</td>
                                     </tr>
                                     <tr>
-                                        <td>Formato</td>
-                                        <td>PNG</td>
+                                        <td>Estado Emocional</td>
+                                        <td>Felicidade, Tranquilidade</td>
                                     </tr>
                                     <tr>
                                         <td>Tamanho</td>
@@ -148,20 +149,20 @@
                                         <td>1920x1080</td>
                                     </tr>
                                     <tr>
-                                        <td>Data e Hora</td>
-                                        <td>2024-11-19 14:30</td>
+                                        <td>Formato</td>
+                                        <td>PNG</td>
                                     </tr>
                                     <tr>
-                                        <td>Geolocalização</td>
-                                        <td>Latitude: 38.7168, Longitude: -9.1395</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nome</td>
-                                        <td>Paris Holliday day 1</td>
+                                        <td>Dispositivo</td>
+                                        <td>iPhone 14</td>
                                     </tr>
                                     <tr>
                                         <td>Edição</td>
                                         <td>Filtro: Aumentada, Ajuste de brilho</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data e Hora</td>
+                                        <td>2024-11-19 14:30</td>
                                     </tr>
                                 </table>
                                 
@@ -179,9 +180,9 @@
                     
                     <div id="TagPopup" style="display: none;">
                         <div class="popup-content">
-                            <p>Tem certeza que deseja remover esta tag?</p>
+                            <p>Tem a certeza que deseja remover esta tag?</p>
                             <button class="confirm">Sim</button>
-                            <button class="cancel">Não</button>
+                            <button class="cancel" autofocus>Não</button>
                         </div>
                     </div>
                     
@@ -201,7 +202,7 @@
 
                 <div id="photoDeleteConfirmationPopup" class="photo-delete-popup" style="display: none;">
                     <div class="photo-delete-popup-content">
-                        <h2>Tem certeza que deseja remover esta foto?</h2>
+                        <h2>Tem a certeza que deseja remover esta foto?</h2>
                         <button class="confirm">Sim</button>
                         <button class="cancel">Não</button>
                     </div>
@@ -264,6 +265,9 @@
                     </div>
                     <div class="chat-item">
                         <label><input type="checkbox"> Família</label>
+                    </div>
+                    <div class="chat-item">
+                        <label><input type="checkbox"> Casamento</label>
                     </div>
                 </div>
                 <div class="footer">

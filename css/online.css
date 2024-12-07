@@ -216,6 +216,9 @@ li {
 .chat-insert img {
     width: 25px;
     margin-bottom: -7px;
+    padding: 2px;
+    background-color: white;
+    border-radius: 40px;
 }
 
 .chat-insert img:hover {

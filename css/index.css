@@ -87,6 +87,7 @@ li {
 }
 
 #chat-button {
+    width: 198px;
     font-size: 20px;
     position: fixed;
     border: 1px #888;
@@ -96,7 +97,7 @@ li {
 }
 
 #chat-button:hover {
-    background-color: #F0E197;
+    background-color: rgb(247, 190, 98);
 }
 
 .popup-container {

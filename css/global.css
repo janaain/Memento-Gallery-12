@@ -1,6 +1,20 @@
 @font-face {
     font-family: 'forbiden';
-    src: url('Forbiden.otf') format('opentype');
+    src: url('/fonts/Forbiden.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'happytitle';
+    src: url('/fonts/KGHAPPY.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'happy';
+    src: url('/fonts/KGHAPPYSolid.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -10,7 +24,7 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: rgb(156, 139, 187);
-    font-family: "forbiden";
+    font-family: "happy";
     
 };
 

@@ -30,6 +30,7 @@ function main() {
     setEventListeners();
     removeUser();
     compartilhar();
+    checkInput()
 }
 
 function setEventListeners(){
@@ -53,8 +54,10 @@ function setEventListeners(){
     document.getElementById("albmName").addEventListener("input", () => checkInput());
     document.getElementById("okUser").addEventListener("click", function () {
         addUserGroup("username");
-        checkInput()}
-    )
+        document.getElementById("username").value = ""
+        checkInput();
+    } );
+    document.getElementById("username").addEventListener("input",  checkInput);
 
     document.getElementById("okFriend").addEventListener("click", function () {
         addUserGroup("amigos");
@@ -70,7 +73,7 @@ function setEventListeners(){
     
     document.addEventListener('keydown', function(event) {
     if (event.key === "Enter") {
-        event.preventDefault(); // Evita comportamento padrão (ex: enviar formulário)
+        event.preventDefault(); 
         // Simula o clique nos botões:
         document.getElementById("send-message").click(); 
         document.getElementById("okUser").click();
@@ -200,17 +203,23 @@ function chatScroll(mode) {
     }
 }
 
-// Ativates/Deativates the "criar (album)" button
+// Ativates/Deativates the buttons according to inputs
 function checkInput() {
     let nome = document.getElementById("albmName").value;
-    let users = document.getElementById("usersAdded").rows.length;
+    let usersAdded = document.getElementById("usersAdded").rows.length;
+    let addUserToGroup = document.getElementById("username").value;
 
-    if (nome != "" && users > 0){
+    //
+    if (nome != "" && usersAdded > 0){
         document.getElementById("concluido").disabled = false;
+    } else if (nome == "" || usersAdded == 0){
+        document.getElementById("concluido").disabled = true;
     }
 
-    if (nome == "" || users == 0){
-        document.getElementById("concluido").disabled = true;
+    if(addUserToGroup == "") {
+        document.getElementById("okUser").disabled = true;
+    } else if(addUserToGroup != "") {
+        document.getElementById("okUser").disabled = false;
     }
 }
 
@@ -229,6 +238,7 @@ function addUserGroup(userID) {
     document.getElementById("usersAdded").innerHTML +=
         "<tr><td>" + username + "</td><td class='remove'> X </td></tr>";
         removeUser();
+    document.getElementById("username").value = "";
 }
 
 //Removes a user of the list of the "users para adicionar" to the new group chat

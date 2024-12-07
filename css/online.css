@@ -49,7 +49,7 @@ li {
 }
 
 .chat li {
-    background-color: #F0E197;
+    background-color: #EFD09E;
     padding-left: 10px;
     padding-block: 20px;
     font-size: 20px;
@@ -58,7 +58,7 @@ li {
     text-align: left;
 }
 .chat li:hover{
-    background-color: #ebd97e;
+    background-color: #f0c37a;
 }
 
 .chat li img {
@@ -81,7 +81,7 @@ li {
 
 .add-buttons button {
     background-color: #ffffff;
-    padding: 5px 15px;
+    padding: 7px 15px;
     margin: 4px;
     border: 1px solid #ffffff;
     border-radius: 5px;
@@ -162,7 +162,7 @@ li {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: #F0A8DF       ;
+    background-color: #c8d7de       ;
     padding: 5px 10px;
     box-shadow: 0px 2px 10px rgb(126, 126, 126);
     z-index: 3;
@@ -182,9 +182,8 @@ li {
 .chat-info button {
     position: absolute;
     right: 15px;
-    top: 90px;
-    background-color: #ffffff;
-    padding: 5px 15px;
+    top: 88px;
+    padding: 7px 20px;
     border: 1px solid #cecece;
     border-radius: 5px;
     box-shadow: 1px 2px 2px #797979;
@@ -199,7 +198,7 @@ li {
     bottom: 6px;
     right: 0px;
     margin: 15px 10px 5px 10px;
-    background-color: #F0A8DF;
+    background-color: #EFD09E;
     border-radius: 40px;
     height: 37px;
     width: calc(100% - 215px);
@@ -255,7 +254,7 @@ li {
 }
 
 .chat-text p {
-    background-color: #F0E197;
+    background-color: #EFD09E;
     padding: 10px;
     margin:2px 8px;
     border-radius: 40px;

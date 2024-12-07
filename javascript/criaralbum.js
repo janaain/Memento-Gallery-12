@@ -1,4 +1,4 @@
-let current_step = 2
+let current_step = 0
 let havePhotos = 0
 
 
@@ -329,9 +329,9 @@ function renderCurrentFolder() {
     const contentDiv = document.querySelector('#fiches');
     contentDiv.innerHTML = ''; // Clear previous content
 
-    const backBut = document.createElement('div');
+    const backBut = document.createElement('img');
     backBut.id = "backButton"
-    backBut.innerHTML = "&lt;= Voltar";
+    backBut.src = "./Images/back-arrow.png"
     backBut.addEventListener("click",goBack);
     contentDiv.appendChild(backBut);
     

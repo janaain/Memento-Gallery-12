@@ -1,9 +1,16 @@
+@font-face {
+    font-family: 'forbiden';
+    src: url('Forbiden.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body{
     margin: 0;
     height: 100%;
     width: 100%;
     background-color: rgb(156, 139, 187);
-    font-family: sans-serif;
+    font-family: "forbiden";
     
 };
 
@@ -40,14 +47,14 @@ li {
 .top_bar{
     display: flex;
     align-items: center;
-    background-color: #96F0EF;
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='80' height='20' patternTransform='scale(2) rotate(20)'><rect x='0' y='0' width='100%' height='100%' fill='%2384b7d3ff'/><path d='M-20.133 4.568C-13.178 4.932-6.452 7.376 0 10c6.452 2.624 13.036 5.072 20 5 6.967-.072 13.56-2.341 20-5 6.44-2.659 13.033-4.928 20-5 6.964-.072 13.548 2.376 20 5s13.178 5.068 20.133 5.432'  stroke-width='2.5' stroke='%23abd4e9ff' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(-110,-198)' fill='url(%23a)'/></svg>");
     grid-area: top_bar;
     padding: 15px;
 }
 
 .menu{
     grid-area: menu;
-    background-color: #eee7c8   ;
+    background-color: #f3e2c6   ;
     display: flex;
     flex-direction: column;
     border-right: 2px solid #ccc;
@@ -61,8 +68,16 @@ li {
 .menu li {
     padding-block: 20px;
     font-size: 20px;
-    color: black;
+    color: black;   
     border-bottom:1px solid rgb(77, 77, 77);
+}
+
+.menu li:hover{
+    background-color: rgb(247, 190, 98);
+}
+
+.menu a {
+    background-color: #EFD09E;
 }
 
 #chat-button {
@@ -76,7 +91,7 @@ li {
 }
 
 #chat-button:hover {
-    background-color: #F0E197;
+    background-color: #f0c37a;
 }
 
 .popup{
@@ -111,7 +126,7 @@ li {
 
 .homepage:hover {
     border-radius: 50px;
-    background-color: #66e1df;
+    background-color: #6e94a8;
 }
 
 .sharepopup{
@@ -136,7 +151,7 @@ li {
 }
 
 .share-btn {
-    background-color: #F0A8DF;
+    background-color: #84b7d3;
     color: black;
     padding: 10px;
     margin: 5px;
@@ -148,7 +163,7 @@ li {
 }
 
 .share-btn:hover {
-    background-color: #e7cdff;
+    background-color: #5c90ad;
 }
 
 .closeShare {
@@ -158,9 +173,9 @@ li {
 
 .closeShare button {
     /* color:white; */
-    background-color: #F0A8DF;
+    background-color: #84b7d3;
     border: none;
-    box-shadow: 1px 2px 1px #f192db;
+    box-shadow: 1px 2px 1px #5c90ad;
     padding: 10px;
     cursor: pointer;
     

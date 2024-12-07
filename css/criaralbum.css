@@ -32,11 +32,6 @@ li {
 
 }
 
-.homepage{
-    width: 60px;
-    padding: 10px;
-}
-
 .top_bar{
     display: flex;
     align-items: center;
@@ -53,6 +48,11 @@ li {
     text-decoration: underline;
 
 }
+
+.selected {
+    background-color: #EFD09E;;
+}
+
 .menu ul {
     padding-left: 0;
     margin: 0;
@@ -67,9 +67,6 @@ li {
     border-bottom:1px solid rgb(77, 77, 77);
 }
 
-.selected {
-    background-color: #F0E197;
-}
 
 .content {
     margin-top: 40px;
@@ -220,7 +217,7 @@ button:disabled {
     z-index: 1;
     font-size: x-large;
     font-weight: bold;
-    background-color: #F0A8DF;
+    background-color: #cad2d6;
     justify-content: space-between;
 }
 
@@ -243,7 +240,7 @@ button:disabled {
     z-index: 1;
     font-size: x-large;
     font-weight: bold;
-    background-color: rgb(194, 212, 228);
+    background-color: #84b7d3;
 }
 
 .nomeAlbum label{
@@ -297,16 +294,14 @@ input[type="checkbox"] {
 
 
 #backButton{
+    width: 50px;
+    height: 50px;
     position: absolute;
-    bottom: 705px;
-    left: 405px;
+    bottom: 656px;
+    left: 394px;
     padding: 10px;
     margin: 10px;
-    border-radius: 5px;
-    color: #000000;
     cursor: pointer;
-    border:1px solid black;
-    background-color: #e6e6e6;
 }
 
 .disabled {

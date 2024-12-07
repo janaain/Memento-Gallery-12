@@ -55,15 +55,17 @@ function setEventListeners(){
         addUserGroup("username");
         checkInput()}
     )
+
     document.getElementById("okFriend").addEventListener("click", function () {
         addUserGroup("amigos");
         checkInput()}
     )
     
     document.getElementById('recentChat').addEventListener('click', function(event) {
-            if (event.target.tagName === 'LI') {
-                startChat(event.target.textContent);
-            }
+        let li = event.target.closest('li');    
+        if (li) {
+            startChat(li.textContent.trim()); 
+        }
         })
     
     document.addEventListener('keydown', function(event) {

@@ -36,13 +36,6 @@ li {
     color: rgb(0, 71, 138);
 }
 
-.top_bar{
-    display: flex;
-    align-items: center;
-    background-color: #aeebea;
-    grid-area: top_bar;
-}
-
 .content {
     display: flex;
     flex-wrap: wrap;
@@ -89,10 +82,8 @@ li {
     padding-block: 20px;
     font-size: 20px;
     color: black;
+    background-color: #EFD09E;
     border-bottom:1px solid rgb(77, 77, 77);
-}
-.menu li:hover{
-    background-color: #F0E197;
 }
 
 #chat-button {
@@ -211,5 +202,5 @@ li {
 
 #backButton:hover {
     border-radius: 50px;
-    background-color: #66e1df;
+    background-color: #6e94a8;
 }

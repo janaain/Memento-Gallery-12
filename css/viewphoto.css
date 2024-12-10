@@ -375,12 +375,12 @@
 }
 
 .popup-content .cancel {
-    background-color: lightgreen; 
+    background-color: #EFD09E; 
     color: black;
 }
 
 .popup-content .cancel:hover {
-    background-color: green; 
+    background-color: rgb(247, 190, 98); 
 }
 
 
@@ -434,12 +434,12 @@
 }
 
 .photo-delete-popup-content .cancel {
-    background-color: lightgreen; 
+    background-color: #EFD09E; 
     color: black;
 }
 
 .photo-delete-popup-content .cancel:hover {
-    background-color: green;
+    background-color: rgb(247, 190, 98) ;
 }
 
 

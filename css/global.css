@@ -214,24 +214,6 @@ li {
     font-size: 14px;
 }
 
-.popup-content .confirm {
-    background-color: red;
-    color: white;
-}
-
-.popup-content .confirm:hover {
-    background-color: darkred;
-}
-
-.popup-content .cancel {
-    background-color: #ccc;
-    color: black;
-}
-
-.popup-content .cancel:hover {
-    background-color: #bbb;
-}
-
 .disabled {
     opacity: 0.5;        
     pointer-events: none;        

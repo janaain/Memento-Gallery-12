@@ -218,7 +218,7 @@ button:disabled {
     line-height: 40px;
     z-index: 1;
     font-size: x-large;
-    background-color: #cad2d6;
+    background-color: #b4d1df;
     justify-content: space-between;
 }
 
@@ -240,7 +240,7 @@ button:disabled {
     line-height: 40px;
     z-index: 1;
     font-size: x-large;
-    background-color: #84b7d3;
+    background-color: #dfe6e9;
 }
 
 .nomeAlbum label{

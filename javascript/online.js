@@ -13,7 +13,7 @@ let chat = {
    ],
    "Lúcia": [[0,0],["Boas filho","other"],["Olá mãe", "self"], ["<img src='subconjuntos/Igreja/2.jpg'>", "self"]],
 
-   "Família": [[0,0,0],["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
+   "Família": [["Somos uma família muito feliz",["Lúcia", "Salomé", "Luís"],0], ["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
         ["Receberam esta msg?","other", "Lúcia"], ["Sim","other", "Salomé"], ["Same", "self", "Eu"]]
 }
 
@@ -68,6 +68,8 @@ function setEventListeners(){
         let li = event.target.closest('li');    
         if (li) {
             startChat(li.textContent.trim()); 
+            visibility_off("sharedAlbum-div")
+            closePhoto()
         }
         })
     
@@ -113,9 +115,11 @@ function startOnline() {
     for (let key in all_chat) {
         if (all_chat[key][0].length == 2) {
            addRecents(key, "single");
+           console.log(key)
            document.getElementById("amigos").innerHTML += "<option>" + key + "</option>";
         } else {
             addRecents(key, "group");
+
         }
     }
 }
@@ -128,6 +132,10 @@ function startChat(person) {
     document.getElementById("chatName").innerHTML = person;
     for (let i = 1; i < all_chat[person].length; i++) {
         addChatTxt(all_chat[person][i]);
+    }
+    if (all_chat[person][0].length == 3) {
+        document.getElementById("chatName").addEventListener("click", () => showGroupInfo(person))
+        
     }
     chatScroll("auto");
 }
@@ -184,6 +192,7 @@ function addRecents(key, type) {
     } else {
         document.getElementById("recentChat").innerHTML +=
             "<li><img src='Images/group.png'><label >" + key + "</label></li>";
+
     }
 }
 
@@ -223,14 +232,6 @@ function checkInput() {
     }
 }
 
-// function createAlbumPopUp() {
-//     // Display the popup and initialize button state
-//     document.getElementById("btn-snd").disabled = true;
-
-//     // Enable the OK button only when there’s input
-//     document.getElementById("nameInput").addEventListener("input", function () {
-//         document.getElementById("okButton").disabled = !this.value; // Enable or disable the OK button based on input
-//     });
 
 // Adds a user to the list of the "users para adicionar" to the new group chat
 function addUserGroup(userID) {
@@ -253,14 +254,41 @@ function removeUser () {
 
 function createGroup() {
     let name = document.getElementById("albmName").value;
-    let users = document.getElementById("usersAdded").rows.length;
+    let details = document.getElementById("details").value;
+    let numUser = document.getElementById("usersAdded").rows.length;
+    let users = [];
+
+    console.log("hey")
+    for(let i = 0; i < numUser; i++) {
+        console.log(document.getElementById("usersAdded").rows[i].cells[0].innerHTML)
+        users.push(document.getElementById("usersAdded").rows[i].cells[0].innerHTML)
+    }
+    
 
     let all_chat = getChat();
-    all_chat[name] = [[0, 0, 0]];
+    all_chat[name] = [[details, users, 0]];
     localStorage.setItem(SAVEDCHAT, JSON.stringify(all_chat));
 
     startOnline();
     visibility_off("addGroup-div");
+
+}
+
+function showGroupInfo (name) {
+    let info = getChat()[name];
+    let details = info[0][0];
+    let users = info[0][1];
+    console.log(users)
+
+    document.getElementById("groupName").innerHTML = name;
+    document.getElementById("groupDetails").value = details;
+
+    for(let i = 0; i < users.length; i++) {
+        document.getElementById("usersInGroup").innerHTML +=
+            "<tr><td>" + users[i] + "</td><td class='remove'> X </td></tr>";
+        removeUser();
+        visibility_on("groupInfo-div")
+    }
 
 }
 
@@ -500,7 +528,7 @@ function openPhoto(){
 function closePhoto(){
     // document.getElementById("photoView").classList.add("invisible");
     document.getElementById("photoView").style.display ="none";
-    visibility_on("sharedZone");
+    document.getElementById("sharedZone").style.display="flex";
 }
 
 function fiches() {
@@ -530,3 +558,4 @@ function compartilhar(){
         document.getElementById("sharePopup").style.display = "block";
     }
 }
+

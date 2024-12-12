@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="chat-insert">
-                <img  id="insert-file" src="Images/clip-icon.png">
+                <!-- <img  id="insert-file" src="Images/clip-icon.png"> -->
                 <input id="new-message" type="text" placeholder="Escreva a sua mensagem" >
                 <img  id="send-message" src="Images/send.png">
             </div>
@@ -60,9 +60,9 @@
                     </div>
                 </div>
                 
-                <div id="details">
+                <div class="details">
                     <span>Descrição</span><br>
-                    <textarea></textarea>
+                    <textarea id="details"></textarea>
                 </div>
                 <div id="add">
                     <div id="users">
@@ -78,8 +78,8 @@
                         </div>
                     </div>
                 </div>
-                <div id="added">
-                    <span>Utilizadores Adicionados</span>
+                <div id="added" class="added">
+                    <span>Utilizadores no Grupo</span>
                     <table id="usersAdded"></table>
                 </div>
                 <div>
@@ -211,6 +211,24 @@
                 
             </div>
     
+        </div>
+
+        <div id="groupInfo-div">
+            <div class="chat-info">
+                <img src="Images/group.png">
+                <span id="groupName"></span>
+            </div>
+            <div id="groupInfo">
+                
+                <div class="details">
+                    <span>Descrição</span><br>
+                    <textarea id="groupDetails"></textarea>
+                </div>
+                <div class="added">
+                    <span>Utilizadores Adicionados</span>
+                    <table id="usersInGroup"></table>
+                </div>
+            </div>
         </div>
           
 

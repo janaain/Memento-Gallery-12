@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/criaralbum.css">
     <script src="javascript/criaralbum.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
     <title>Memento Gallery</title>
     
 </head>
@@ -43,17 +46,65 @@
                 <div class="column">
                     <h3>ORGANIZAR POR:</h3>
                     <ul>
-                        <li><input type="radio" name="organizar" checked id="nao_dividir"> <label for="nao_dividir">Colocar todas as fotos no álbum</label></li>
-                        <li><input type="radio" name="organizar" id="data"> <label for="data">Data</label></li>
-                        <li><input type="radio" name="organizar" id="localizacao"> <label for="localizacao">Localização</label></li>
-                        <li><input type="radio" name="organizar" id="qualidade"> <label for="qualidade">Qualidade</label></li>
-                        <li><input type="radio" name="organizar" id="resolucao"> <label for="resolucao">Proporção</label></li>
-                        <li><input type="radio" name="organizar" id="pessoa"> <label for="pessoa">Pessoa</label></li>
-                        <li><input type="radio" name="organizar" id="tipo"> <label for="tipo">Tipo (Macro, Paisagem, etc.)</label></li>
-                        <li><input type="radio" name="organizar" id="conteudo"> <label for="conteudo">Conteúdo</label></li>
+                        <li>
+                            <input type="radio" name="organizar" id="nao_dividir" checked>
+                            <label for="nao_dividir">Colocar todas as fotos no álbum</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="data">
+                            <label for="data">Data</label>
+                            <br>
+                            <label for="data_inicio">De:</label>
+                            <input type="date" id="data_inicio">
+                            <label for="data_fim">Até:</label>
+                            <input type="date" id="data_fim">
+                        </li>
+                        <li>
+                            <div>
+                                <label for="locationInput">Localização:</label>
+                                <input type="text" id="locationInput" name="location" placeholder="Clique no mapa para selecionar a localização" />
+                              </div>
+                              <div id="map" style="z-index: 1000; height: 300px; width: 300px; position: absolute; bottom: 20px; right: 20px;"></div>                              
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="qualidade">
+                            <label for="qualidade">Qualidade</label>
+                            <br>
+                            <label for="qualidade_min">De:</label>
+                            <input type="number" id="qualidade_min" placeholder="Mínima">
+                            <label for="qualidade_max">Até:</label>
+                            <input type="number" id="qualidade_max" placeholder="Máxima">
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="resolucao">
+                            <label for="resolucao">Proporção</label>
+                            <br>
+                            <label for="resolucao_min">De:</label>
+                            <input type="number" id="resolucao_min" placeholder="Mínima">
+                            <label for="resolucao_max">Até:</label>
+                            <input type="number" id="resolucao_max" placeholder="Máxima">
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="pessoa">
+                            <label for="pessoa">Pessoa</label>
+                            <br>
+                            <input type="text" id="pessoa_valor" placeholder="Especificar pessoa">
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="tipo">
+                            <label for="tipo">Tipo (Macro, Paisagem, etc.)</label>
+                            <br>
+                            <input type="text" id="tipo_valor" placeholder="Especificar tipo">
+                        </li>
+                        <li>
+                            <input type="checkbox" name="organizar" id="conteudo">
+                            <label for="conteudo">Conteúdo</label>
+                            <br>
+                            <input type="text" id="conteudo_valor" placeholder="Especificar conteúdo">
+                        </li>
                     </ul>
                 </div>
-                
+        
                 <!-- Coluna da Direita - Manter de Fora -->
                 <div class="column">
                     <h3>MANTER DE FORA:</h3>
@@ -65,7 +116,13 @@
                     </ul>
                 </div>
             </div>
+        
+            <!-- Adicionar Mapa no Canto Inferior Direito -->
+            <div id="map" style="height: 300px; width: 300px; position: absolute; bottom: 20px; right: 20px;"></div>
+                <!-- Aqui vai o mapa -->
+            </div>
         </div>
+        
         <div class="content" id="Crever">
             <div class="nomeAlbum">
                 <label for="album-name">Nome do Álbum:</label>
@@ -83,5 +140,61 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var map = L.map('map').setView([51.505, -0.09], 13);
+    
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
+    
+          var currentMarker = null;
+          var locationInput = document.getElementById('locationInput');
+    
+          // Function to perform reverse geocoding
+          function reverseGeocode(lat, lng) {
+            locationInput.value = "A carregar...";  // Show loading message
+            var url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`;
+    
+            fetch(url)
+              .then(response => response.json())
+              .then(data => {
+                // Extract specific fields: road, city, country
+                var address = data.address;
+                var road = address.road || '';
+                var city = address.city || address.town || address.village || '';  // Get available field
+                var country = address.country || '';
+                
+                // Concatenate the fields
+                var locationName = `${road}, ${city}, ${country}`.trim();
+    
+                if (currentMarker) {
+                  map.removeLayer(currentMarker);
+                }
+    
+                // Set marker and display place name in input
+                currentMarker = L.marker([lat, lng]).addTo(map)
+                  .bindPopup(locationName)
+                  .openPopup();
+    
+                locationInput.value = locationName;  // Update input with the place name
+              })
+              .catch(error => {
+                console.log('Erro ao fazer reverse geocoding:', error);
+                locationInput.value = "Erro ao obter a localização";
+              });
+          }
+    
+          function onMapClick(e) {
+            reverseGeocode(e.latlng.lat, e.latlng.lng);
+          }
+    
+          map.on('click', onMapClick);
+        });
+      </script>
+      
+      
+
 </body>
 </html>

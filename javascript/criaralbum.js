@@ -1,4 +1,4 @@
-let current_step = 0
+let current_step = 1
 let havePhotos = 0
 
 

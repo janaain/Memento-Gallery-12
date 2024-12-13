@@ -114,9 +114,9 @@ function setEventListeners(){
 
     // POR IMPLMENTAR
 
-    document.getElementById("changeGroupName").addEventListener("click", alert);
-    document.getElementById("changeGroupDetails").addEventListener("click", alert);
-    document.getElementById("changeGroupUsers").addEventListener("click", alert);
+    document.getElementById("changeGroupName").addEventListener("click", () => alert());
+    document.getElementById("changeGroupDetails").addEventListener("click", () => alert());
+    document.getElementById("changeGroupUsers").addEventListener("click", () => alert());
 
 }
 
@@ -132,7 +132,7 @@ function visibility_off(id) {
 }
 
 function notDone() {
-    alert("Por implementar");
+    alert("por implementar");
 }
 
 // Adds the current friends to the dropdown on "Criar Grupo"
@@ -188,6 +188,9 @@ function getChat() {
     return JSON.parse(localStorage.getItem(SAVEDCHAT)) || [];
 }
 
+function getOtherPerson() {
+    return
+}
 // Clears the text of the input where the new message is inserted
 function clearText() {
     document.getElementById("new-message").value = "";
@@ -220,11 +223,14 @@ function saveMessage() {
         if (isGroup()){
             all_chat[person].push([message, "self","Eu"]);
             addChatTxt([message, "self", "Eu"]);
+            addChatTxt(["Ok", "other", "Eu"]);
         } else {
             all_chat[person].push([message, "self"]);
             addChatTxt([message, "self"]);
+            addChatTxt(["Ok", "other"])
         }
         
+
         chatScroll("smooth");
         clearText();
 
@@ -243,6 +249,7 @@ function addChatTxt (message) {
         document.getElementById("chat-text").innerHTML += 
                 "<p class='" + message[1] + "'>" + message[0] + "</p>";
     }
+    
 }
 
 // Appends the existing chats in the side bar

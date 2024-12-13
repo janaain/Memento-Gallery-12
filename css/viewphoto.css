@@ -1,7 +1,6 @@
 .photoMainDiv {
     display: flex;
-    height: calc(100vh - 80px);
-    width: 1280; 
+    height: 640px;
     background-color: aliceblue;
 }
 

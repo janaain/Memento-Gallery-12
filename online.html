@@ -169,11 +169,6 @@
                     </div>
                     
                     <div  class="button-group" id="tagContainer">
-                        <div class="action-button">Lisboa</div>
-                        <li></li>
-                        <div class="action-button">Êxtase</div>
-                        <li></li>
-                        <div class="action-button">Felicidade</div>
                     </div> 
                     
                     <div id="TagPopup" style="display: none;">
@@ -200,9 +195,9 @@
 
                 <div id="photoDeleteConfirmationPopup" class="photo-delete-popup" style="display: none;">
                     <div class="photo-delete-popup-content">
-                        <h2>Tem a certeza que deseja eliminar esta foto?</h2>
+                        <h2>Tem a certeza que deseja remover esta foto?</h2>
                         <button class="confirm">Eliminar</button>
-                        <button class="cancel">Cancelar</button>
+                        <button class="cancel" autofocus>Cancelar</button>
                     </div>
                 </div>
                 
@@ -231,10 +226,12 @@
         </div>
           
 
-        <div id="add-friend-popup" class="popupBack">
-            <div class="add-friend">
+        <div id="add-friend-popup" class="popup1">
+            <div class="popup-content">
+                <div class="closeShare">
                     <button class="close" id="closePopup">X</button>
-                    <p>Introduz o username do teu amigo</p>
+                </div>
+                    <h2>Introduz o username do teu amigo</h2>
                     <div class="ole">
                         <input type="text" id="nameInput" placeholder="Username">
                         <button id="okButton">OK</button>
@@ -300,7 +297,7 @@
                 </div>
                 <div class="footer">
                     <button class="btn-back" id="btn-back-mc">Voltar</button>
-                    <a href="online.html"><button class="btn-send">Enviar</button></a>
+                    <a href="online.html"><button id="sendBtn" class="btn-send">Enviar</button></a>
                 </div>
             </div>
         </div>
@@ -309,4 +306,24 @@
     </div>
     
 </body>
+<script>
+    const checkboxes = document.querySelectorAll('.chat-item input[type="checkbox"]');
+    const sendButton = document.getElementById('sendBtn');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            // Verifica se algum checkbox está selecionado
+            const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            // Habilita ou desabilita o botão com base na seleção
+            sendButton.disabled = !isChecked;
+
+            if(isChecked){
+                sendButton.classList.add("btn-send");
+            }
+            else{
+                sendButton.classList = null ;
+            }
+        });
+    });
+</script>
 </html>

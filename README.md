@@ -9,3 +9,13 @@ ordenar detalhes das fotos
 refazer as cores
 
 
+
+
+
+
+
+
+
+
+
+         

@@ -49,10 +49,10 @@
                 <h2>Share this Photo</h2>
                 <div class="share-options">
                     <button class="share-btn" id="MemmentoChats">Memento Chats</button>
-                    <button class="share-btn">Share on Facebook</button>
-                    <button class="share-btn">Share on Twitter</button>
-                    <button class="share-btn">Share on Instagram</button>
-                    <button class="share-btn">Share via Email</button>
+                    <button class="share-btn" onclick="alert('Função não implementada');">Share on Facebook</button>
+                    <button class="share-btn" onclick="alert('Função não implementada');">Share on Twitter</button>
+                    <button class="share-btn" onclick="alert('Função não implementada');">Share on Instagram</button>
+                    <button class="share-btn" onclick="alert('Função não implementada');">Share via Email</button>
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="footer">
                     <button class="btn-back" id="btn-back-mc">Voltar</button>
-                    <a  href="online.html#"><button class="btn-send">Enviar</button></a>
+                    <a  href="online.html#"><button id="sendBtn" disabled>Enviar</button></a>
                 </div>
             </div>
         </div>
@@ -192,4 +192,24 @@
         </div>
     </div>
 </body>
+<script>
+    const checkboxes = document.querySelectorAll('.chat-item input[type="checkbox"]');
+    const sendButton = document.getElementById('sendBtn');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            // Verifica se algum checkbox está selecionado
+            const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+            // Habilita ou desabilita o botão com base na seleção
+            sendButton.disabled = !isChecked;
+
+            if(isChecked){
+                sendButton.classList.add("btn-send")
+            }
+            else{
+                sendButton.classList = null 
+            }
+        });
+    });
+</script>
 </html>

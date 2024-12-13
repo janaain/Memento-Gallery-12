@@ -114,9 +114,9 @@ function setEventListeners(){
 
     // POR IMPLMENTAR
 
-    document.getElementById("changeGroupName").addEventListener("click", () => alert());
-    document.getElementById("changeGroupDetails").addEventListener("click", () => alert());
-    document.getElementById("changeGroupUsers").addEventListener("click", () => alert());
+    document.getElementById("changeGroupName").addEventListener("click", () => notDone());
+    document.getElementById("changeGroupDetails").addEventListener("click", () => notDone());
+    document.getElementById("changeGroupUsers").addEventListener("click", () => notDone());
 
 }
 
@@ -132,7 +132,7 @@ function visibility_off(id) {
 }
 
 function notDone() {
-    alert("por implementar");
+    alert("Função não implementada");
 }
 
 // Adds the current friends to the dropdown on "Criar Grupo"
@@ -460,8 +460,9 @@ function renderCurrentFolder() {
 
     const contentDiv = document.querySelector('#sharedZone');
     contentDiv.innerHTML = ''; // Clear previous content
-    contentDiv.innerHTML += "<div><img src='Images/plus.png'><br><span>Criar Album</span></div>";
+    contentDiv.innerHTML += "<div><img id='plus-sign' src='Images/plus.png'><br><span>Criar Album</span></div>";
 
+    document.getElementById("plus-sign").addEventListener("click", () => notDone());
 
     // Render folders and photos
     currentFolder.forEach(folder => {
@@ -617,7 +618,8 @@ function fiches() {
 
 function notFiches() {
     document.getElementById("sharedZone").innerHTML = "";
-    document.getElementById("sharedZone").innerHTML += "<div><img src='Images/plus.png'><br><span>Criar Album</span></div>";
+    document.getElementById("sharedZone").innerHTML += "<div><img id='plus-sign' src='Images/plus.png'><br><span>Criar Album</span></div>";
+    document.getElementById("plus-sign").addEventListener("click", () => notDone())
 }
 
 // -----------------------------------------------------------------------

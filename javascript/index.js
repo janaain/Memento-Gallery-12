@@ -4,7 +4,7 @@ if (!localStorage.getItem('fileSystem')) {
         {
         "name": "Viagens",
             "folders": [{
-                "name": "Londres",
+                "name": "Paris",
                 "folders": [],
                 "photos": []
             },

@@ -1,7 +1,5 @@
 html, body{
     margin: 0;
-    height: 100%;
-    width: 100%;
     background-color: rgb(156, 139, 187);
     
 }
@@ -11,8 +9,6 @@ li {
 }
 
 .main{
-    height: 720px;
-    width:  1200px;
     display: grid;
     grid-template-areas: 
         'top_bar top_bar'

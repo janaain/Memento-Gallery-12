@@ -45,6 +45,10 @@ li {
     ;
 }
 
+label{
+    font-family: monospace;
+}
+
 .content{
     grid-area: content;
 }

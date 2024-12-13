@@ -104,7 +104,7 @@ function renderCurrentFolder() {
 
     // Create and append "Add Folder" button
     const createAlbumDiv = document.createElement('div');
-    createAlbumDiv.innerHTML = `<div class="openPopup"><img src="Images/plus.png"><br><label>Criar Álbum</label></div>`;
+    createAlbumDiv.innerHTML = `<div class="openPopup"><img src="Images/plus.png"><br><label>Criar Pasta</label></div>`;
     createAlbumDiv.addEventListener('click', () => {
         createAlbumPopUp(folderPath);
     });

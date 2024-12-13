@@ -52,83 +52,223 @@
                         </li>
                         <li>
                             <input type="checkbox" name="organizar" id="data">
-                            <label for="data">Data</label>
+                            <label for="data">Data:</label>
                             <br>
                             <label for="data_inicio">De:</label>
-                            <input type="date" id="data_inicio">
+                            <input type="date" id="data_inicio" style="margin-right: 10px;" disabled>
                             <label for="data_fim">Até:</label>
-                            <input type="date" id="data_fim">
-                        </li>
-                        <li>
-                            <div>
-                                <label for="locationInput">Localização:</label>
-                                <input type="text" id="locationInput" name="location" placeholder="Clique no mapa para selecionar a localização" />
-                              </div>
-                              <div id="map" style="z-index: 1000; height: 300px; width: 300px; position: absolute; bottom: 20px; right: 20px;"></div>                              
+                            <input type="date" id="data_fim" disabled>
                         </li>
                         <li>
                             <input type="checkbox" name="organizar" id="qualidade">
-                            <label for="qualidade">Qualidade</label>
+                            <label for="qualidade">Qualidade:</label>
                             <br>
                             <label for="qualidade_min">De:</label>
-                            <input type="number" id="qualidade_min" placeholder="Mínima">
+                            <select id="qualityMin" name="qualityMin" style="margin-right: 10px;"  disabled>
+                                <option value="poor">Selecione uma opção</option>
+                                <option value="poor">Má</option>
+                                <option value="fair">Razoável</option>
+                                <option value="good">Boa</option>
+                                <option value="very_good">Muito Boa</option>
+                                <option value="excellent">Excelente</option>
+                            </select>
                             <label for="qualidade_max">Até:</label>
-                            <input type="number" id="qualidade_max" placeholder="Máxima">
-                        </li>
+                            <select id="qualityMax" name="qualityMax" disabled>
+                                <option value="poor">Selecione uma opção</option>
+                                <option value="poor">Má</option>
+                                <option value="fair">Razoável</option>
+                                <option value="good">Boa</option>
+                                <option value="very_good">Muito Boa</option>
+                                <option value="excellent">Excelente</option>
+                            </select>
+                        </li>                        
                         <li>
                             <input type="checkbox" name="organizar" id="resolucao">
-                            <label for="resolucao">Proporção</label>
+                            <label for="resolucao">Proporção:</label>
                             <br>
                             <label for="resolucao_min">De:</label>
-                            <input type="number" id="resolucao_min" placeholder="Mínima">
+                            <input type="text" style="margin-right: 10px;" id="resolucao_min" placeholder="Ex: 1920x1080">
                             <label for="resolucao_max">Até:</label>
-                            <input type="number" id="resolucao_max" placeholder="Máxima">
+                            <input type="text" id="resolucao_max" placeholder="Ex: 1920x1080">
+                        </li>
+                        <li>
+                            <div>
+                                <input type="checkbox" name="localizacao" id="loc">
+                                <label for="locationInput">Localização:</label>
+                                <br>
+                                <input type="text" style = "margin-left: 32px;" id="locationInput" name="location" placeholder="Selecionar no mapa" />
+                              </div>                             
                         </li>
                         <li>
                             <input type="checkbox" name="organizar" id="pessoa">
-                            <label for="pessoa">Pessoa</label>
+                            <label for="pessoa">Pessoa:</label>
                             <br>
-                            <input type="text" id="pessoa_valor" placeholder="Especificar pessoa">
+                            <input type="text" style = "margin-left: 32px;" id="pessoa_valor" placeholder="Ex: Joana, Gonçalo, etc">
                         </li>
                         <li>
                             <input type="checkbox" name="organizar" id="tipo">
-                            <label for="tipo">Tipo (Macro, Paisagem, etc.)</label>
+                            <label for="tipo">Tipo:</label>
                             <br>
-                            <input type="text" id="tipo_valor" placeholder="Especificar tipo">
+                            <input type="text" style = "margin-left: 32px;" id="tipo_valor" placeholder="Ex: Macro, Paisagem, etc">
                         </li>
                         <li>
                             <input type="checkbox" name="organizar" id="conteudo">
-                            <label for="conteudo">Conteúdo</label>
+                            <label for="conteudo">Conteúdo:</label>
                             <br>
-                            <input type="text" id="conteudo_valor" placeholder="Especificar conteúdo">
+                            <input type="text" style = "margin-left: 32px;" id="conteudo_valor" placeholder="Ex: Comida, Animais, etc">
                         </li>
                     </ul>
+                <!-- Adicionar Mapa no Canto Inferior Direito -->
+                <div id="map"></div>
+                <!-- Aqui vai o mapa -->
                 </div>
         
                 <!-- Coluna da Direita - Manter de Fora -->
                 <div class="column">
-                    <h3>MANTER DE FORA:</h3>
+                    <h3 style="margin-bottom: 56px;">MANTER DE FORA:</h3>
                     <ul>
-                        <li><input type="checkbox" id="desfocada"> <label for="desfocada">Desfocadas</label></li>
-                        <li><input type="checkbox" id="duplicada"> <label for="duplicada">Duplicadas</label></li>
-                        <li><input type="checkbox" id="ma_iluminacao"> <label for="ma_iluminacao">Má Iluminação</label></li>
-                        <li><input type="checkbox" id="baixa_resolucao"> <label for="baixa_resolucao">Baixa Resolução</label></li>
-                    </ul>
+                    <li>
+                        <label for="data">Data:</label>
+                        <br>
+                        <label for="data_inicio">De:</label>
+                        <input type="date" id="data_inicio" style="margin-right: 10px;" >
+                        <label for="data_fim">Até:</label>
+                        <input type="date" id="data_fim" >
+                    </li>
+                    <li>
+                        <label for="qualidade">Qualidade:</label>
+                        <br>
+                        <label for="qualidade_min">De:</label>
+                        <select id="qualityMin" name="qualityMin" style="margin-right: 10px;"  >
+                            <option value="poor">Selecione uma opção</option>
+                            <option value="poor">Selecione uma opção</option>
+                            <option value="poor">Má</option>
+                            <option value="fair">Razoável</option>
+                            <option value="good">Boa</option>
+                            <option value="very_good">Muito Boa</option>
+                            <option value="excellent">Excelente</option>
+                        </select>
+                        <label for="qualidade_max">Até:</label>
+                        <select id="qualityMax" name="qualityMax">
+                            <option value="poor">Selecione uma opção</option>
+                            <option value="poor">Má</option>
+                            <option value="fair">Razoável</option>
+                            <option value="good">Boa</option>
+                            <option value="very_good">Muito Boa</option>
+                            <option value="excellent">Excelente</option>
+                        </select>
+                    </li>                        
+                    <li>
+                        <label for="resolucao">Proporção:</label>
+                        <br>
+                        <label for="resolucao_min">De:</label>
+                        <input type="text" style="margin-right: 10px;" id="resolucao_min" placeholder="Ex: 1920x1080">
+                        <label for="resolucao_max">Até:</label>
+                        <input type="text" id="resolucao_max" placeholder="Ex: 1920x1080">
+                    </li>
+                    <li>
+                        <div>
+                            <label for="locationInput">Localização:</label>
+                            <br>
+                            <input type="text" style = "margin-left: 32px;" id="locationInput" name="location" placeholder="Lisboa; França, Paris; etc" />
+                          </div>                             
+                    </li>
+                    <li>
+                        <label for="pessoa">Pessoa:</label>
+                        <br>
+                        <input type="text" style = "margin-left: 32px;" id="pessoa_valor" placeholder="Ex: Joana, Gonçalo, etc">
+                    </li>
+                    <li>
+                        <label for="tipo">Tipo:</label>
+                        <br>
+                        <input type="text" style = "margin-left: 32px;" id="tipo_valor" placeholder="Ex: Macro, Paisagem, etc">
+                    </li>
+                    <li>
+                        <label for="conteudo">Conteúdo:</label>
+                        <br>
+                        <input type="text" style = "margin-left: 32px;" id="conteudo_valor" placeholder="Ex: Comida, Animais, etc">
+                    </li>
+                </ul>
+            <!-- Adicionar Mapa no Canto Inferior Direito -->
                 </div>
             </div>
-        
-            <!-- Adicionar Mapa no Canto Inferior Direito -->
-            <div id="map" style="height: 300px; width: 300px; position: absolute; bottom: 20px; right: 20px;"></div>
-                <!-- Aqui vai o mapa -->
-            </div>
-        </div>
-        
+            </div>        
         <div class="content" id="Crever">
             <div class="nomeAlbum">
                 <label for="album-name">Nome do Álbum:</label>
                 <input type="text" id="album-name" placeholder="Nome">
             </div>
-            <div class="content" id="fiches">
+            <div class="content" >
+                <div>
+                    <img src="subconjuntos/11-04-2004/ArcTriunfe.jpeg" alt="ArcTriunfe">
+                    <br><label>ArcTriunfe.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/11-04-2004/Louvre.jpeg" alt="Louvre">
+                    <br><label>Louvre.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/11-04-2004/Notre-Dame.jpeg" alt="Notre-Dame">
+                    <br><label>Notre-Dame.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/11-04-2004/Sena.jpeg" alt="Sena">
+                    <br><label>Sena.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/11-04-2004/TorreEiffel.jpg" alt="Torre Eiffel">
+                    <br><label>TorreEiffel.jpg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/11-04-2004/Versalles.jpg" alt="Versalles">
+                    <br><label>Versalles.jpg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/dinisClubHouse.jpeg" alt="Dinis Club House">
+                    <br><label>dinisClubHouse.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/Disneyland.jpeg" alt="Disneyland">
+                    <br><label>Disneyland.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/fireworks.jpeg" alt="Fireworks">
+                    <br><label>fireworks.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/montanhaFrancesa.jpg" alt="Montanha Francesa">
+                    <br><label>montanhaFrancesa.jpg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/showMickey.jpeg" alt="Show Mickey">
+                    <br><label>showMickey.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/14-04-2004/showNatal.jpeg" alt="Show Natal">
+                    <br><label>showNatal.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/15-04-2004/crepe.jpeg" alt="Crepe">
+                    <br><label>crepe.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/15-04-2004/mime.jpg" alt="Mime">
+                    <br><label>mime.jpg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/15-04-2004/croissant.jpg" alt="Croissant">
+                    <br><label>croissant.jpg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/15-04-2004/Psg.jpeg" alt="PSG">
+                    <br><label>Psg.jpeg</label>
+                </div>
+                <div>
+                    <img src="subconjuntos/15-04-2004/streetArt.jpeg" alt="Street Art">
+                    <br><label>streetArt.jpeg</label>
+                </div>
+                
+
             </div>
         </div>
             
@@ -139,7 +279,9 @@
                 <button class="prev" id="prev">Passo Anterior</button>               
             </div>
         </div>
+
     </div>
+</div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

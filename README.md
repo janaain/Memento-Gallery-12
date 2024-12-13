@@ -7,19 +7,19 @@ Dinis Garcia - 62269
 
 O browser recomendado a usar é o Google Chrome e o primeiro ficheiro HTML a ser carregado é o index.html
 
-##Auto-Avaliação do Projeto: 18
+# Auto-Avaliação do Projeto: 18
 
-##Auto-Avaliação do Grupo:
+# Auto-Avaliação do Grupo:
 Luís Lima - 18
 Gonçalo Seguro - 18
 Joana Trindade - 18
 Dinis Miranda Garcia - 18
 
-##Notas sobre o trabalho e erros conhecidos:
+# Notas sobre o trabalho e erros conhecidos:
 
 Os ecrãs foram feitos para terem todos uma dimensão de 1280x720px. O espaço restante na tela terá uma cor roxa para simbolizar que isto é fora da nossa aplicação.
 
-#Index
+# Index
 
 Importar Fotos - Onde o utilizador irá fazer a sua importação de fotografias para o Memento Gallery, criando álbuns através dos critérios de seleção do mesmo .
 Qualquer foto pode ser importada para avançar.
@@ -31,7 +31,7 @@ Quando compartilhamos as fotos por outros meios sem ser o “Mementos Chats” e
 
 
 
-#Online
+# Online
 
 O chat é simulado com uma mensagem predefinida todas as vezes que o utilizador manda uma mensagem para o seu “amigo”.
 
@@ -39,7 +39,7 @@ Dentro da opção chat, existem algumas funcionalidades que não funcionam, tais
 
 Não é possível adicionar conteúdo a álbuns partilhados, no entanto, para os cenários de tarefa, os álbuns partilhados “casamentos” e “igreja” são automaticamente preenchidos. Os álbuns partilhados são criados automaticamente na criação de um grupo.
 
-#Criar Album
+# Criar Album
 
 Apenas estão implementadas funcionalidades de importar fotos a partir do Dispositivo e do Facebook, as outras funcionalidades não foram implementadas e lançam um alerta de “funcionalidade não implementada”.
 

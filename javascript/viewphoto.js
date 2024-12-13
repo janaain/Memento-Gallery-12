@@ -20,11 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// document.querySelectorAll('.remove-tag-button').addEventListener("click", function() {
+//     let selectedTag = this.parentElement;
+//     console.log("ola")
+//     document.getElementById("TagPopup").style.display = "block"
+//     document.getElementById("confirmRemove").addEventListener("click", function() {
+//         selectedTag.remove();
+//     })
+// })
+
 
 /* Tags */
 document.addEventListener("DOMContentLoaded", function () {
     const addTagOption = document.getElementById("addTagOption");
     const tagContainer = document.getElementById("tagContainer");
+
 
     const tagPopup = document.getElementById("TagPopup");
     const confirmButton = document.querySelector(".popup-content .confirm");

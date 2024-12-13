@@ -464,5 +464,47 @@ label{
     background-color: darkred; /* Hover no botão de fechar */
 }
 
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
 
 
+.image-container img {
+    display: block;
+    width: 150px; /* Ajuste o tamanho conforme necessário */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.okFacebook {
+    grid-area: next;
+    background-color: rgb(43, 151, 43);
+    padding: 10px 20px;
+    border-radius: 7px;
+    font-size: 16px;
+    color: white;
+    top: 240px;
+    left: 950px;  
+    z-index: 5;
+    position: fixed;
+}
+
+.selectAll {
+    
+    position: absolute;
+    left: 45px;
+    top: 130px;
+    font-size: 135%;
+}
+
+.image-container input[type="checkbox"] {
+    position: absolute;
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+    transform: scale(1.5); /* Ajusta o tamanho do checkbox */
+    z-index: 10;
+}

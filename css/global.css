@@ -150,6 +150,8 @@ label{
 .sharepopup{
     display: none;
     position: fixed;
+    top:0;
+    left: 0;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid #000000;
     text-align: center;
@@ -197,7 +199,26 @@ label{
     box-shadow: 1px 2px 1px #6e94a8;
     padding: 10px;
     cursor: pointer;
-    
+}
+
+.inFacebook img{
+    height: 250px;
+
+}
+
+.facebook-content {
+    position: relative;
+    background-color: aliceblue;
+    margin: 120px auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 900px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.facebook-content h2 {
+    padding-bottom: 20px ;
 }
 
 .popup {

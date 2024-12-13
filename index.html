@@ -23,7 +23,7 @@
             <ul>
                 <a href="criaralbum.html"><li>Importar Fotos</li></a>
                 <a><li id="share">Compartilhar</li></a>
-                <a><li>Editar</li></a>
+                <a id="editarButton"><li>Editar</li></a>
                 <a href="online.html"><li id="chat-button">Chat</li></a>
             </ul>
         </div>
@@ -154,16 +154,13 @@
                     </div>
                     
                     <div  class="button-group" id="tagContainer">
-                        <div class="action-button">Paris</div>
-                        <li></li>
-                        <div class="action-button">Romance</div>
                     </div> 
                     
                     <div id="TagPopup" style="display: none;">
                         <div class="popup-content">
                             <p>Tem a certeza que deseja remover esta tag?</p>
-                            <button class="confirm">Sim</button>
-                            <button class="cancel" autofocus>Não</button>
+                            <button id="cancelRemove" class="cancel" autofocus>Cancelar</button>
+                            <button id="confirmRemove" class="confirm">Remover</button>
                         </div>
                     </div>
                     

@@ -335,6 +335,9 @@ function initializeEventListeners(){
         document.getElementById("sharePopup").style.display = "block";
     } )
         
+    document.getElementById("editarButton").addEventListener("click", function () {
+        alert("Função não implementada");
+    });
 }
     
 

@@ -254,7 +254,6 @@
     align-items: center;
     margin: 3px;
     height: 25px; 
-    width: 80px;
     line-height: 1.2; 
 }
 
@@ -365,24 +364,23 @@
     margin: 0 10px;
 }
 
-.popup-content .confirm {
-    background-color: lightgrey; 
-    color: black;
+.confirm {
+    background-color: rgb(255, 76, 76);
+    color: white;
 }
 
-.popup-content .confirm:hover {
-    background-color: grey; 
+.cancel {
+    background-color: rgb(43, 151, 43);
+    color: white;
 }
 
-.popup-content .cancel {
-    background-color: #EFD09E; 
-    color: black;
+.confirm {
+    background-color: rgb(215, 68, 68);
 }
 
-.popup-content .cancel:hover {
-    background-color: rgb(247, 190, 98); 
+.cancel {
+    background-color: rgb(40, 125, 40);
 }
-
 
 /* Remove photo */
 
@@ -424,23 +422,6 @@
     margin: 0 10px;
 }
 
-.photo-delete-popup-content .confirm {
-    background-color: lightgray; 
-    color: black;
-}
-
-.photo-delete-popup-content .confirm:hover {
-    background-color: grey;
-}
-
-.photo-delete-popup-content .cancel {
-    background-color: #EFD09E; 
-    color: black;
-}
-
-.photo-delete-popup-content .cancel:hover {
-    background-color: rgb(247, 190, 98) ;
-}
 
 
 

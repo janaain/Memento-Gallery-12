@@ -155,8 +155,9 @@ function setEventListeners(){
         if(!done){
         next.addEventListener('click', () => {
             next_step(current_step)
-            done = true
-        })};
+        })
+        done = true
+        };
         
         const files = event.target.files;
         havePhotos = 1
@@ -181,6 +182,128 @@ function setEventListeners(){
         }
 
         document.getElementById("addPhotosPopup").style.display = "none";
+    });
+
+    document.getElementById("facebookOption").addEventListener("click", function () {
+        document.getElementById("facebookBack").style.display="block";
+        addPhotosPopup.style.display = "none";
+    });
+
+    document.getElementById("twitterOption").addEventListener("click", function () {
+        alert("Função não implementada");
+    });
+
+    document.getElementById("instagramOption").addEventListener("click", function () {
+        alert("Função não implementada");
+    });
+
+    document.getElementById("emailOption").addEventListener("click", function () {
+        alert("Função não implementada");
+    });
+
+    document.getElementById("closeImport").addEventListener("click", function() {
+        document.getElementById("addPhotosPopup").style.display ="none";
+    })
+
+    document.getElementById("closeFacebook").addEventListener("click",  function() {
+        document.getElementById("facebookBack").style.display ="none";
+    })
+
+    document.getElementById("okFacebook").addEventListener("click",  function() {
+
+        const imagePreview = document.getElementById('Cphotos');
+        const next = document.getElementById("next");
+        next.disabled = false
+
+        if(!done){
+        next.addEventListener('click', () => {
+            next_step(current_step)
+        })
+        done = true 
+        };
+
+        imagePreview.innerHTML += `
+        <div>
+            <img src="subconjuntos/11-04-2004/ArcTriunfe.jpeg" alt="ArcTriunfe">
+            <br><label>ArcTriunfe.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/11-04-2004/Louvre.jpeg" alt="Louvre">
+            <br><label>Louvre.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/11-04-2004/Notre-Dame.jpeg" alt="Notre-Dame">
+            <br><label>Notre-Dame.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/11-04-2004/Sena.jpeg" alt="Sena">
+            <br><label>Sena.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/11-04-2004/TorreEiffel.jpg" alt="Torre Eiffel">
+            <br><label>TorreEiffel.jpg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/11-04-2004/Versalles.jpg" alt="Versalles">
+            <br><label>Versalles.jpg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/dinisClubHouse.jpeg" alt="Dinis Club House">
+            <br><label>dinisClubHouse.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/Disneyland.jpeg" alt="Disneyland">
+            <br><label>Disneyland.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/fireworks.jpeg" alt="Fireworks">
+            <br><label>fireworks.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/montanhaFrancesa.jpg" alt="Montanha Francesa">
+            <br><label>montanhaFrancesa.jpg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/showMickey.jpeg" alt="Show Mickey">
+            <br><label>showMickey.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/14-04-2004/showNatal.jpeg" alt="Show Natal">
+            <br><label>showNatal.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/15-04-2004/crepe.jpeg" alt="Crepe">
+            <br><label>crepe.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/15-04-2004/mime.jpg" alt="Mime">
+            <br><label>mime.jpg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/15-04-2004/croissant.jpg" alt="Croissant">
+            <br><label>croissant.jpg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/15-04-2004/Psg.jpeg" alt="PSG">
+            <br><label>Psg.jpeg</label>
+        </div>
+        <div>
+            <img src="subconjuntos/15-04-2004/streetArt.jpeg" alt="Street Art">
+            <br><label>streetArt.jpeg</label>
+        </div>`;
+
+        document.getElementById("facebookBack").style.display = "none";
+
+        setEventListeners()
+
+    })
+
+    const addPhotosDiv = document.getElementById("addPhotos");
+    const addPhotosPopup = document.getElementById("addPhotosPopup");
+
+    // Abrir o pop-up ao clicar em "Adicionar Fotos"
+    addPhotosDiv.addEventListener("click", function () {
+        addPhotosPopup.style.display = "flex"; // Exibir o pop-up
     });
 }
 
@@ -330,47 +453,4 @@ window.addEventListener("load", function() {
         }
     });
 
-    const addPhotosDiv = document.getElementById("addPhotos");
-    const addPhotosPopup = document.getElementById("addPhotosPopup");
-    const closePopupAddPhotos = document.getElementById("closePopupAddPhotos");
-
-    // Abrir o pop-up ao clicar em "Adicionar Fotos"
-    addPhotosDiv.addEventListener("click", function () {
-        addPhotosPopup.style.display = "flex"; // Exibir o pop-up
-    });
-
-    // Fechar o pop-up ao clicar no botão de fechar
-    closePopupAddPhotos.addEventListener("click", function () {
-        addPhotosPopup.style.display = "none"; // Esconder o pop-up
-    });
-
-    // // Adicionar funcionalidade às opções (exemplo)
-    // document.getElementById("deviceOption").addEventListener("click", function () {
-    //     alert("Adicionar fotos do dispositivo!");
-    //     addPhotosPopup.style.display = "none"; // Fechar após a ação
-    // });
-
-    document.getElementById("facebookOption").addEventListener("click", function () {
-        alert("Função não implementada");
-        addPhotosPopup.style.display = "none";
-    });
-
-    document.getElementById("twitterOption").addEventListener("click", function () {
-        alert("Função não implementada");
-        addPhotosPopup.style.display = "none";
-    });
-
-    document.getElementById("instagramOption").addEventListener("click", function () {
-        alert("Função não implementada");
-        addPhotosPopup.style.display = "none";
-    });
-
-    document.getElementById("emailOption").addEventListener("click", function () {
-        alert("Função não implementada");
-        addPhotosPopup.style.display = "none";
-    });
-
-    document.getElementById("closeImport").addEventListener("click", function() {
-        document.getElementById("addPhotosPopup").style.display ="none";
-    })
 });

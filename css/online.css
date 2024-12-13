@@ -287,6 +287,14 @@ button:hover {
     border-radius: 15px;
 }
 
+.folderInChat {
+    text-decoration: underline!important;
+    color:rgb(55, 54, 113);
+    font-size: larger;
+    margin-left: 78px;
+
+}
+
 .self {
     align-self: flex-end;
 }

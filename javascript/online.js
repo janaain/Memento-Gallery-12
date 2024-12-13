@@ -13,6 +13,9 @@ let chat = {
    ],
    "Lúcia": [[0,0],["Boas filho","other"],["Olá mãe", "self"], ["<img src='subconjuntos/Igreja/2.jpg'>", "self"]],
 
+   "Ema": [[0,0],["Manda-me o album de Paris","other"],["Ok", "self"], ["<img src='Images/folder.png'><br><a class='folderInChat'>Viagem a Paris</a>", "self"]],
+
+
    "Família": [["Somos uma família muito feliz",["Lúcia", "Salomé", "Luís"],0], ["Alo Malta","other", "Lúcia"],["Olá familia", "self", "Eu"],
         ["Receberam esta msg?","other", "Lúcia"], ["Sim","other", "Salomé"], ["Same", "self", "Eu"]]
 }
@@ -117,6 +120,7 @@ function setEventListeners(){
     document.getElementById("changeGroupName").addEventListener("click", () => notDone());
     document.getElementById("changeGroupDetails").addEventListener("click", () => notDone());
     document.getElementById("changeGroupUsers").addEventListener("click", () => notDone());
+    document.getElementById("groupImg").addEventListener("click", () => notDone());
 
 }
 

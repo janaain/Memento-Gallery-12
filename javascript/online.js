@@ -189,7 +189,7 @@ function getChat() {
 }
 
 function getOtherPerson() {
-    return
+    return getChat()[getPerson()][0][1][0];
 }
 // Clears the text of the input where the new message is inserted
 function clearText() {
@@ -223,7 +223,7 @@ function saveMessage() {
         if (isGroup()){
             all_chat[person].push([message, "self","Eu"]);
             addChatTxt([message, "self", "Eu"]);
-            addChatTxt(["Ok", "other", "Eu"]);
+            addChatTxt(["Ok", "other", getOtherPerson()]);
         } else {
             all_chat[person].push([message, "self"]);
             addChatTxt([message, "self"]);

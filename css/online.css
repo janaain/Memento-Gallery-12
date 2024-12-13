@@ -330,7 +330,7 @@ button:hover {
 }
 
 .details textarea {
-    width: 100%;
+    width: 975px;
     height: 60%;
     margin-top: 10px;
 }
@@ -364,11 +364,12 @@ button:hover {
 
 .added {
     grid-area: added;
+    width: 975px;
 }
 
 .added table {
-    width: 100%;
     font-size: large;
+    width: 100%;
     margin-top: 15px;
 }
 
@@ -387,13 +388,14 @@ button:hover {
 
 .added td:last-child {
     width: 25px;
+    background-color: rgb(255, 80, 80);
+    color:white;
     text-align: center;
     cursor: pointer;
 }
 
 .added td:last-child:hover {
-    background-color: rgb(255, 80, 80);
-    color:white;
+    background-color: rgb(225, 64, 64);
 }
 
 #voltar {

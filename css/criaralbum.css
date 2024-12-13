@@ -111,7 +111,7 @@ h5 {
 .dropdown {    
     position: fixed;
     top: 5px;
-    left: 1128px;
+    left: 1080px;
     display: inline-block;
 }
 
@@ -158,9 +158,9 @@ h5 {
     border-radius: 7px;
     font-size: 16px;
     color: white;
-    bottom: 180px;
+    top: 670px;
     left: 1119px;        
-    z-index: 1000;
+    z-index: 5;
     position: fixed;
 }
 
@@ -171,8 +171,8 @@ h5 {
     border-radius: 7px;
     font-size: 16px;
     color: white;
-    bottom: 180px;
-    left: 308px;         
+    top: 670px;
+    left: 308px;      
     z-index: 1000;
     position: fixed;
 }
@@ -387,8 +387,8 @@ label{
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    height: 720px;
+    width: 1280px;
     background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     z-index: 1000; 
     display: flex;
@@ -415,8 +415,8 @@ label{
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    height: 720px;
+    width: 1280px;
     background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     z-index: 1000; 
     display: flex;
@@ -426,35 +426,43 @@ label{
 
 .importpopup-content {
     background-color: white;
-    padding: 100px;
+    padding: 30px 50px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-size: 20px;
-    max-width: 200px;
-    width: 200px;
+    width: 250px;
+}
+
+.import-btn {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: large;
+    background-color: white;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px #797979;
+    padding: 2px 5px;;
 }
 
 
-.importpopup-content .import-btn {
-    background-color: lightgrey; 
+.importpopup-content {
+    background-color: white; 
     color: black;
 }
 
-.importpopup-content .import-btn:hover {
-    background-color: grey;
+.importpopup-content{
+    background-color: aliceblue;
 }
 
 .close {
-    background-color: red; 
-    color: white;
-    border: none;
+    color: white;;
     font-size: 20px;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 50%;
 }
 
 .close:hover {
     background-color: darkred; /* Hover no botão de fechar */
 }
+
+
+

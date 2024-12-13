@@ -39,17 +39,17 @@
                 <input type="file" id="fileInput" style="display: none;" multiple accept="image/*">
                 <div class="images" id="addPhotos"><img src="Images/plus.png"><br><label>Adicionar Fotos</label></div>
             </div>
-            <div id="addPhotosPopup" class="importpopup" style="display: none;">
-                    <div class="importpopup-content">
-                        <h2>Adicionar Fotos</h2>
-                        <button class="import-btn" id="deviceOption">Dispositivo</button>
-                        <button class="import-btn" id="facebookOption">Facebook</button>
-                        <button class="import-btn" id="twitterOption">Twitter</button>
-                        <button class="import-btn" id="instagramOption">Instagram</button>
-                        <button class="import-btn" id="emailOption">Email</button>
-                        <div class="close">
-                            <button id="closePopupAddPhotos" class="close">Voltar</button>
-                    </div>
+            <div id="addPhotosPopup" class="sharepopup" style="display: none;">
+                    <div class="sharepopup-content">
+                        <div class="closeShare">
+                            <button id="closeImport">X</button>    
+                        </div>
+                        <h2>Importar Fotos</h2><br>
+                        <button class="share-btn" id="deviceOption">Dispositivo</button>
+                        <button class="share-btn" id="facebookOption">Facebook</button>
+                        <button class="share-btn" id="twitterOption">Twitter</button>
+                        <button class="share-btn" id="instagramOption">Instagram</button>
+                        <button class="share-btn" id="emailOption">Email</button>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="criterios" id="criterios">
                 <!-- Coluna da Esquerda - Organizar Por -->
                 <div class="column">
-                    <h3>ORGANIZAR POR:</h3>
+                    <h3>Incluir:</h3>
                     <ul>
                         <li>
                             <input type="radio" name="organizar" id="nao_dividir" checked>
@@ -133,7 +133,7 @@
         
                 <!-- Coluna da Direita - Manter de Fora -->
                 <div class="column">
-                    <h3 style="margin-bottom: 56px;">MANTER DE FORA:</h3>
+                    <h3 style="margin-bottom: 56px;">Excluir:</h3>
                     <ul>
                     <li>
                         <label for="data">Data:</label>

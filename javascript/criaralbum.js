@@ -369,4 +369,8 @@ window.addEventListener("load", function() {
         alert("Função não implementada");
         addPhotosPopup.style.display = "none";
     });
+
+    document.getElementById("closeImport").addEventListener("click", function() {
+        document.getElementById("addPhotosPopup").style.display ="none";
+    })
 });

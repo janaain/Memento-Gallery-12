@@ -89,12 +89,9 @@ li {
 }
 
 
-/* .content div {
-    height: 170px;
-    max-width: 170px;
+img{
     text-align: center;
-    align-items: start;
-} */
+}
 
 .content label {
     font-size: 120%;
@@ -241,6 +238,7 @@ button:disabled {
     z-index: 1;
     font-size: x-large;
     background-color: #dfe6e9;
+    align-items: center;
 }
 
 .nomeAlbum label{
@@ -262,8 +260,18 @@ button:disabled {
 }
 
 .column {
-    width: 45%;
+    width: 50%;
+    padding: 10px;
+    float: left;
+    box-sizing: border-box;
 }
+
+.column:first-child {
+    width: 43%;
+    border-right: 2px solid #EFD09E; /* This adds the vertical line */
+    padding-right: 20px; /* Adjust the padding so that the content has some space from the line */
+}
+
 
 .column h3 {
     margin-bottom: 10px;
@@ -279,7 +287,7 @@ ul {
 }
 
 li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 li h2 {
@@ -310,4 +318,30 @@ input[type="checkbox"] {
     opacity: 0.5;        
     pointer-events: none;        
     cursor: not-allowed;     
+}
+
+input[type="text"]{
+    width: 180px;
+}
+
+input[type="date"]{
+    width: 183px;
+}
+
+select{
+    width: 188px;
+}
+
+label{
+    margin-top: 10px;
+}
+
+#map {
+    height: 261px;
+    width: 226px;
+    position: relative;
+    left: 240px;
+    margin-bottom: -281px;
+    bottom: 281px;
+    outline-style: none;
 }

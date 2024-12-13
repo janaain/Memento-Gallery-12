@@ -1,11 +1,11 @@
 let current_step = 0
 let havePhotos = 0
+let done = false
 
 
 function next_step(){
     const next = document.getElementById("next");
     current_step = current_step + 1
-    console.log(current_step)
     if(current_step == 1){
         document.getElementById("Cphotos").style.display = "flex"
         document.getElementById("Ccriterios").style.display = "none"
@@ -32,7 +32,6 @@ function next_step(){
         document.getElementById("prev").style.display = "block"
         document.getElementById("next").textContent = "Concluir";
         document.getElementById("next").disabled = true;
-        fiches()
         if(document.getElementById("album-name").value !== ""){
             document.getElementById("next").disabled = false;
         }
@@ -51,8 +50,24 @@ function next_step(){
         // Add the new folder to the current folder
         currentFolder.push({
             name: document.getElementById("album-name").value,
-            folders: paris,
-            photos: []
+            folders:[],
+            photos:["subconjuntos/11-04-2004/ArcTriunfe.jpeg",
+            "subconjuntos/11-04-2004/Louvre.jpeg",
+            "subconjuntos/11-04-2004/Notre-Dame.jpeg",
+            "subconjuntos/11-04-2004/Sena.jpeg",
+            "subconjuntos/11-04-2004/TorreEiffel.jpg",
+            "subconjuntos/11-04-2004/Versalles.jpg",
+            "subconjuntos/14-04-2004/dinisClubHouse.jpeg",
+            "subconjuntos/14-04-2004/Disneyland.jpeg",
+            "subconjuntos/14-04-2004/fireworks.jpeg",
+            "subconjuntos/14-04-2004/montanhaFrancesa.jpg",
+            "subconjuntos/14-04-2004/showMickey.jpeg",
+            "subconjuntos/14-04-2004/showNatal.jpeg",
+            "subconjuntos/15-04-2004/crepe.jpeg",
+            "subconjuntos/15-04-2004/mime.jpg",
+            "subconjuntos/15-04-2004/croissant.jpg",
+            "subconjuntos/15-04-2004/Psg.jpeg",
+            "subconjuntos/15-04-2004/streetArt.jpeg"]
         });
 
         // Save the updated file system back to localStorage
@@ -72,7 +87,6 @@ function previous_step(){
 }
 
 function makeStepDarker(step_number){
-    console.log("A tua mae")
     const steps = document.querySelectorAll("#step")
 
     steps.forEach(step => {
@@ -137,9 +151,12 @@ function setEventListeners(){
         const imagePreview = document.getElementById('Cphotos');
         const next = document.getElementById("next");
         next.disabled = false
+
+        if(!done){
         next.addEventListener('click', () => {
             next_step(current_step)
-        });
+            done = true
+        })};
         
         const files = event.target.files;
         havePhotos = 1
@@ -260,222 +277,54 @@ headerDiv.appendChild(paragraph);
 return(headerDiv)
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const radio = document.getElementById('nao_dividir');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const inputsToDisable = {
+        "data": ["data_inicio", "data_fim"],
+        "qualidade": ["qualityMin", "qualityMax"],
+        "resolucao": ["resolucao_min", "resolucao_max"],
+        "pessoa": ["pessoa_valor"],
+        "tipo": ["tipo_valor"],
+        "conteudo": ["conteudo_valor"],
+        "loc": ["locationInput"]
+    };
 
-
-
-const root = []; // Start with an empty path (root level)
-
-const paris = [
-    {
-        "name": "11-04-2004",
-        "folders": [],
-        "photos": [
-            "subconjuntos/11-04-2004/ArcTriunfe.jpeg",
-            "subconjuntos/11-04-2004/Louvre.jpeg",
-            "subconjuntos/11-04-2004/Notre-Dame.jpeg",
-            "subconjuntos/11-04-2004/Sena.jpeg",
-            "subconjuntos/11-04-2004/TorreEiffel.jpg",
-            "subconjuntos/11-04-2004/Versalles.jpg"
-        ]
-    },
-    {
-        "name": "14-04-2004",
-        "folders": [],
-        "photos": [
-            "subconjuntos/14-04-2004/dinisClubHouse.jpeg",
-            "subconjuntos/14-04-2004/Disneyland.jpeg",
-            "subconjuntos/14-04-2004/fireworks.jpeg",
-            "subconjuntos/14-04-2004/montanhaFrancesa.jpg",
-            "subconjuntos/14-04-2004/showMickey.jpeg",
-            "subconjuntos/14-04-2004/showNatal.jpeg"
-        ]
-    },
-    {
-        "name": "15-04-2004",
-        "folders": [],
-        "photos": [
-            "subconjuntos/15-04-2004/crepe.jpeg",
-            "subconjuntos/15-04-2004/mime.jpg",
-            "subconjuntos/15-04-2004/croissant.jpg",
-            "subconjuntos/15-04-2004/Psg.jpeg",
-            "subconjuntos/15-04-2004/streetArt.jpeg"
-        ]
-    }
-];
-
-let lastFolder = paris
-let folderPath = []
-// Function to render the current folder based on the folder path
-function renderCurrentFolder() {
-    console.log('Rendering folder for path:', folderPath);
-    let currentPhotos = lastFolder.photos;
-    const fileSystem = paris;
-    let currentFolder = fileSystem;
-
-    // Traverse the file path to the target folder
-    folderPath.forEach(folderName => {
-        const folder = currentFolder.find(f => f.name === folderName);
-        if (folder) {
-            currentPhotos = folder.photos; // Update photos
-            currentFolder = folder.folders; // Update currentFolder to the next level
-        } else {
-            console.error(`Folder ${folderName} not found at this level.`);
+    // Disable or enable inputs based on whether the checkbox is checked or not
+    function toggleInputFields(checkbox) {
+        const inputIds = inputsToDisable[checkbox.id];
+        if (inputIds) {
+            inputIds.forEach(inputId => {
+                document.getElementById(inputId).disabled = !checkbox.checked;
+            });
         }
-    });
-
-    // Continue with rendering logic
-    updateTopBar(folderPath);
-
-    const contentDiv = document.querySelector('#fiches');
-    contentDiv.innerHTML = ''; // Clear previous content
-
-    const backBut = document.createElement('img');
-    backBut.id = "backButton"
-    backBut.src = "./Images/back-arrow.png"
-    backBut.addEventListener("click",goBack);
-    contentDiv.appendChild(backBut);
-    
-    // Update back button visibility
-    updateBackButtonVisibility();
-
-    // Render folders and photos
-    currentFolder.forEach(folder => {
-        const folderElement = document.createElement('div');
-        folderElement.innerHTML = `<img src="Images/folder.png"><br><label>${folder.name}</label>`;
-        folderElement.addEventListener('click', () => {
-            folderPath.push(folder.name);
-            renderCurrentFolder(folderPath);
-        });
-        contentDiv.appendChild(folderElement);
-    });
-    if(currentPhotos     !== undefined){
-    currentPhotos.forEach(photo => {
-        const photoName = photo.split('/').pop();
-        const photoElement = document.createElement('div');
-        photoElement.innerHTML = `<img src="${photo}"><br><label>${photoName}</label>`;
-        contentDiv.appendChild(photoElement);
-    })};
-}
-
-// Function to update the visibility of the back button
-function updateBackButtonVisibility() {
-    if (folderPath.length === 0) {
-        document.getElementById("backButton").style.display = "none"; // Hide the back button at root level
-    } else {
-        document.getElementById("backButton").style.display = "block"; // Show the back button if not at root
-    }
-}
-
-// Function to go back in the folder path
-function goBack() {
-    if (folderPath.length > 0) {
-        folderPath.pop(); // Remove the last folder from the path
-        renderCurrentFolder(folderPath); // Re-render the current folder
-    }
-}
-
-// Function to update the top bar with the clickable folder path, with "Memento Gallery" as the root
-function updateTopBar(folderPath) {
-    const topBar = document.querySelector('.top_bar span');
-    topBar.innerHTML = ''; // Clear existing top bar contents
-
-    // Add "Memento Gallery" as the root link
-    const rootLink = document.createElement('span');
-    rootLink.textContent = 'Novo Álbum';
-    rootLink.style.cursor = 'pointer';
-    rootLink.style.marginRight = '5px';
-    rootLink.style.textDecoration = 'underline';
-
-    // Handle click event for "Memento Gallery" to reset to the root folder
-    rootLink.addEventListener('click', () => {
-        navigateToFolder(['root']); // When "Memento Gallery" is clicked, go back to root
-    });
-
-    topBar.appendChild(rootLink);
-    if(folderPath == null){
-        folderPath = []
-    }
-    // Add "/" separator after "Memento Gallery" if there are subfolders
-    if (folderPath.length > 0) {
-        const separator = document.createElement('span');
-        separator.textContent = '/ ';
-        topBar.appendChild(separator);
     }
 
-    // Iterate over the folder path and add the rest of the folder names
-    folderPath.forEach((folder, index) => {
-        const folderLink = document.createElement('span');
-        folderLink.textContent = folder;
-        folderLink.style.textDecoration = 'underline';
-        folderLink.style.cursor = 'pointer';
-        folderLink.style.marginRight = '5px';
-
-        // Add click event to navigate back to this folder
-        folderLink.addEventListener('click', () => {
-            const newPath = folderPath.slice(0, index + 1); // Get the path up to this folder
-            navigateToFolder(['root', ...newPath]); // Navigate back to this folder
+    // When a checkbox is checked, disable the radio button
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (checkbox.checked) {
+                radio.checked = false;
+            } else {
+                // Check if any checkbox is still checked; if none are checked, re-enable the radio button
+                const anyChecked = Array.from(checkboxes).some(cb => cb.checked);
+                radio.checked = !anyChecked;
+            }
+            // Toggle the input fields related to the checkbox
+            toggleInputFields(checkbox);
         });
 
-        topBar.appendChild(folderLink);
+        // Initialize the input fields on page load
+        toggleInputFields(checkbox);
+    });
 
-        // Add "/" separator after each folder, except the last one
-        if (index < folderPath.length - 1) {
-            const separator = document.createElement('span');
-            separator.textContent = '/ ';
-            topBar.appendChild(separator);
+    // When the radio button is checked, uncheck all checkboxes and disable inputs
+    radio.addEventListener('change', function() {
+        if (radio.checked) {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                toggleInputFields(checkbox);  // Disable the related inputs
+            });
         }
     });
-}
-
-// Function to simulate navigating to a folder
-function navigateToFolder(newPath) {
-    folderPath = newPath.slice(1); // Exclude 'root' when updating folderPath
-    renderCurrentFolder(folderPath); // Render folder contents for the new path
-    updateTopBar(folderPath); // Update the top bar, excluding the 'root'
-
-}
-
-// Function to create a new folder in the current directory
-function createFolder(folderName, photosList, folderPath) {
-    const fileSystem = JSON.parse(localStorage.getItem('fileSystem'));
-    let currentFolder = fileSystem;
-
-    // Traverse to the target folder
-    folderPath.forEach(folder => {
-        currentFolder = currentFolder.find(f => f.name === folder).folders;
-    });
-
-    // Add the new folder to the current folder
-    currentFolder.push({
-        name: folderName,
-        folders: [],
-        photos: photosList
-    });
-
-    // Save the updated file system back to localStorage
-    // Salve a estrutura atualizada
-    localStorage.setItem('fileSystem', JSON.stringify(fileSystem));
-
-    // Re-render the folder contents to reflect the new folder
-    // Adicione o log para depuração
-    console.log('Folder created:', folderName);
-    console.log('Updated file system:', JSON.stringify(fileSystem));
-    // Re-renderize a estrutura
-    renderCurrentFolder(folderPath);
-}
-
-//Make photo details appear
-function openPhoto(){
-    document.getElementById("photoView").style.display = "block";
-    document.getElementById("chat-button").style.display = "none";
-}
-
-function closePhoto(){
-    document.getElementById("photoView").style.display = "none";
-    document.getElementById("chat-button").style.display = "block";
-}
-
-function fiches() {
-    renderCurrentFolder(root); // Render the initial folder structure
-    updateTopBar()
-}
+});

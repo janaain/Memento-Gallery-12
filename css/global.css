@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: 'happy';
-    src: url('..    /fonts/KGHAPPYSolid.ttf') format('truetype');
+    src: url('/fonts/KGHAPPYSolid.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -43,6 +43,10 @@ li {
     grid-template-rows: 
         80px 1fr;
     ;
+}
+
+label{
+    font-family: monospace;
 }
 
 .content{

@@ -190,7 +190,7 @@ li {
 
 .footer .btn-send {
     color: white;
-    background-color: #5c90ad;
+    background-color: rgb(43, 151, 43);
     animation: infinite;
 }
 .footer .btn-send:hover {

@@ -1,9 +1,16 @@
+@font-face {
+    font-family: 'ubuntu';
+    src: url('../fonts/ubuntu_regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 li {
     list-style-type: none;
 }
 
 body {
-    font-family: monospace;
+    font-family: "ubuntu";
     font-size: large;
 }
 
@@ -13,7 +20,7 @@ button {
     border-radius: 5px;
     box-shadow: 1px 2px 2px #797979;
     padding: 2px 5px;
-    font-family: monospace;
+    font-family: "ubuntu";
 }
 
 button:hover {

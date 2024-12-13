@@ -40,7 +40,12 @@ function setEventListeners(){
     document.getElementById("send-message").addEventListener("click", () => saveMessage());
     document.getElementById("add-friend").addEventListener("click", () => visibility_on("add-friend-popup"));
     document.getElementById("closePopup").addEventListener("click", () => visibility_off("add-friend-popup"));
-    document.getElementById("add-group").addEventListener("click", () => visibility_on("addGroup-div"));
+    document.getElementById("add-group").addEventListener("click", function() {
+        visibility_on("addGroup-div");
+        visibility_off("sharedAlbum-div");
+        visibility_off("groupInfo-div");
+        closePhoto();
+    });
     document.getElementById("concluido").addEventListener("click", () => createGroup());
     document.getElementById("voltar").addEventListener("click", () => visibility_off("addGroup-div"));
     document.getElementById("verAlbum").addEventListener("click", () =>visibility_on("sharedAlbum-div"));
@@ -53,7 +58,6 @@ function setEventListeners(){
         
     });
     document.getElementById("verChat").addEventListener("click", () =>visibility_off("sharedAlbum-div"));
-    
 
     document.getElementById("okButton").addEventListener("click", () => addFriend());
     document.getElementById("backButton").addEventListener('click', goBack);
@@ -76,10 +80,10 @@ function setEventListeners(){
         let li = event.target.closest('li');    
         if (li) {
             startChat(li.textContent.trim()); 
-            visibility_off("sharedAlbum-div")
-            visibility_off("addGroup-div")
-            visibility_off("groupInfo-div")
-            closePhoto()
+            visibility_off("sharedAlbum-div");
+            visibility_off("addGroup-div");
+            visibility_off("groupInfo-div");
+            closePhoto();
         }
         })
     
@@ -139,35 +143,33 @@ function startChat(person) {
     // visibility_off("sharedAlbum-div");
     let all_chat = JSON.parse(localStorage.getItem(SAVEDCHAT));
     document.getElementById("chat-text").innerHTML = "<br>";
+    document.getElementById("chat-info").innerHTML = "<img id='personImage' src='Images/user-icon.png'>" +
+                    "<span id='chatName'></span>"; 
     document.getElementById("chatName").innerHTML = person;
     if (isGroup()) {
-        document.getElementById("chat-info").innerHTML += "<button>Ver Detalhes</button>";
+        document.getElementById("chat-info").innerHTML += "<button id='seeGroupInfo'>Detalhes</button>";
         document.getElementById("personImage").src = "Images/group.png";
-        document.getElementById("chat-info").innerHTML += "<button id='seeGroupInfo'>Ver Detalhes</button>";
-
-        document.getElementById("seeGroupInfo").addEventListener("click", () => showGroupInfo(person));
-
+        // document.getElementById("chat-info").innerHTML += "<img src='Images/plus.png'>";-
     }
     document.getElementById("chat-info").innerHTML += "<button id='verAlbum'>Ver Album Partilhado</button>"
                 
     for (let i = 1; i < all_chat[person].length; i++) {
         addChatTxt(all_chat[person][i]);
     }
-
+    if (isGroup()) {
+        document.getElementById("seeGroupInfo").addEventListener("click", () => showGroupInfo(person));
+    }
+    document.getElementById("verAlbum").addEventListener("click", () =>visibility_on("sharedAlbum-div"));
+    document.getElementById("verAlbum").addEventListener("click", function() {
+        if (isGroup()) {
+            fiches();
+        } else {
+            notFiches();
+        }
+        
+    });
     chatScroll("auto");
-
-    // if (isGroup()) {
-    //     document.getElementById("chat-info").innerHTML +=
-    //         "<img src='Images/group.png'>" +
-    //         "<span id='chatName'>" + person + "</span><button id='groupInfoButton'>Ver Detalhes</button>";
-    //         document.getElementById("groupInfoButton").addEventListener("click", () => showGroupInfo(person));
-    // } else {
-    //     document.getElementById("chat-info").innerHTML +=
-    //         "<img src='Images/user-icon.png'>" +
-    //         "<span id='chatName'>" + person + "</span>";
-    // }
 }
-
 
 function getChat() {
     return JSON.parse(localStorage.getItem(SAVEDCHAT)) || [];
@@ -294,11 +296,14 @@ function addUserGroup(userID) {
 function removeUser () {
     document.querySelectorAll('.remove').forEach(function (cell) {
         cell.addEventListener('click', function () {
-            const row = this.parentElement; 
-            row.remove(); 
+
+            visibility_on("removeUser")
+            document.getElementById("re")
+            this.parentElement.remove();
         });
     });
 }
+
 
 function createGroup() {
     let name = document.getElementById("albmName").value;

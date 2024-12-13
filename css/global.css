@@ -1,20 +1,20 @@
 @font-face {
     font-family: 'forbiden';
-    src: url('/fonts/Forbiden.otf') format('opentype');
+    src: url('../fonts/Forbiden.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'happytitle';
-    src: url('/fonts/KGHAPPY.ttf') format('truetype');
+    src: url('../fonts/KGHAPPY.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'happy';
-    src: url('/fonts/KGHAPPYSolid.ttf') format('truetype');
+    src: url('..    /fonts/KGHAPPYSolid.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -153,7 +153,7 @@ li {
 }
 
 .share-btn {
-    background-color: #84b7d3;
+    background-color: #b4d1df;
     color: black;
     padding: 10px;
     margin: 5px;
@@ -165,7 +165,7 @@ li {
 }
 
 .share-btn:hover {
-    background-color: #5c90ad;
+    background-color: #82a8bc;
 }
 
 .closeShare {
@@ -177,7 +177,7 @@ li {
     /* color:white; */
     background-color: #84b7d3;
     border: none;
-    box-shadow: 1px 2px 1px #5c90ad;
+    box-shadow: 1px 2px 1px #6e94a8;
     padding: 10px;
     cursor: pointer;
     

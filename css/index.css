@@ -180,11 +180,11 @@ li {
 
 .footer .btn-send {
     color: white;
-    background-color: #9966c9;
+    background-color: #5c90ad;
     animation: infinite;
 }
 .footer .btn-send:hover {
-    background-color: rgb(224, 20, 54);
+    background-color: #4a7c97;
     
 }
 

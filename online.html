@@ -26,10 +26,10 @@
         </div>
         <div class="content" id="chatcontent">
             <div class="in-chat">
-                <div class="chat-info">
-                    <img src="Images/user-icon.png">
+                <div id="chat-info" class="chat-info toggleChat" >
+                    <img id="personImage" src="Images/user-icon.png">
                     <span id="chatName"></span>
-                    <button id="verAlbum">Ver Album Partilhado</button>
+                     <!-- <button id="verAlbum">Ver Album Partilhado</button> -->
                 </div>
                 <div id="chat-div" class="chat-div">
                     <div id="chat-text" class="chat-text">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div id="addGroup-div" class="addGroup-div">
-            <div class="chat-info">
+            <div class="chat-info" class="toggleChat">
                 <img src="Images/plus.png">
                 <span>Novo Grupo</span>
             </div>
@@ -89,18 +89,15 @@
             </div>
         </div>
         
-        
-
 
         <div id="sharedAlbum-div" class="sharedAlbum-div">
             
-            <div class="chat-info">
+            <div class="chat-info" class="toggleChat">
                 <img id="backButton" style="display:none;" src="Images/back-arrow.png">
                 <span>Album Partilhado</span>
                 <button id="verChat">Ver Chat</button>
             </div>
             <div id="sharedZone" class="sharedAlbum">
-            
             </div>
         </div>   
         <div id="photoView">
@@ -215,19 +212,21 @@
 
         <div id="groupInfo-div">
             <div class="chat-info">
-                <img src="Images/group.png">
-                <span id="groupName"></span>
+                <img src="Images/group.png"> <img id="backChat" src="Images/back-arrow.png">
+                <span id="groupName"></span><button>Alterar Nome</button>
             </div>
             <div id="groupInfo">
                 
                 <div class="details">
-                    <span>Descrição</span><br>
+                    <span>Descrição</span> <button>Alterar</button><br>
                     <textarea id="groupDetails"></textarea>
                 </div>
                 <div class="added">
                     <span>Utilizadores Adicionados</span>
+                    <button>Adicionar Utilizadores</button>
                     <table id="usersInGroup"></table>
                 </div>
+                <!-- <button id="backChat">Voltar</button> -->
             </div>
         </div>
           

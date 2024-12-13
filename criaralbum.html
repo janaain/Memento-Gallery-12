@@ -92,11 +92,15 @@
                             <input type="text" id="resolucao_max" placeholder="Ex: 1920x1080">
                         </li>
                         <li>
-                            <div>
+                            <div class="localizacao-mapa">
+                                <div>
                                 <input type="checkbox" name="localizacao" id="loc">
                                 <label for="locationInput">Localização:</label>
                                 <br>
                                 <input type="text" style = "margin-left: 32px;" id="locationInput" name="location" placeholder="Selecionar no mapa" />
+                                </div>
+                                <!-- Adicionar Mapa no Canto Inferior Direito -->
+                                <div id="map"></div>
                               </div>                             
                         </li>
                         <li>
@@ -111,16 +115,7 @@
                             <br>
                             <input type="text" style = "margin-left: 32px;" id="tipo_valor" placeholder="Ex: Macro, Paisagem, etc">
                         </li>
-                        <li>
-                            <input type="checkbox" name="organizar" id="conteudo">
-                            <label for="conteudo">Conteúdo:</label>
-                            <br>
-                            <input type="text" style = "margin-left: 32px;" id="conteudo_valor" placeholder="Ex: Comida, Animais, etc">
-                        </li>
                     </ul>
-                <!-- Adicionar Mapa no Canto Inferior Direito -->
-                <div id="map"></div>
-                <!-- Aqui vai o mapa -->
                 </div>
         
                 <!-- Coluna da Direita - Manter de Fora -->
@@ -182,11 +177,6 @@
                         <label for="tipo">Tipo:</label>
                         <br>
                         <input type="text" style = "margin-left: 32px;" id="tipo_valor" placeholder="Ex: Macro, Paisagem, etc">
-                    </li>
-                    <li>
-                        <label for="conteudo">Conteúdo:</label>
-                        <br>
-                        <input type="text" style = "margin-left: 32px;" id="conteudo_valor" placeholder="Ex: Comida, Animais, etc">
                     </li>
                 </ul>
             <!-- Adicionar Mapa no Canto Inferior Direito -->

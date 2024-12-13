@@ -121,7 +121,7 @@ function setCurrentStep(value){
 function setEventListeners(){
     // Seleciona a div que vai agir como botão e o input de ficheiros
 
-    const addPhotoButton = document.getElementById('addPhotos');
+    const addPhotoButton = document.getElementById('deviceOption');
     const fileInput = document.getElementById('fileInput');
 
     // Adiciona um evento de clique à div
@@ -179,6 +179,8 @@ function setEventListeners(){
                 imagePreview.appendChild(div);  
             }
         }
+
+        document.getElementById("addPhotosPopup").style.display = "none";
     });
 }
 
@@ -277,7 +279,7 @@ headerDiv.appendChild(paragraph);
 return(headerDiv)
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener("load", function() {
     const radio = document.getElementById('nao_dividir');
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const inputsToDisable = {
@@ -326,5 +328,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleInputFields(checkbox);  // Disable the related inputs
             });
         }
+    });
+
+    const addPhotosDiv = document.getElementById("addPhotos");
+    const addPhotosPopup = document.getElementById("addPhotosPopup");
+    const closePopupAddPhotos = document.getElementById("closePopupAddPhotos");
+
+    // Abrir o pop-up ao clicar em "Adicionar Fotos"
+    addPhotosDiv.addEventListener("click", function () {
+        addPhotosPopup.style.display = "flex"; // Exibir o pop-up
+    });
+
+    // Fechar o pop-up ao clicar no botão de fechar
+    closePopupAddPhotos.addEventListener("click", function () {
+        addPhotosPopup.style.display = "none"; // Esconder o pop-up
+    });
+
+    // // Adicionar funcionalidade às opções (exemplo)
+    // document.getElementById("deviceOption").addEventListener("click", function () {
+    //     alert("Adicionar fotos do dispositivo!");
+    //     addPhotosPopup.style.display = "none"; // Fechar após a ação
+    // });
+
+    document.getElementById("facebookOption").addEventListener("click", function () {
+        alert("Função não implementada");
+        addPhotosPopup.style.display = "none";
+    });
+
+    document.getElementById("twitterOption").addEventListener("click", function () {
+        alert("Função não implementada");
+        addPhotosPopup.style.display = "none";
+    });
+
+    document.getElementById("instagramOption").addEventListener("click", function () {
+        alert("Função não implementada");
+        addPhotosPopup.style.display = "none";
+    });
+
+    document.getElementById("emailOption").addEventListener("click", function () {
+        alert("Função não implementada");
+        addPhotosPopup.style.display = "none";
     });
 });

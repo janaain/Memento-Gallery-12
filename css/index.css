@@ -109,6 +109,19 @@ li {
     z-index: 1000;
 }
 
+.popup1{
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* Popup Box */
 .chat-popup {
     width: 300px;

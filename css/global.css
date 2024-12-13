@@ -45,8 +45,8 @@ li {
 };
 
 .main{
-    height: 100vh;
-    width: 100vw;
+    width: 100%;
+    height: 100%;
     display: grid;
     grid-template-areas: 
         'top_bar top_bar'
@@ -153,12 +153,13 @@ label{
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid #000000;
     text-align: center;
-    height: 100%;
-    width: 100%;    
+    height: 720px;
+    width: 1280px;    
     z-index: 6;
 }
 
 .sharepopup-content {
+    position: relative;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -207,8 +208,7 @@ label{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    justify-content: center;
-    align-items: center;
+
 }
 
 /* Conteúdo do pop-up */

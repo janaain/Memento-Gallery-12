@@ -60,6 +60,7 @@ function setEventListeners(){
     document.getElementById("verChat").addEventListener("click", () =>visibility_off("sharedAlbum-div"));
 
     document.getElementById("okButton").addEventListener("click", () => addFriend());
+    document.getElementById("nameInput").addEventListener("input", () => checkInput());
     document.getElementById("backButton").addEventListener('click', goBack);
     document.getElementById("backChat").addEventListener("click", () => visibility_off("groupInfo-div"))
 
@@ -108,7 +109,15 @@ function setEventListeners(){
         document.getElementById("photoView").style.display = "none";
         document.getElementById("chat-button").style.display = "block";
     })
-        
+      
+    
+
+    // POR IMPLMENTAR
+
+    document.getElementById("changeGroupName").addEventListener("click", alert);
+    document.getElementById("changeGroupDetails").addEventListener("click", alert);
+    document.getElementById("changeGroupUsers").addEventListener("click", alert);
+
 }
 
 window.addEventListener("load", main);
@@ -120,6 +129,10 @@ function visibility_on(id) {
 
 function visibility_off(id) {
     document.getElementById(id).classList.remove("on");
+}
+
+function notDone() {
+    alert("Por implementar");
 }
 
 // Adds the current friends to the dropdown on "Criar Grupo"
@@ -267,6 +280,7 @@ function checkInput() {
     let nome = document.getElementById("albmName").value;
     let usersAdded = document.getElementById("usersAdded").rows.length;
     let addUserToGroup = document.getElementById("username").value;
+    let newFriend = document.getElementById("nameInput").value;
 
     //
     if (nome != "" && usersAdded > 0){
@@ -280,6 +294,13 @@ function checkInput() {
     } else if(addUserToGroup != "") {
         document.getElementById("okUser").disabled = false;
     }
+
+    if(newFriend == "") {
+        document.getElementById("okButton").disabled = true;
+    } else {
+        document.getElementById("okButton").disabled = false;
+    }
+    
 }
 
 

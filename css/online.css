@@ -390,8 +390,8 @@ button:hover {
 
 #voltar {
     position: fixed;
-    bottom: 5px;
-    right:135px;    
+    top: 670px;
+    left: 1145px;  
     text-align: center;
     padding: 10px 40px;
     background-color: #cdcdcd;

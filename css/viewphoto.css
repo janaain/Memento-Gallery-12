@@ -105,6 +105,8 @@
 
 /* Barra Lateral */
 .sidebar {
+    font-family: 'ubuntu';
+    font-size: large    ;
     width: 270px;
     border-right: 2px solid #ccc;
     background-color: #eee7c8;
@@ -123,6 +125,7 @@
 
 .sidebar li {
     padding: 15px 0;
+    background-color: #e8dba5;
     border-bottom: 1px solid;
 }
 
@@ -143,7 +146,7 @@
 }
 
 .option-button {
-    background-color: #eee7c8;
+    background-color: #e8dba5;
     padding: 15px;
     font-size: 18px;
     border-top: 1px solid #000000;
@@ -180,6 +183,7 @@
 }
 
 .details-table {
+    font-family: 'ubuntu';
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;

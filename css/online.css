@@ -88,7 +88,7 @@ button:hover {
 
 #verChat {
     position: absolute;
-    left: 1170px;
+    left: 1177px;
     top: 88px;
     padding: 7px 20px;
 }
@@ -104,7 +104,7 @@ button:hover {
 
 .add-buttons button {
     background-color: white;
-    padding: 7px 10px;
+    padding: 7px 14px;
     margin: 4px;
     border-radius: 5px;
     box-shadow: 1px 2px 2px #797979;
@@ -200,7 +200,7 @@ button:hover {
 }
 .toggleChat button {
     position: absolute;
-    left: 1080px;
+    left: 1100px;
     top: 88px;
     padding: 7px 20px;
 }
@@ -479,7 +479,7 @@ button:hover {
 }
 
 #seeGroupInfo {
-    left: 965px
+    left: 995px
 }
 
 /* --------------------------- */

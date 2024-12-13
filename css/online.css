@@ -2,14 +2,23 @@ li {
     list-style-type: none;
 }
 
-/* button {
-    background-color: #ffffff;
-    padding: 5px 15px;
-    margin: 4px;
-    border: 1px solid #ffffff;
+body {
+    font-family: monospace;
+    font-size: large;
+}
+
+button {
+    background-color: white;
+    border: 1px solid #e3e3e3;
     border-radius: 5px;
     box-shadow: 1px 2px 2px #797979;
-} */
+    padding: 2px 5px;
+}
+
+button:hover {
+    background-color: rgb(228, 228, 228);
+}
+
 
 .on {
     display: block !important;
@@ -80,16 +89,16 @@ li {
 }
 
 .add-buttons button {
-    background-color: #ffffff;
+    background-color: white;
     padding: 7px 15px;
     margin: 4px;
-    border: 1px solid #ffffff;
     border-radius: 5px;
     box-shadow: 1px 2px 2px #797979;
+    border: 1px solid #cecece;
 }
 
 .add-buttons button:hover {
-    background-color: #e0e0e0;
+    background-color: rgb(228, 228, 228);
 }
 
 /* --- ADICIONAR AMIGO ------------------------------- */
@@ -160,13 +169,11 @@ li {
     height: 40px;
     background-color: #c8d7de;
     padding: 5px 10px;
-    box-shadow: 0px 2px 10px rgb(126, 126, 126);
-    z-index: 3;
 }
 
 .chat-info img {
     width: 35px;
-    padding-top: 5px;
+    margin-top: 5px;
 }
 
 .chat-info span {
@@ -174,19 +181,11 @@ li {
     font-size: 25px;
     
 }
-
-.chat-info button {
+.toggleChat button {
     position: absolute;
     right: 15px;
     top: 88px;
     padding: 7px 20px;
-    border: 1px solid #cecece;
-    border-radius: 5px;
-    box-shadow: 1px 2px 2px #797979;
-}
-
-.chat-info button:hover {
-    background-color: #eeeeee;
 }
 
 .chat-insert {
@@ -257,6 +256,11 @@ li {
     margin:2px 8px;
     border-radius: 40px;
     max-width: 70%;
+    font-size: large;
+}
+
+.chat-pessoa {
+    font-size: small ;
 }
 
 .chat-text img {
@@ -402,11 +406,15 @@ li {
     right:10px;    
     text-align: center;
     padding: 10px 40px;
-    background-color: #dfbdff;
+    background-color: #84b7d3;
     font-size: large;
     border: none;
     border-radius: 15px;
-    box-shadow: 1px 1px 1px #937ea7;
+    box-shadow: 1px 1px 1px #657883;
+}
+
+#concluido:hover{
+    background-color: #6796ae
 }
 
 #concluido:disabled {
@@ -442,6 +450,19 @@ li {
     padding: 20px 15px;
 }
 
+#backChat {
+    margin-left: 7px;
+}
+
+#backChat:hover {
+    background-color: #92b5c7;
+    border-radius: 40px;
+}
+
+#seeGroupInfo {
+    position: static;
+    padding: 2px 5px;
+}
 
 /* --------------------------- */
 
@@ -540,7 +561,7 @@ li {
 
 .header {
     padding: 10px;
-    background-color: #e9d3fd;
+    background-color: #b4d1df;
     text-align: center;
     border-radius: 10px;
 }
@@ -595,11 +616,11 @@ li {
 
 .footer .btn-send {
     color: white;
-    background-color: #9966c9;
+    background-color: #5c90ad;
     animation: infinite;
 }
 .footer .btn-send:hover {
-    background-color: rgb(224, 20, 54);
+    background-color: #4b7c96;
     
 }
 

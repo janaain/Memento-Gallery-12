@@ -44,12 +44,20 @@ function setEventListeners(){
     document.getElementById("concluido").addEventListener("click", () => createGroup());
     document.getElementById("voltar").addEventListener("click", () => visibility_off("addGroup-div"));
     document.getElementById("verAlbum").addEventListener("click", () =>visibility_on("sharedAlbum-div"));
-    document.getElementById("verAlbum").addEventListener("click", () =>fiches());
+    document.getElementById("verAlbum").addEventListener("click", function() {
+        if (isGroup()) {
+            fiches();
+        } else {
+            notFiches();
+        }
+        
+    });
     document.getElementById("verChat").addEventListener("click", () =>visibility_off("sharedAlbum-div"));
     
 
     document.getElementById("okButton").addEventListener("click", () => addFriend());
     document.getElementById("backButton").addEventListener('click', goBack);
+    document.getElementById("backChat").addEventListener("click", () => visibility_off("groupInfo-div"))
 
     document.getElementById("albmName").addEventListener("input", () => checkInput());
     document.getElementById("okUser").addEventListener("click", function () {
@@ -69,6 +77,8 @@ function setEventListeners(){
         if (li) {
             startChat(li.textContent.trim()); 
             visibility_off("sharedAlbum-div")
+            visibility_off("addGroup-div")
+            visibility_off("groupInfo-div")
             closePhoto()
         }
         })
@@ -111,11 +121,11 @@ function visibility_off(id) {
 // Adds the current friends to the dropdown on "Criar Grupo"
 function startOnline() {
     let all_chat = getChat()
+    document.getElementById("amigos").innerHTML = "";
     document.getElementById("recentChat").innerHTML = "";
     for (let key in all_chat) {
         if (all_chat[key][0].length == 2) {
            addRecents(key, "single");
-           console.log(key)
            document.getElementById("amigos").innerHTML += "<option>" + key + "</option>";
         } else {
             addRecents(key, "group");
@@ -130,14 +140,32 @@ function startChat(person) {
     let all_chat = JSON.parse(localStorage.getItem(SAVEDCHAT));
     document.getElementById("chat-text").innerHTML = "<br>";
     document.getElementById("chatName").innerHTML = person;
+    if (isGroup()) {
+        document.getElementById("chat-info").innerHTML += "<button>Ver Detalhes</button>";
+        document.getElementById("personImage").src = "Images/group.png";
+        document.getElementById("chat-info").innerHTML += "<button id='seeGroupInfo'>Ver Detalhes</button>";
+
+        document.getElementById("seeGroupInfo").addEventListener("click", () => showGroupInfo(person));
+
+    }
+    document.getElementById("chat-info").innerHTML += "<button id='verAlbum'>Ver Album Partilhado</button>"
+                
     for (let i = 1; i < all_chat[person].length; i++) {
         addChatTxt(all_chat[person][i]);
     }
-    if (all_chat[person][0].length == 3) {
-        document.getElementById("chatName").addEventListener("click", () => showGroupInfo(person))
-        
-    }
+
     chatScroll("auto");
+
+    // if (isGroup()) {
+    //     document.getElementById("chat-info").innerHTML +=
+    //         "<img src='Images/group.png'>" +
+    //         "<span id='chatName'>" + person + "</span><button id='groupInfoButton'>Ver Detalhes</button>";
+    //         document.getElementById("groupInfoButton").addEventListener("click", () => showGroupInfo(person));
+    // } else {
+    //     document.getElementById("chat-info").innerHTML +=
+    //         "<img src='Images/user-icon.png'>" +
+    //         "<span id='chatName'>" + person + "</span>";
+    // }
 }
 
 
@@ -159,6 +187,14 @@ function getPerson() {
     return document.getElementById("chatName").innerHTML;
 }
 
+function isGroup() {
+    let all_chat = getChat();
+    if (all_chat[getPerson()][0].length == 3) {
+        return true;
+    }
+    return false;
+}
+
 // Saves new message and prints it in the chat
 function saveMessage() {
     let message = getNewMessage();
@@ -166,9 +202,14 @@ function saveMessage() {
         let all_chat = getChat();
         let person = getPerson();
 
-        all_chat[person].push([message, "self"]);
-
-        addChatTxt([message, "self"]);
+        if (isGroup()){
+            all_chat[person].push([message, "self","Eu"]);
+            addChatTxt([message, "self", "Eu"]);
+        } else {
+            all_chat[person].push([message, "self"]);
+            addChatTxt([message, "self"]);
+        }
+        
         chatScroll("smooth");
         clearText();
 
@@ -180,20 +221,27 @@ function saveMessage() {
 // Code HTML that prints a message
 // message has the following format [message, class, 'sender']
 function addChatTxt (message) {
-    document.getElementById("chat-text").innerHTML += 
+    if (isGroup() && message[2] != "Eu") {
+        document.getElementById("chat-text").innerHTML += 
+                "<p class='" + message[1] + "'><span class='chat-pessoa'>"+ message[2] +"</span><br>" + message[0] + "</p>";
+    } else {
+        document.getElementById("chat-text").innerHTML += 
                 "<p class='" + message[1] + "'>" + message[0] + "</p>";
+    }
 }
 
 // Appends the existing chats in the side bar
 function addRecents(key, type) {
+    let temp = document.getElementById("recentChat").innerHTML;
     if (type == "single") {
-        document.getElementById("recentChat").innerHTML +=
-            "<li><img src='Images/user-icon.png'><label >" + key + "</label></li>";
+        document.getElementById("recentChat").innerHTML =
+            "<li><img src='Images/user-icon.png'><label>" + key + "</label></li>";
     } else {
-        document.getElementById("recentChat").innerHTML +=
-            "<li><img src='Images/group.png'><label >" + key + "</label></li>";
-
+        document.getElementById("recentChat").innerHTML =
+            "<li><img src='Images/group.png'><label>" + key + "</label></li>";
     }
+    document.getElementById("recentChat").innerHTML += temp;
+
 }
 
 // Configs of scroll
@@ -258,9 +306,7 @@ function createGroup() {
     let numUser = document.getElementById("usersAdded").rows.length;
     let users = [];
 
-    console.log("hey")
     for(let i = 0; i < numUser; i++) {
-        console.log(document.getElementById("usersAdded").rows[i].cells[0].innerHTML)
         users.push(document.getElementById("usersAdded").rows[i].cells[0].innerHTML)
     }
     
@@ -278,10 +324,10 @@ function showGroupInfo (name) {
     let info = getChat()[name];
     let details = info[0][0];
     let users = info[0][1];
-    console.log(users)
 
     document.getElementById("groupName").innerHTML = name;
     document.getElementById("groupDetails").value = details;
+    document.getElementById("usersInGroup").innerHTML = "";
 
     for(let i = 0; i < users.length; i++) {
         document.getElementById("usersInGroup").innerHTML +=
@@ -355,6 +401,7 @@ const casamento = [
     }
 ];
 
+
 let lastFolder = casamento
 let folderPath = []
 // Function to render the current folder based on the folder path
@@ -383,6 +430,8 @@ function renderCurrentFolder() {
 
     const contentDiv = document.querySelector('#sharedZone');
     contentDiv.innerHTML = ''; // Clear previous content
+    contentDiv.innerHTML += "<div><img src='Images/plus.png'><br><span>Criar Album</span></div>";
+
 
     // Render folders and photos
     currentFolder.forEach(folder => {
@@ -534,6 +583,11 @@ function closePhoto(){
 function fiches() {
     renderCurrentFolder(root); // Render the initial folder structure
     updateTopBar()
+}
+
+function notFiches() {
+    document.getElementById("sharedZone").innerHTML = "";
+    document.getElementById("sharedZone").innerHTML += "<div><img src='Images/plus.png'><br><span>Criar Album</span></div>";
 }
 
 // -----------------------------------------------------------------------

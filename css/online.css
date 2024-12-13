@@ -292,7 +292,7 @@ button:hover {
     color:rgb(55, 54, 113);
     font-size: larger;
     margin-left: 78px;
-
+    cursor: pointer;
 }
 
 .self {
@@ -421,7 +421,7 @@ button:hover {
     top: 670px;
     left: 1015px;  
     text-align: center;
-    padding: 10px 35px;
+    padding: 10px 37px;
     background-color: #cdcdcd;
     font-size: large;
     border: none;
@@ -434,20 +434,22 @@ button:hover {
     top: 670px;
     left: 1145px;
     text-align: center;
-    padding: 10px 35px;
-    background-color: #84b7d3;
+    padding: 10px 37px;
+    background-color: rgb(43, 151, 43);
     font-size: large;
+    color: white;
     border: none;
     border-radius: 15px;
-    box-shadow: 1px 1px 1px #657883;
+    box-shadow: 1px 1px 1px rgb(35, 110, 35);
 }
 
 #concluido:hover{
-    background-color: #6796ae
+    background-color: rgb(35, 110, 35);
 }
 
 #concluido:disabled {
-    background-color: #eeeeee;
+    background-color: rgb(201, 225, 201);
+    box-shadow: none;
 }
 
 /* --------------------------- */

@@ -53,6 +53,7 @@ function next_step(){
             folders:[],
             photos:["subconjuntos/11-04-2004/ArcTriunfe.jpeg",
             "subconjuntos/11-04-2004/Louvre.jpeg",
+            "subconjuntos/15-04-2004/croissant.jpg",
             "subconjuntos/11-04-2004/Notre-Dame.jpeg",
             "subconjuntos/11-04-2004/Sena.jpeg",
             "subconjuntos/11-04-2004/TorreEiffel.jpg",
@@ -65,7 +66,6 @@ function next_step(){
             "subconjuntos/14-04-2004/showNatal.jpeg",
             "subconjuntos/15-04-2004/crepe.jpeg",
             "subconjuntos/15-04-2004/mime.jpg",
-            "subconjuntos/15-04-2004/croissant.jpg",
             "subconjuntos/15-04-2004/Psg.jpeg",
             "subconjuntos/15-04-2004/streetArt.jpeg"]
         });

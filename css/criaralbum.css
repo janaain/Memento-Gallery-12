@@ -16,7 +16,8 @@ li {
     grid-template-columns: 300px 1fr;
     grid-template-rows: 
         80px 1fr;
-    ;
+    height: 100%;
+    width: 100%;
 }
 
 .main a{
@@ -368,4 +369,60 @@ label{
     padding: 10px;
     gap: 10px;
     padding-inline: 15px ;
+}
+
+#TagPopup {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    width: 100%;
+}
+
+.popup-content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.popup-content button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.popup-content .confirm {
+    background-color: lightgrey; 
+    color: black;
+}
+
+.popup-content .confirm:hover {
+    background-color: grey; 
+}
+
+.popup-content .cancel {
+    background-color: #EFD09E; 
+    color: black;
+}
+
+.popup-content .cancel:hover {
+    background-color: rgb(247, 190, 98); 
 }

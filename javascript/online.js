@@ -296,9 +296,6 @@ function addUserGroup(userID) {
 function removeUser () {
     document.querySelectorAll('.remove').forEach(function (cell) {
         cell.addEventListener('click', function () {
-
-            visibility_on("removeUser")
-            document.getElementById("re")
             this.parentElement.remove();
         });
     });
